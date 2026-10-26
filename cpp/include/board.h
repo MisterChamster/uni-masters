@@ -14,4 +14,6 @@ private:
 
 public:
     Board(int len);
+
+    void print_board();
 };

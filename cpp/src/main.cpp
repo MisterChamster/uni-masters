@@ -4,8 +4,8 @@
 
 
 int main() {
-    // std::cout<<"FMSKFKSAFBJDSKHFSAKDVBHDKfj\n";
     Board main_board = Board(5);
-    std::cout<<"HEllo plis b0$$"<<std::endl;
+    main_board.print_board();
+    std::cout<<"HEllo"<<std::endl;
     return 0;
 }

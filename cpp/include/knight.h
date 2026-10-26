@@ -12,4 +12,7 @@ private:
 public:
     Knight();
     Knight(Team in_team);
+
+    void set_team(Team in_team);
+    Team get_team();
 };
