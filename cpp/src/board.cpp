@@ -5,13 +5,14 @@
 
 Board::Board(int in_edge_len) {
     edge_len = in_edge_len;
+    total_nodes = in_edge_len*in_edge_len;
     board_fields.resize(edge_len*edge_len);
     Board::EXAMPLEfill_board_fields();
 }
 
 
 void Board::EXAMPLEfill_board_fields() {
-    for(int i=0; i<edge_len*edge_len; i++) {
+    for(int i=0; i<total_nodes; i++) {
         board_fields[i] = BoardNode();
     }
 
@@ -44,12 +45,12 @@ void Board::EXAMPLEfill_board_fields() {
 }
 
 void Board::print_board() {
-    for (int i=0; i<edge_len*edge_len; i++) {
+    for (int i=0; i<total_nodes; i++) {
         int node_val = 0;
         if (board_fields[i].get_is_knight()) node_val++;
         if (board_fields[i].get_team() == Team::team_2) node_val++;
 
         std::cout<<node_val<<" ";
-        if ((i+1)%5 == 0) std::cout<<std::endl;
+        if ((i+1)%edge_len == 0) std::cout<<std::endl;
     }
 }

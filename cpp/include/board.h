@@ -7,6 +7,7 @@
 class Board {
 private:
     int edge_len;
+    int total_nodes;
     std::vector<BoardNode> board_fields;
     std::vector<Knight*> knights;
 
