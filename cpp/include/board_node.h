@@ -8,5 +8,6 @@ private:
     Knight node_knight;
 
 public:
-    BoardNode(bool in_is_knight);
+    BoardNode();
+    BoardNode(Team in_team);
 };

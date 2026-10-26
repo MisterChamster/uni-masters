@@ -2,5 +2,6 @@
 
 enum class Team {
     team_1,
-    team_2
+    team_2,
+    placeholder
 };

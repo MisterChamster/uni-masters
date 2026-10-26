@@ -3,7 +3,14 @@
 #include "board_node.h"
 
 
-BoardNode::BoardNode(bool in_is_knight) {
-    is_knight = in_is_knight;
+// Constructor for empty node
+BoardNode::BoardNode() {
+    is_knight = false;
     node_knight = Knight();
+}
+
+// Constructor for empty node
+BoardNode::BoardNode(Team in_team) {
+    is_knight = true;
+    node_knight = Knight(in_team);
 }

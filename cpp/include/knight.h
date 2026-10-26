@@ -11,6 +11,5 @@ private:
 
 public:
     Knight();
-    // Knight(std::string in_team);
     Knight(Team in_team);
 };
