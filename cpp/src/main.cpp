@@ -8,6 +8,8 @@ int main() {
     main_board.print_board_sqared();
     std::cout<<std::endl;
     main_board.print_board_trianglar();
+    std::cout<<std::endl;
+    main_board.print_board_trianglar_netted();
 
     // main_board.print_neighbors(1);
     // main_board.print_neighbors(4);

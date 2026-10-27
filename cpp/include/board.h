@@ -18,5 +18,6 @@ public:
 
     void print_board_sqared();
     void print_board_trianglar();
+    void print_board_trianglar_netted();
     void print_neighbors(int n);
 };

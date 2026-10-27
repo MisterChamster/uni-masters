@@ -69,6 +69,57 @@ void Board::print_board_trianglar() {
     }
 }
 
+void Board::print_board_trianglar_netted() {
+    int node_val = 0;
+    // std::cout<<"  ";
+    if (board_fields[0].get_is_knight()) node_val++;
+    node_val = 0;
+
+
+    for (int i=1; i<total_nodes; i+=edge_len*2) {
+        std::cout<<"  ";
+        int j=i;
+        while (j<i+edge_len) {
+            if (board_fields[j].get_is_knight()) node_val++;
+            std::cout<<node_val<<"   ";
+            node_val = 0;
+            j++;
+        }
+
+
+        if (!(i==(total_nodes-edge_len+1))){
+            std::string somestring = "  ʌ";
+            for (int l=0; l<edge_len-2; l++) {
+                somestring += "   ʌ";
+            }
+            somestring += "  /";
+            std::cout<<std::endl<<somestring<<std::endl;
+        }
+
+        if (i+1<total_nodes-edge_len) {
+            if (board_fields[j].get_is_knight()) node_val++;
+            std::cout<<node_val;
+            node_val = 0;
+
+            for (int k=j+1; k<j+edge_len; k++) {
+                if (board_fields[k].get_is_knight()) node_val++;
+                std::cout<<" - "<<node_val;
+                node_val = 0;
+            }
+
+            if (!(j==(total_nodes-edge_len+1))){
+                std::string somestring = "  v";
+                for (int l=0; l<edge_len-2; l++) {
+                    somestring += "   v";
+                }
+                somestring += "  \\";
+                std::cout<<std::endl<<somestring;
+            }
+            std::cout<<std::endl;
+        }
+    }
+}
+
 void Board::print_neighbors(int index) {
     // print indexes
     // print teams
