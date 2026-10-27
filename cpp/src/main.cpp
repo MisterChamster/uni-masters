@@ -5,14 +5,16 @@
 
 int main() {
     Board main_board = Board(5);
-    // main_board.print_board();
-    main_board.print_neighbors(6);
-    main_board.print_neighbors(1);
-    main_board.print_neighbors(4);
+    main_board.print_board();
+    std::cout<<std::endl;
 
-    main_board.print_neighbors(16);
-    main_board.print_neighbors(20);
-    main_board.print_neighbors(24);
+    // main_board.print_neighbors(1);
+    // main_board.print_neighbors(4);
+    // main_board.print_neighbors(6);
+
+    // main_board.print_neighbors(16);
+    // main_board.print_neighbors(20);
+    // main_board.print_neighbors(24);
     std::cout<<"HEllo"<<std::endl;
     return 0;
 }
