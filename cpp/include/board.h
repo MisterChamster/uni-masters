@@ -17,4 +17,5 @@ public:
     Board(int len);
 
     void print_board();
+    void print_neighbors(int n);
 };
