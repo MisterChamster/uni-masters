@@ -3,8 +3,14 @@
 #include "board_node.h"
 
 
-BoardNode::BoardNode(bool in_is_knight) {
-    is_knight = in_is_knight;
+// Has to exist for vector allocator
+BoardNode::BoardNode() {
+    is_knight = false;
+    node_knight = Knight();
+}
+
+BoardNode::BoardNode(bool is_in_knight) {
+    is_knight = is_in_knight;
     node_knight = Knight();
 }
 

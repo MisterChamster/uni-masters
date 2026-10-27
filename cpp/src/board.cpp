@@ -6,7 +6,7 @@
 Board::Board(int in_edge_len) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
-    board_fields.resize(edge_len*edge_len);
+    board_fields.resize(total_nodes);
     Board::EXAMPLEfill_board_fields();
 }
 
