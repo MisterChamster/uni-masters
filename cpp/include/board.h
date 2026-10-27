@@ -16,6 +16,7 @@ private:
 public:
     Board(int len);
 
-    void print_board();
+    void print_board_sqared();
+    void print_board_trianglar();
     void print_neighbors(int n);
 };

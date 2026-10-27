@@ -13,7 +13,7 @@ Board::Board(int in_edge_len) {
 
 void Board::EXAMPLEfill_board_fields() {
     for(int i=0; i<total_nodes; i++) {
-        board_fields[i] = BoardNode(true);
+        board_fields[i] = BoardNode(false);
     }
 
     // EXAMPLE FILL!!!
@@ -32,13 +32,40 @@ void Board::EXAMPLEfill_board_fields() {
     board_fields[20].set_is_knight(true);
 }
 
-void Board::print_board() {
-    for (int i=0; i<total_nodes; i++) {
-        int node_val = 0;
-        if (board_fields[i].get_is_knight()) node_val++;
-
-        std::cout<<node_val<<" ";
+void Board::print_board_sqared() {
+    for (int i=0; i<total_nodes; i+=edge_len) {
         if ((i+1)%edge_len == 0) std::cout<<std::endl;
+
+        for (int j=i; j<i+edge_len; j++) {
+            int node_val = 0;
+            if (board_fields[j].get_is_knight()) node_val++;
+            std::cout<<node_val<<" ";
+        }
+        std::cout<<std::endl;
+    }
+}
+
+void Board::print_board_trianglar() {
+    int node_val = 0;
+    for (int i=0; i<total_nodes; i+=edge_len*2) {
+        std::cout<<" ";
+        int j=i;
+        while (j<i+edge_len) {
+            if (board_fields[j].get_is_knight()) node_val++;
+            std::cout<<node_val<<" ";
+            node_val = 0;
+            j++;
+        }
+        std::cout<<std::endl;
+
+        if (i+1<total_nodes-edge_len) {
+            for (int k=j; k<j+edge_len; k++) {
+                if (board_fields[k].get_is_knight()) node_val++;
+                std::cout<<node_val<<" ";
+                node_val = 0;
+            }
+            std::cout<<std::endl;
+        }
     }
 }
 
