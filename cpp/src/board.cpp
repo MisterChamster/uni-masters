@@ -7,7 +7,14 @@ Board::Board(int in_edge_len) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
     Board::create_empty_board_fields();
-    Board::EXAMPLEfill_board_fields();
+    // Board::EXAMPLEfill_board_fields();
+}
+
+Board::Board(int in_edge_len, float appear_prob) {
+    edge_len = in_edge_len;
+    total_nodes = in_edge_len*in_edge_len;
+    Board::create_empty_board_fields();
+    Board::fill_board_knights(appear_prob);
 }
 
 
@@ -17,6 +24,13 @@ void Board::create_empty_board_fields() {
         board_fields[i] = BoardNode(false);
     }
 }
+
+void fill_board_knights(float appear_prob) {
+    if (appear_prob<0 || appear_prob>1) {
+        // exception
+    }
+}
+
 
 void Board::EXAMPLEfill_board_fields() {
     // EXAMPLE FILL!!!

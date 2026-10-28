@@ -15,7 +15,9 @@ private:
 
 public:
     Board(int len);
+    Board(int len, float appear_prob);
     void create_empty_board_fields();
+    void fill_board_knights(float appear_prob);
 
     void print_board_sqared();
     void print_board_trianglar();
