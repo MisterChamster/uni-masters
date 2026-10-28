@@ -6,16 +6,19 @@
 Board::Board(int in_edge_len) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
-    board_fields.resize(total_nodes);
+    Board::create_empty_board_fields();
     Board::EXAMPLEfill_board_fields();
 }
 
 
-void Board::EXAMPLEfill_board_fields() {
+void Board::create_empty_board_fields() {
+    board_fields.resize(total_nodes);
     for(int i=0; i<total_nodes; i++) {
         board_fields[i] = BoardNode(false);
     }
+}
 
+void Board::EXAMPLEfill_board_fields() {
     // EXAMPLE FILL!!!
     board_fields[0].set_is_knight(true);
     board_fields[8].set_is_knight(true);

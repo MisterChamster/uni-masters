@@ -15,6 +15,7 @@ private:
 
 public:
     Board(int len);
+    void create_empty_board_fields();
 
     void print_board_sqared();
     void print_board_trianglar();
