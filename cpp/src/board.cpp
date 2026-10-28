@@ -1,4 +1,7 @@
 #include <iostream>
+#include <cmath>
+#include <random>
+#include <vector>
 
 #include "board.h"
 
@@ -7,7 +10,6 @@ Board::Board(int in_edge_len) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
     Board::create_empty_board_fields();
-    // Board::EXAMPLEfill_board_fields();
 }
 
 Board::Board(int in_edge_len, float appear_prob) {
@@ -25,9 +27,31 @@ void Board::create_empty_board_fields() {
     }
 }
 
-void fill_board_knights(float appear_prob) {
+void Board::fill_board_knights(float appear_prob) {
     if (appear_prob<0 || appear_prob>1) {
-        // exception
+        throw std::invalid_argument("Argument is not a value between 0 and 1!!");
+    }
+
+    std::vector<int> knight_indexes(total_nodes);
+    std::iota(knight_indexes.begin(), knight_indexes.end(), 0);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::shuffle(knight_indexes.begin(), knight_indexes.end(), gen);
+
+    int numof_knights = std::round(total_nodes*appear_prob);
+    knight_nodes_ptrs.resize(numof_knights);
+    total_knights = numof_knights;
+
+    for (int i=total_nodes-1; i>=numof_knights; i--) {
+        knight_indexes.erase(knight_indexes.begin() + i);
+    }
+    sort(knight_indexes.begin(), knight_indexes.end());
+
+    int k = 0;
+    for (int i:knight_indexes) {
+        board_fields[i].set_is_knight(true);
+        knight_nodes_ptrs[k] = &board_fields[i];
+        k++;
     }
 }
 
@@ -168,4 +192,19 @@ void Board::print_neighbors(int index) {
         std::cout<<neighbors[i]<<" ";
     }
     std::cout<<std::endl;
+}
+
+void Board::print_knight_nodes() {
+    std::cout<<"Index   Address\n";
+    for (BoardNode* curr_node:knight_nodes_ptrs) {
+        int node_index = get_knightnode_index(curr_node);
+        std::string node_str = std::to_string(node_index);
+        node_str.resize(5, ' ');
+        std::cout<<node_str << "   " << curr_node<<std::endl;
+    }
+}
+
+int Board::get_knightnode_index(BoardNode* node_ptr) {
+    int index = static_cast<int>(node_ptr - board_fields.data());
+    return index;
 }
