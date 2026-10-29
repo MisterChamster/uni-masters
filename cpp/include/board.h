@@ -29,4 +29,5 @@ public:
 
     int get_knightnode_index(BoardNode* node_ptr);
     int* get_neighbors(int index);
+    int get_random_neighbor(int index);
 };

@@ -1,4 +1,5 @@
 build/
 debug/
+.VSCodeCounter/
 
 .DS_Store

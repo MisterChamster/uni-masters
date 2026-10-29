@@ -195,3 +195,12 @@ int* Board::get_neighbors(int index) {
     neighbors[5] = (index + edge_len)%25;
     return neighbors;
 }
+
+int Board::get_random_neighbor(int index) {
+    int* neighbors = get_neighbors(index);
+
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 5);
+    return neighbors[dist6(rng)];
+}

@@ -27,5 +27,9 @@ int main() {
 
     std::cout<<std::endl;
     main_board.print_knight_nodes();
+
+    std::cout<<std::endl;
+    int random_neighbor = main_board.get_random_neighbor(0);
+    std::cout<<random_neighbor<<std::endl;
     return 0;
 }
