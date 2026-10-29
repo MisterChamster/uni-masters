@@ -2,6 +2,7 @@
 #include <cmath>
 #include <random>
 #include <vector>
+#include <algorithm>
 
 #include "board.h"
 
@@ -203,4 +204,8 @@ int Board::get_random_neighbor(int index) {
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 5);
     return neighbors[dist6(rng)];
+}
+
+void Board::switch_node_places(int node_i1, int node_i2) {
+    std::swap(board_fields[node_i1], board_fields[node_i2]);
 }

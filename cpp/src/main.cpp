@@ -31,5 +31,6 @@ int main() {
     std::cout<<std::endl;
     int random_neighbor = main_board.get_random_neighbor(0);
     std::cout<<random_neighbor<<std::endl;
+    main_board.switch_node_places(0, 1);
     return 0;
 }

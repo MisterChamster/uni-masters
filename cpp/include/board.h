@@ -30,4 +30,5 @@ public:
     int get_knightnode_index(BoardNode* node_ptr);
     int* get_neighbors(int index);
     int get_random_neighbor(int index);
+    void switch_node_places(int node_i1, int node_i2);
 };
