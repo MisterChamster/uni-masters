@@ -9,6 +9,7 @@ private:
     int edge_len;
     int total_nodes;
     int total_knights;
+    static constexpr int neighbors_len = 6;
     std::vector<BoardNode> board_fields;
     std::vector<BoardNode*> knight_nodes_ptrs;
 
@@ -25,5 +26,7 @@ public:
     void print_board_trianglar_netted();
     void print_neighbors(int n);
     void print_knight_nodes();
+
     int get_knightnode_index(BoardNode* node_ptr);
+    int* get_neighbors(int index);
 };

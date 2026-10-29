@@ -5,7 +5,7 @@
 
 int main() {
     int board_edge_len = 20;
-    float knight_probability = 0.99;
+    float knight_probability = 0.9;
 
     Board main_board = Board(
         board_edge_len,

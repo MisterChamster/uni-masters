@@ -162,33 +162,8 @@ void Board::print_board_trianglar_netted() {
 }
 
 void Board::print_neighbors(int index) {
-    // print indexes
-    // print teams
-    std::vector<int> neighbors(edge_len);
-    neighbors.resize(6);
-    int temp;
-    std::cout<<index<<": ";
-
-    // top mid
-    temp = (index - edge_len + total_nodes)%25;
-    neighbors[0] = temp;
-    // top right
-    temp = (index - edge_len + total_nodes)%25 + 1 - ((index+1)%edge_len == 0)*edge_len;
-    neighbors[1] = temp;
-    // mid left
-    temp = index - 1 + ((index+edge_len)%edge_len == 0)*edge_len;
-    neighbors[2] = temp;
-    // mid right
-    temp = index + 1 - ((index+1)%edge_len == 0)*edge_len;
-    neighbors[3] = temp;
-    // down left
-    temp = (index + edge_len)%25 - 1 + ((index+edge_len)%edge_len == 0)*edge_len;
-    neighbors[4] = temp;
-    // down mid
-    temp = (index + edge_len)%25;
-    neighbors[5] = temp;
-
-    for (int i=0; i<6; i++) {
+    int* neighbors = get_neighbors(index);
+    for (int i=0; i<neighbors_len; i++) {
         std::cout<<neighbors[i]<<" ";
     }
     std::cout<<std::endl;
@@ -207,4 +182,16 @@ void Board::print_knight_nodes() {
 int Board::get_knightnode_index(BoardNode* node_ptr) {
     int index = static_cast<int>(node_ptr - board_fields.data());
     return index;
+}
+
+int* Board::get_neighbors(int index) {
+    static int neighbors[neighbors_len];
+
+    neighbors[0] = (index - edge_len + total_nodes)%25;
+    neighbors[1] = (index - edge_len + total_nodes)%25 + 1 - ((index+1)%edge_len == 0)*edge_len;
+    neighbors[2] = index - 1 + ((index+edge_len)%edge_len == 0)*edge_len;
+    neighbors[3] = index + 1 - ((index+1)%edge_len == 0)*edge_len;
+    neighbors[4] = (index + edge_len)%25 - 1 + ((index+edge_len)%edge_len == 0)*edge_len;
+    neighbors[5] = (index + edge_len)%25;
+    return neighbors;
 }
