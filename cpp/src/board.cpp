@@ -40,7 +40,7 @@ void Board::fill_board_knights(float appear_prob) {
     std::shuffle(knight_indexes.begin(), knight_indexes.end(), gen);
 
     int numof_knights = std::round(total_nodes*appear_prob);
-    knight_nodes_ptrs.resize(numof_knights);
+    knight_nodes_indexes.resize(numof_knights);
     total_knights = numof_knights;
 
     for (int i=total_nodes-1; i>=numof_knights; i--) {
@@ -51,7 +51,7 @@ void Board::fill_board_knights(float appear_prob) {
     int k = 0;
     for (int i:knight_indexes) {
         board_fields[i].set_is_knight(true);
-        knight_nodes_ptrs[k] = &board_fields[i];
+        knight_nodes_indexes[k] = i;
         k++;
     }
 }
@@ -172,11 +172,10 @@ void Board::print_neighbors(int index) {
 
 void Board::print_knight_nodes() {
     std::cout<<"Index   Address\n";
-    for (BoardNode* curr_node:knight_nodes_ptrs) {
-        int node_index = get_knightnode_index(curr_node);
-        std::string node_str = std::to_string(node_index);
+    for (int curr_node_index:knight_nodes_indexes) {
+        std::string node_str = std::to_string(curr_node_index);
         node_str.resize(5, ' ');
-        std::cout<<node_str << "   " << curr_node<<std::endl;
+        std::cout<<node_str << "   " << &knight_nodes_indexes[curr_node_index]<<std::endl;
     }
 }
 
@@ -207,5 +206,13 @@ int Board::get_random_neighbor(int index) {
 }
 
 void Board::switch_node_places(int node_i1, int node_i2) {
+    }
     std::swap(board_fields[node_i1], board_fields[node_i2]);
+    // THIS FUCKS UP POINTERS VECTOR - FIX IT
+    // Change pointers to indexes(?)
+    // Remember to swap indexes... :(((
+}
+
+void Board::move_all_knights() {
+
 }

@@ -4,8 +4,8 @@
 
 
 int main() {
-    int board_edge_len = 20;
-    float knight_probability = 0.9;
+    int board_edge_len = 5;
+    float knight_probability = 0.7;
 
     Board main_board = Board(
         board_edge_len,
@@ -32,5 +32,7 @@ int main() {
     int random_neighbor = main_board.get_random_neighbor(0);
     std::cout<<random_neighbor<<std::endl;
     main_board.switch_node_places(0, 1);
+    std::cout<<std::endl;
+    main_board.print_knight_nodes();
     return 0;
 }

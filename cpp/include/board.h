@@ -11,7 +11,7 @@ private:
     int total_knights;
     static constexpr int neighbors_len = 6;
     std::vector<BoardNode> board_fields;
-    std::vector<BoardNode*> knight_nodes_ptrs;
+    std::vector<int> knight_nodes_indexes;
 
     void EXAMPLEfill_board_fields();
     void create_empty_board_fields();
@@ -27,7 +27,7 @@ public:
     void print_neighbors(int n);
     void print_knight_nodes();
 
-    int get_knightnode_index(BoardNode* node_ptr);
+    int get_node_index(BoardNode* node_ptr);
     int* get_neighbors(int index);
     int get_random_neighbor(int index);
     void switch_node_places(int node_i1, int node_i2);
