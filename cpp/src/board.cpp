@@ -16,8 +16,8 @@ Board::Board(int in_edge_len) {
 Board::Board(int in_edge_len, float appear_prob) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
-    Board::create_empty_board_fields();
-    Board::fill_board_knights(appear_prob);
+    create_empty_board_fields();
+    fill_board_knights(appear_prob);
 }
 
 
@@ -179,7 +179,7 @@ void Board::print_knight_nodes() {
     }
 }
 
-int Board::get_knightnode_index(BoardNode* node_ptr) {
+int Board::get_node_index(BoardNode* node_ptr) {
     int index = static_cast<int>(node_ptr - board_fields.data());
     return index;
 }
