@@ -31,7 +31,7 @@ int main() {
     std::cout<<std::endl;
     int random_neighbor = main_board.get_random_neighbor(0);
     std::cout<<random_neighbor<<std::endl;
-    main_board.switch_node_places(0, 1);
+    main_board.swap_nodes(0, 1);
     std::cout<<std::endl;
     main_board.print_knight_nodes();
     return 0;

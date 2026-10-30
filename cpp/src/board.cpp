@@ -205,7 +205,14 @@ int Board::get_random_neighbor(int index) {
     return neighbors[dist6(rng)];
 }
 
-void Board::switch_node_places(int node_i1, int node_i2) {
+void Board::swap_nodes(int node_i1, int node_i2) {
+    bool node1_is_knight = board_fields[node_i1].get_is_knight();
+    bool node2_is_knight = board_fields[node_i2].get_is_knight();
+    if (node1_is_knight) {
+
+    }
+    if (node2_is_knight) {
+
     }
     std::swap(board_fields[node_i1], board_fields[node_i2]);
     // THIS FUCKS UP POINTERS VECTOR - FIX IT
