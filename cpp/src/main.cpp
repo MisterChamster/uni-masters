@@ -29,7 +29,7 @@ int main() {
     main_board.print_knight_nodes();
     std::cout<<std::endl;
 
-    main_board.move_all_knights_n(10);
+    main_board.move_all_knights_n(1);
     main_board.print_board_trianglar();
     return 0;
 }

@@ -186,14 +186,12 @@ int Board::get_random_neighbor(int index) {
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 5);
-    return neighbors[dist6(rng)];
+    int neighbor_index = neighbors[dist6(rng)];
+    return neighbor_index;
 }
 
 void Board::swap_nodes(int node_i1, int node_i2) {
-    // bool node1_is_knight = board_fields[node_i1].get_is_knight();
-    // bool node2_is_knight = board_fields[node_i2].get_is_knight();
     std::swap(board_fields[node_i1], board_fields[node_i2]);
-    // Remember to swap indexes... :(((
 }
 
 void Board::swap_knight_with_empty(int i_knight, int i_node, int knight_index_i) {
@@ -213,9 +211,7 @@ void Board::move_all_knights() {
     for (int i=0; i<total_knights; i++) {
         int knight_index = knight_nodes_indexes[i];
         int target_index = get_random_neighbor(knight_index);
-        knight_nodes_indexes[i] = target_index;
 
-        // swap_nodes(knight_index, target_index);
         if (!board_fields[target_index].get_is_knight()) {
             swap_knights(knight_index, target_index, i);
         } else {
