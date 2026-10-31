@@ -13,8 +13,9 @@ int main() {
     // main_board.print_board_sqared();
     // std::cout<<std::endl;
     main_board.print_board_trianglar();
-    // std::cout<<std::endl;
+    std::cout<<std::endl;
     // main_board.print_board_trianglar_netted();
+    // std::cout<<std::endl;
 
     // main_board.print_neighbors(1);
     // main_board.print_neighbors(4);
@@ -25,14 +26,10 @@ int main() {
     // main_board.print_neighbors(24);
     // std::cout<<"HEllo"<<std::endl;
 
-    std::cout<<std::endl;
     main_board.print_knight_nodes();
+    std::cout<<std::endl;
 
-    std::cout<<std::endl;
-    int random_neighbor = main_board.get_random_neighbor(0);
-    std::cout<<random_neighbor<<std::endl;
-    main_board.swap_nodes(0, 1);
-    std::cout<<std::endl;
-    main_board.print_knight_nodes();
+    main_board.move_all_knights_n(10);
+    main_board.print_board_trianglar();
     return 0;
 }

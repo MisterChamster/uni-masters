@@ -52,6 +52,7 @@ void Board::fill_board_knights(float appear_prob) {
     for (int i:knight_indexes) {
         board_fields[i].set_is_knight(true);
         knight_nodes_indexes[k] = i;
+        board_fields[i].set_i_in_indexes(i);
         k++;
     }
 }
@@ -195,19 +196,36 @@ void Board::swap_nodes(int node_i1, int node_i2) {
     // Remember to swap indexes... :(((
 }
 
+void Board::swap_knight_with_empty(int i_knight, int i_node, int knight_index_i) {
+    std::swap(board_fields[i_knight], board_fields[i_node]);
+    knight_nodes_indexes[knight_index_i] = i_node;
+}
+
+void Board::swap_knights(int i_knight1, int i_knight2, int knight1_index_i) {
+    std::swap(board_fields[i_knight1], board_fields[i_knight2]);
+    knight_nodes_indexes[knight1_index_i] = i_knight2;
+
+    int knight2_index_i = board_fields[i_knight2].get_i_in_indexes();
+    knight_nodes_indexes[knight2_index_i] = i_knight1;
+}
+
 void Board::move_all_knights() {
-    // for (int knight_index:knight_nodes_indexes) {
     for (int i=0; i<total_knights; i++) {
         int knight_index = knight_nodes_indexes[i];
         int target_index = get_random_neighbor(knight_index);
-        swap_nodes(knight_index, target_index);
-
         knight_nodes_indexes[i] = target_index;
-        if (board_fields[knight_index].get_is_knight()) {
-            // if target was knight - switch their place too
-            // give knight/boardnode index in knightindexes field,
-            // that will make user not search for index of targetnode
-            // in knights indexes
+
+        // swap_nodes(knight_index, target_index);
+        if (!board_fields[target_index].get_is_knight()) {
+            swap_knights(knight_index, target_index, i);
+        } else {
+            swap_knight_with_empty(knight_index, target_index, i);
         }
+    }
+}
+
+void Board::move_all_knights_n(int n) {
+    for (int i=0; i<n; i++) {
+        move_all_knights();
     }
 }

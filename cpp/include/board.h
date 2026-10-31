@@ -1,7 +1,6 @@
 #pragma once
 
 #include "board_node.h"
-#include "knight.h"
 
 
 class Board {
@@ -30,5 +29,8 @@ public:
     int* get_neighbors(int index);
     int get_random_neighbor(int index);
     void swap_nodes(int node_i1, int node_i2);
+    void swap_knight_with_empty(int i_knight, int i_node, int knight_index_i);
+    void swap_knights(int i_knight1, int i_knight2, int knight1_index_i);
     void move_all_knights();
+    void move_all_knights_n(int n);
 };
