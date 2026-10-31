@@ -206,20 +206,25 @@ int Board::get_random_neighbor(int index) {
 }
 
 void Board::swap_nodes(int node_i1, int node_i2) {
-    bool node1_is_knight = board_fields[node_i1].get_is_knight();
-    bool node2_is_knight = board_fields[node_i2].get_is_knight();
-    if (node1_is_knight) {
-
-    }
-    if (node2_is_knight) {
-
-    }
+    // bool node1_is_knight = board_fields[node_i1].get_is_knight();
+    // bool node2_is_knight = board_fields[node_i2].get_is_knight();
     std::swap(board_fields[node_i1], board_fields[node_i2]);
-    // THIS FUCKS UP POINTERS VECTOR - FIX IT
-    // Change pointers to indexes(?)
     // Remember to swap indexes... :(((
 }
 
 void Board::move_all_knights() {
+    // for (int knight_index:knight_nodes_indexes) {
+    for (int i=0; i<total_knights; i++) {
+        int knight_index = knight_nodes_indexes[i];
+        int target_index = get_random_neighbor(knight_index);
+        swap_nodes(knight_index, target_index);
 
+        knight_nodes_indexes[i] = target_index;
+        if (board_fields[knight_index].get_is_knight()) {
+            // if target was knight - switch their place too
+            // give knight/boardnode index in knightindexes field,
+            // that will make user not search for index of targetnode
+            // in knights indexes
+        }
+    }
 }

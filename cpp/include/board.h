@@ -31,4 +31,5 @@ public:
     int* get_neighbors(int index);
     int get_random_neighbor(int index);
     void swap_nodes(int node_i1, int node_i2);
+    void move_all_knights();
 };
