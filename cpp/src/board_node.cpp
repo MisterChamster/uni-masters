@@ -6,12 +6,14 @@
 // Has to exist for vector allocator
 BoardNode::BoardNode() {
     is_knight = false;
-    node_knight = Knight();
+    wins = 0;
+    total_fights = 0;
 }
 
-BoardNode::BoardNode(bool is_in_knight) {
-    is_knight = is_in_knight;
-    node_knight = Knight();
+BoardNode::BoardNode(bool in_is_knight) {
+    is_knight = in_is_knight;
+    wins = 0;
+    total_fights = 0;
 }
 
 void BoardNode::set_is_knight(bool in_is_knight) {

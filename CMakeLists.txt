@@ -9,7 +9,6 @@ add_executable(Triangle_n
     cpp/src/main.cpp
     cpp/src/board.cpp
     cpp/src/board_node.cpp
-    cpp/src/knight.cpp
 )
 
 target_compile_features(Triangle_n PRIVATE cxx_std_17)

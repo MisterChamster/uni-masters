@@ -5,11 +5,13 @@
 class BoardNode {
 private:
     bool is_knight;
+    int wins;
+    int total_fights;
     Knight node_knight;
 
 public:
     BoardNode();
-    BoardNode(bool is_in_knight);
+    BoardNode(bool in_is_knight);
 
     void set_is_knight(bool in_is_knight);
     bool get_is_knight();
