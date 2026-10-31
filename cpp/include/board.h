@@ -13,7 +13,6 @@ private:
     std::vector<BoardNode> board_fields;
     std::vector<int> knight_nodes_indexes;
 
-    void EXAMPLEfill_board_fields();
     void create_empty_board_fields();
     void fill_board_knights(float appear_prob);
 

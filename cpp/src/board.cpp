@@ -57,23 +57,6 @@ void Board::fill_board_knights(float appear_prob) {
 }
 
 
-void Board::EXAMPLEfill_board_fields() {
-    // EXAMPLE FILL!!!
-    board_fields[0].set_is_knight(true);
-    board_fields[8].set_is_knight(true);
-    board_fields[10].set_is_knight(true);
-    board_fields[13].set_is_knight(true);
-    board_fields[16].set_is_knight(true);
-    board_fields[24].set_is_knight(true);
-
-    board_fields[4].set_is_knight(true);
-    board_fields[6].set_is_knight(true);
-    board_fields[11].set_is_knight(true);
-    board_fields[12].set_is_knight(true);
-    board_fields[18].set_is_knight(true);
-    board_fields[20].set_is_knight(true);
-}
-
 void Board::print_board_sqared() {
     for (int i=0; i<total_nodes; i+=edge_len) {
         if ((i+1)%edge_len == 0) std::cout<<std::endl;
