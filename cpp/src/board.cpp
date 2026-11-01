@@ -52,7 +52,7 @@ void Board::fill_board_knights(float appear_prob) {
     for (int i:knight_indexes) {
         board_fields[i].set_is_knight(true);
         knight_nodes_indexes[k] = i;
-        board_fields[i].set_i_in_indexes(i);
+        board_fields[i].set_i_in_indexes(k);
         k++;
     }
 }
@@ -207,11 +207,11 @@ void Board::swap_knight_with_empty(int i_knight, int i_node, int knight_index_i)
 }
 
 void Board::swap_knights(int i_knight1, int i_knight2, int knight1_index_i) {
-    std::swap(board_fields[i_knight1], board_fields[i_knight2]);
     knight_nodes_indexes[knight1_index_i] = i_knight2;
 
     int knight2_index_i = board_fields[i_knight2].get_i_in_indexes();
     knight_nodes_indexes[knight2_index_i] = i_knight1;
+    std::swap(board_fields[i_knight1], board_fields[i_knight2]);
 }
 
 void Board::move_all_knights() {
