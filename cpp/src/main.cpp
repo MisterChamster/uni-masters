@@ -26,7 +26,7 @@ int main() {
     // main_board.print_neighbors(24);
     // std::cout<<"HEllo"<<std::endl;
 
-    main_board.print_knight_nodes();
+    // main_board.print_knight_nodes();
     std::cout<<std::endl;
 
     main_board.move_all_knights_n(1);

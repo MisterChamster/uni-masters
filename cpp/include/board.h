@@ -24,6 +24,7 @@ public:
     void print_board_trianglar_netted();
     void print_neighbors(int n);
     void print_knight_nodes();
+    void print_knight_indexes();
 
     int get_node_index(BoardNode* node_ptr);
     int* get_neighbors(int index);

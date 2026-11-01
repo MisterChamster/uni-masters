@@ -163,6 +163,13 @@ void Board::print_knight_nodes() {
     }
 }
 
+void Board::print_knight_indexes() {
+    for (int i=0; i<knight_nodes_indexes.size(); i++) {
+        std::cout<<knight_nodes_indexes[i]<<" ";
+    }
+    std::cout<<std::endl;
+}
+
 int Board::get_node_index(BoardNode* node_ptr) {
     int index = static_cast<int>(node_ptr - board_fields.data());
     return index;
@@ -212,7 +219,7 @@ void Board::move_all_knights() {
         int knight_index = knight_nodes_indexes[i];
         int target_index = get_random_neighbor(knight_index);
 
-        if (!board_fields[target_index].get_is_knight()) {
+        if (board_fields[target_index].get_is_knight()) {
             swap_knights(knight_index, target_index, i);
         } else {
             swap_knight_with_empty(knight_index, target_index, i);
