@@ -33,3 +33,12 @@ void BoardNode::set_i_in_indexes(int in_i) {
 int BoardNode::get_i_in_indexes() {
     return i_in_indexes;
 }
+
+void BoardNode::add_fight_win() {
+    wins++;
+    total_fights++;
+}
+
+int BoardNode::get_wins() {
+    return wins;
+}

@@ -16,4 +16,6 @@ public:
     bool get_is_knight();
     void set_i_in_indexes(int in_i);
     int get_i_in_indexes();
+    void add_fight_win();
+    int get_wins();
 };

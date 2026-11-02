@@ -214,13 +214,29 @@ void Board::swap_knights(int i_knight1, int i_knight2, int knight1_index_i) {
     std::swap(board_fields[i_knight1], board_fields[i_knight2]);
 }
 
+float Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param=1) {
+    return 1/(1+control_param*exp(wins_k2-wins_k1));
+}
+
 void Board::move_all_knights() {
     for (int i=0; i<total_knights; i++) {
         int knight_index = knight_nodes_indexes[i];
         int target_index = get_random_neighbor(knight_index);
 
         if (board_fields[target_index].get_is_knight()) {
-            swap_knights(knight_index, target_index, i);
+            float knight_winning_prob = calc_winning_prob(
+                board_fields[knight_index].get_wins(),
+                board_fields[target_index].get_wins());
+            knight_winning_prob *= 1000;
+            std::cout<<knight_winning_prob<<std::endl;
+
+            int rand_num = rand() % 1001;  //0 and 100 inclusive
+            bool fight_won_flag = (rand_num<=knight_winning_prob);
+            std::cout<<fight_won_flag<<std::endl;
+            if (fight_won_flag) {
+                board_fields[knight_index].add_fight_win();
+                swap_knights(knight_index, target_index, i);
+            }
         } else {
             swap_knight_with_empty(knight_index, target_index, i);
         }
