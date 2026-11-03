@@ -13,10 +13,12 @@ int main() {
     Board main_board = Board(
         board_edge_len,
         knight_probability);
-    main_board.print_board_sqared();
+    // main_board.print_board_sqared();
+    // std::cout<<std::endl;
+    main_board.print_board_trianglar();
     std::cout<<std::endl;
-// main_board.print_board_trianglar();
-// std::cout<<std::endl;
+    // main_board.print_board_trianglar_netted();
+    // std::cout<<std::endl;
     // main_board.print_board_trianglar_wins();
     // std::cout<<std::endl;
 

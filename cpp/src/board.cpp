@@ -70,6 +70,13 @@ void Board::print_board_sqared() {
     }
 }
 
+void Board::print_board_trianglar() {
+    int node_val = 0;
+    for (int i=0; i<total_nodes; i+=edge_len*2) {
+        std::cout<<" ";
+        int j=i;
+        while (j<i+edge_len) {
+            if (board_fields[j]->get_is_knight()) node_val++;
             std::cout<<node_val<<" ";
             node_val = 0;
             j++;
@@ -78,7 +85,7 @@ void Board::print_board_sqared() {
 
         if (i+1<total_nodes-edge_len) {
             for (int k=j; k<j+edge_len; k++) {
-                if (board_fields[k].get_is_knight()) node_val++;
+                if (board_fields[k]->get_is_knight()) node_val++;
                 std::cout<<node_val<<" ";
                 node_val = 0;
             }
