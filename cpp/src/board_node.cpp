@@ -42,3 +42,11 @@ void BoardNode::add_fight_win() {
 int BoardNode::get_wins() {
     return wins;
 }
+
+void BoardNode::forget(float forgetting_factor) {
+    // std::cout<<"Old wins: "<<wins<<std::endl;
+    // float factor = 1-forgetting_factor;
+    // std::cout<<"Factorrr: "<<factor<<std::endl;
+    wins = std::round(wins*(1-forgetting_factor));
+    // std::cout<<"New wins: "<<wins<<std::endl;
+}

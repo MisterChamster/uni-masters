@@ -219,7 +219,7 @@ float Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param=1) 
 }
 
 void Board::move_all_knights(bool forget_now, float forgetting_factor=0.1) {
-    std::cout<<"Am I forgetting: "<<forget_now<<std::endl;
+    // std::cout<<"Am I forgetting: "<<forget_now<<std::endl;
     for (int i=0; i<total_knights; i++) {
         int knight_index = knight_nodes_indexes[i];
         int target_index = get_random_neighbor(knight_index);
@@ -229,17 +229,24 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor=0.1) {
                 board_fields[knight_index].get_wins(),
                 board_fields[target_index].get_wins());
             knight_winning_prob *= 1000;
-            std::cout<<knight_winning_prob<<std::endl;
+            // std::cout<<knight_winning_prob<<std::endl;
 
             int rand_num = rand() % 1001;  //0 and 1000 inclusive
             bool fight_won_flag = (rand_num<=knight_winning_prob);
-            std::cout<<fight_won_flag<<std::endl;
+            // std::cout<<fight_won_flag<<std::endl;
             if (fight_won_flag) {
                 board_fields[knight_index].add_fight_win();
                 swap_knights(knight_index, target_index, i);
             }
         } else {
             swap_knight_with_empty(knight_index, target_index, i);
+        }
+    }
+
+    if (forget_now) {
+        for (int i=0; i<total_knights; i++) {
+            int knight_index = knight_nodes_indexes[i];
+            board_fields[knight_index].forget(forgetting_factor);
         }
     }
 }
@@ -249,6 +256,6 @@ void Board::move_all_knights_n(int n, int forget_after_N_steps, float forgetting
         bool perform_forgetting;
         if (!(i%forget_after_N_steps)) perform_forgetting = true;
         else perform_forgetting = false;
-        move_all_knights(perform_forgetting, forget_after_N_steps);
+        move_all_knights(perform_forgetting, forgetting_factor);
     }
 }

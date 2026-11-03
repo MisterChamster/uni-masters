@@ -18,4 +18,5 @@ public:
     int get_i_in_indexes();
     void add_fight_win();
     int get_wins();
+    void forget(float forgetting_factor);
 };
