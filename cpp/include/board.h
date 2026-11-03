@@ -33,6 +33,6 @@ public:
     void swap_knight_with_empty(int i_knight, int i_node, int knight_index_i);
     void swap_knights(int i_knight1, int i_knight2, int knight1_index_i);
     float calc_winning_prob(int wins_k1, int wins_k2, float control_param);
-    void move_all_knights();
-    void move_all_knights_n(int n);
+    void move_all_knights(bool forget_now, float forgetting_factor);
+    void move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor);
 };
