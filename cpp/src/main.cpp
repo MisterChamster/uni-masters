@@ -4,20 +4,20 @@
 
 
 int main() {
-    int board_edge_len = 20;
-    float knight_probability = 0.7;
-    int moves_to_perform = 30;
+    int board_edge_len = 5;
+    float knight_probability = 0.5;
+    int moves_to_perform = 1;
     float forgetting_factor = 0.1;
     int forget_after_N_steps = 4;
 
     Board main_board = Board(
         board_edge_len,
         knight_probability);
-    // main_board.print_board_sqared();
-    // std::cout<<std::endl;
-    main_board.print_board_trianglar();
+    main_board.print_board_sqared();
     std::cout<<std::endl;
-    // main_board.print_board_trianglar_netted();
+// main_board.print_board_trianglar();
+// std::cout<<std::endl;
+    // main_board.print_board_trianglar_wins();
     // std::cout<<std::endl;
 
     // main_board.print_neighbors(1);
@@ -30,9 +30,10 @@ int main() {
     // std::cout<<"HEllo"<<std::endl;
 
     // main_board.print_knight_nodes();
-    std::cout<<std::endl;
+// std::cout<<std::endl;
 
-    main_board.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
-    main_board.print_board_trianglar();
+// main_board.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
+// main_board.print_board_trianglar();
+    std::cout<<"HDKNFDABSNKCNAKN"<<std::endl;
     return 0;
 }

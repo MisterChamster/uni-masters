@@ -24,7 +24,7 @@ Board::Board(int in_edge_len, float appear_prob) {
 void Board::create_empty_board_fields() {
     board_fields.resize(total_nodes);
     for(int i=0; i<total_nodes; i++) {
-        board_fields[i] = BoardNode(false);
+        board_fields[i] = new BoardNode(false);
     }
 }
 
@@ -48,12 +48,11 @@ void Board::fill_board_knights(float appear_prob) {
     }
     sort(knight_indexes.begin(), knight_indexes.end());
 
-    int k = 0;
-    for (int i:knight_indexes) {
-        board_fields[i].set_is_knight(true);
-        knight_nodes_indexes[k] = i;
-        board_fields[i].set_i_in_indexes(k);
-        k++;
+    for (int i; i<knight_indexes.size(); i++) {
+        int knight_index = knight_indexes[i];
+        board_fields[knight_index]->set_is_knight(true);
+        board_fields[knight_index]->set_i_in_indexes(i);
+        knight_nodes_indexes[i] = board_fields[knight_index];
     }
 }
 
@@ -64,20 +63,13 @@ void Board::print_board_sqared() {
 
         for (int j=i; j<i+edge_len; j++) {
             int node_val = 0;
-            if (board_fields[j].get_is_knight()) node_val++;
+            if (board_fields[j]->get_is_knight()) node_val++;
             std::cout<<node_val<<" ";
         }
         std::cout<<std::endl;
     }
 }
 
-void Board::print_board_trianglar() {
-    int node_val = 0;
-    for (int i=0; i<total_nodes; i+=edge_len*2) {
-        std::cout<<" ";
-        int j=i;
-        while (j<i+edge_len) {
-            if (board_fields[j].get_is_knight()) node_val++;
             std::cout<<node_val<<" ";
             node_val = 0;
             j++;

@@ -8,9 +8,9 @@ private:
     int edge_len;
     int total_nodes;
     int total_knights;
-    static constexpr int neighbors_len = 6;
-    std::vector<BoardNode> board_fields;
-    std::vector<int> knight_nodes_indexes;
+    static constexpr int neighbors_count = 6;
+    std::vector<BoardNode*> board_fields;
+    std::vector<BoardNode*> knight_nodes_indexes;
 
     void create_empty_board_fields();
     void fill_board_knights(float appear_prob);
