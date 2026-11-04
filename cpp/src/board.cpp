@@ -176,9 +176,9 @@ int Board::get_random_neighbor(int index) {
     return neighbors[neighbor_index];
 }
 
-void Board::swap_knight_with_empty(int i_knight, int i_node, int knight_index_i) {
+void Board::swap_knight_with_empty(int i_knight, int i_node) {
+    board_fields[i_knight]->set_index_on_board(i_node);
     std::swap(board_fields[i_knight], board_fields[i_node]);
-    knight_nodes_indexes[knight_index_i] = i_node;
 }
 
 void Board::swap_knights(int i_knight1, int i_knight2, int knight1_index_i) {
@@ -194,34 +194,41 @@ float Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param=1) 
 }
 
 void Board::move_all_knights(bool forget_now, float forgetting_factor=0.1) {
-    // std::cout<<"Am I forgetting: "<<forget_now<<std::endl;
+    // print_knight_nodes();
     for (int i=0; i<total_knights; i++) {
-        int knight_index = knight_nodes_indexes[i];
+        BoardNode* knight_address = knight_nodes_adresses[i];
+        int knight_index = knight_address->get_index_on_board();
         int target_index = get_random_neighbor(knight_index);
+        // std::cout<<"For "<<knight_index<<": "<<target_index<<std::endl;
 
-        if (board_fields[target_index].get_is_knight()) {
+        if (board_fields[target_index]->get_is_knight()) {
+            std::cout<<"we SWAP knights!\n";
             float knight_winning_prob = calc_winning_prob(
-                board_fields[knight_index].get_wins(),
-                board_fields[target_index].get_wins());
+                knight_address->get_wins(),
+                board_fields[target_index]->get_wins());
             knight_winning_prob *= 1000;
-            // std::cout<<knight_winning_prob<<std::endl;
+//             // std::cout<<board_fields[knight_address].get_wins()<<std::endl;
 
             int rand_num = rand() % 1001;  //0 and 1000 inclusive
             bool fight_won_flag = (rand_num<=knight_winning_prob);
             // std::cout<<fight_won_flag<<std::endl;
             if (fight_won_flag) {
                 board_fields[knight_index].add_fight_win();
-                swap_knights(knight_index, target_index, i);
+                knight_address->add_fight_win();
+//                 // swap_knights(knight_index, target_index, i);
             }
         } else {
             swap_knight_with_empty(knight_index, target_index, i);
+            std::cout<<"WE swap empty!\n";
+            swap_knight_with_empty(knight_index, target_index);
         }
     }
 
     if (forget_now) {
         for (int i=0; i<total_knights; i++) {
             int knight_index = knight_nodes_indexes[i];
-            board_fields[knight_index].forget(forgetting_factor);
+            BoardNode* knight_address = knight_nodes_adresses[i];
+            knight_address->forget(forgetting_factor);
         }
     }
 }
