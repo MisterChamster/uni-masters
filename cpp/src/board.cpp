@@ -96,21 +96,20 @@ void Board::print_board_trianglar() {
 
 void Board::print_board_trianglar_netted() {
     int node_val = 0;
-    // std::cout<<"  ";
-    if (board_fields[0].get_is_knight()) node_val++;
+    std::cout<<"  "<<node_val;
+    if (board_fields[0]->get_is_knight()) node_val++;
     node_val = 0;
 
-
     for (int i=1; i<total_nodes; i+=edge_len*2) {
+        std::cout<<"IM I: "<<i<<std::endl;
         std::cout<<"  ";
         int j=i;
         while (j<i+edge_len) {
-            if (board_fields[j].get_is_knight()) node_val++;
-            std::cout<<node_val<<"   ";
+            // if (board_fields[j]->get_is_knight()) node_val++;
+            std::cout<<node_val<<" - ";
             node_val = 0;
             j++;
         }
-
 
         if (!(i==(total_nodes-edge_len+1))){
             std::string somestring = "  ʌ";
@@ -122,12 +121,12 @@ void Board::print_board_trianglar_netted() {
         }
 
         if (i+1<total_nodes-edge_len) {
-            if (board_fields[j].get_is_knight()) node_val++;
+            if (board_fields[j]->get_is_knight()) node_val++;
             std::cout<<node_val;
             node_val = 0;
 
             for (int k=j+1; k<j+edge_len; k++) {
-                if (board_fields[k].get_is_knight()) node_val++;
+                if (board_fields[k]->get_is_knight()) node_val++;
                 std::cout<<" - "<<node_val;
                 node_val = 0;
             }
