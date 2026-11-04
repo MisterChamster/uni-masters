@@ -48,7 +48,7 @@ void Board::fill_board_knights(float appear_prob) {
     }
     sort(knight_indexes.begin(), knight_indexes.end());
 
-    for (int i; i<knight_indexes.size(); i++) {
+    for (int i=0; i<knight_indexes.size(); i++) {
         int knight_index = knight_indexes[i];
         board_fields[knight_index]->set_is_knight(true);
         board_fields[knight_index]->set_i_in_indexes(i);
@@ -149,8 +149,8 @@ void Board::print_neighbors(int index) {
 
 void Board::print_knight_nodes() {
     std::cout<<"Address\n";
-    for (BoardNode* curr_node_index:knight_nodes_adresses) {
-        std::cout<<curr_node_index<<std::endl;
+    for (BoardNode* curr_node_address:knight_nodes_adresses) {
+        std::cout<<curr_node_address<<std::endl;
     }
 }
 
@@ -172,12 +172,8 @@ int Board::get_random_neighbor(int index) {
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 5);
-    int neighbor_index = neighbors[dist6(rng)];
-    return neighbor_index;
-}
-
-void Board::swap_nodes(int node_i1, int node_i2) {
-    std::swap(board_fields[node_i1], board_fields[node_i2]);
+    int neighbor_index = dist6(rng);
+    return neighbors[neighbor_index];
 }
 
 void Board::swap_knight_with_empty(int i_knight, int i_node, int knight_index_i) {
