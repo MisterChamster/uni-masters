@@ -24,7 +24,7 @@ Board::Board(int in_edge_len, float appear_prob) {
 void Board::create_empty_board_fields() {
     board_fields.resize(total_nodes);
     for(int i=0; i<total_nodes; i++) {
-        board_fields[i] = new BoardNode(false);
+        board_fields[i] = new BoardNode(false, i);
     }
 }
 

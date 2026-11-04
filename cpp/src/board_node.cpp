@@ -8,14 +8,24 @@ BoardNode::BoardNode() {
     is_knight = false;
     wins = 0;
     total_fights = 0;
+    index_on_board = -1;
     i_in_indexes = -1;
 }
 
-BoardNode::BoardNode(bool in_is_knight) {
+BoardNode::BoardNode(bool in_is_knight, int in_index_on_board) {
     is_knight = in_is_knight;
     wins = 0;
     total_fights = 0;
     i_in_indexes = -1;
+    index_on_board = in_index_on_board;
+}
+
+BoardNode::BoardNode(bool in_is_knight, int in_i_in_indexes, int in_index_on_board) {
+    is_knight = in_is_knight;
+    wins = 0;
+    total_fights = 0;
+    i_in_indexes = in_i_in_indexes;
+    index_on_board = in_index_on_board;
 }
 
 void BoardNode::set_is_knight(bool in_is_knight) {

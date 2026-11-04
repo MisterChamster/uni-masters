@@ -6,11 +6,13 @@ private:
     bool is_knight;
     int wins;
     int total_fights;
+    int index_on_board;
     int i_in_indexes;
 
 public:
     BoardNode();
-    BoardNode(bool in_is_knight);
+    BoardNode(bool in_is_knight, int in_index_on_board);
+    BoardNode(bool in_is_knight, int in_i_in_indexes, int in_index_on_board);
 
     void set_is_knight(bool in_is_knight);
     bool get_is_knight();
