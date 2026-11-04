@@ -194,6 +194,7 @@ void Board::print_knight_nodes() {
     }
 }
 
+
 int* Board::get_neighbors(int index) {
     static int neighbors[neighbors_count];
 
@@ -232,6 +233,10 @@ float Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param) {
 }
 
 void Board::move_all_knights(bool forget_now, float forgetting_factor) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<double> dist(0.0, 1.0);
+
     for (int i=0; i<total_knights; i++) {
         BoardNode* knight_address = knight_nodes_adresses[i];
         int knight_index = knight_address->get_index_on_board();
@@ -242,7 +247,6 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor) {
             float knight_winning_prob = calc_winning_prob(
                 knight_address->get_wins(),
                 board_fields[target_index]->get_wins());
-            knight_winning_prob *= 1000;
 
             int rand_num = rand() % 1001;  //0 and 1000 inclusive
             bool fight_won_flag = (rand_num<=knight_winning_prob);
