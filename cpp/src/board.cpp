@@ -154,18 +154,6 @@ void Board::print_knight_nodes() {
     }
 }
 
-void Board::print_knight_indexes() {
-    for (int i=0; i<knight_nodes_indexes.size(); i++) {
-        std::cout<<knight_nodes_indexes[i]<<" ";
-    }
-    std::cout<<std::endl;
-}
-
-int Board::get_node_index(BoardNode* node_ptr) {
-    int index = static_cast<int>(node_ptr - board_fields.data());
-    return index;
-}
-
 int* Board::get_neighbors(int index) {
     static int neighbors[neighbors_count];
 
