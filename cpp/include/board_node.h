@@ -5,7 +5,6 @@ class BoardNode {
 private:
     bool is_knight;
     int wins;
-    int total_fights;
     int index_on_board;
     int i_in_indexes;
 
