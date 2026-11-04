@@ -139,6 +139,46 @@ void Board::print_board_trianglar_netted() {
     }
 }
 
+std::string get_num_to_print(BoardNode* node_adress, std::string empty_char = " ") {
+    if (node_adress->get_is_knight()) {
+        std::string stringed_num = std::to_string(node_adress->get_wins());
+
+        if      (stringed_num.length() == 1) return " " + stringed_num + " ";
+        else if (stringed_num.length() == 2) return " " + stringed_num;
+        else                                 return stringed_num;
+    }
+    else return " " + empty_char + " ";
+}
+
+void Board::print_board_trianglar_wins(std::string empty_char) {
+    std::string num_to_print;
+
+    for (int i=0; i<total_nodes; i+=edge_len*2) {
+        num_to_print = get_num_to_print(board_fields[i], empty_char);
+        std::cout<<"  "<<num_to_print;
+
+        int j=i;
+        while (j+1<i+edge_len) {
+            num_to_print = get_num_to_print(board_fields[j], empty_char);
+            std::cout<<" "<<num_to_print;
+            j++;
+        }
+
+        if (i+1<total_nodes-edge_len) {
+            num_to_print = get_num_to_print(board_fields[j], empty_char);
+            std::cout<<std::endl<<std::endl<<num_to_print;
+
+            for (int k=j+1; k<j+edge_len; k++) {
+                num_to_print = get_num_to_print(board_fields[k], empty_char);
+                std::cout<<" "<<num_to_print;
+            }
+
+            if (j+edge_len+1<total_nodes) std::cout<<std::endl;
+            std::cout<<std::endl;
+        }
+    }
+}
+
 void Board::print_neighbors(int index) {
     int* neighbors = get_neighbors(index);
     for (int i=0; i<neighbors_count; i++) {
@@ -187,11 +227,11 @@ void Board::swap_knights(int i_knight1, int i_knight2) {
     std::swap(board_fields[i_knight1], board_fields[i_knight2]);
 }
 
-float Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param=1) {
+float Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param) {
     return 1/(1+control_param*exp(wins_k2-wins_k1));
 }
 
-void Board::move_all_knights(bool forget_now, float forgetting_factor=0.1) {
+void Board::move_all_knights(bool forget_now, float forgetting_factor) {
     for (int i=0; i<total_knights; i++) {
         BoardNode* knight_address = knight_nodes_adresses[i];
         int knight_index = knight_address->get_index_on_board();
