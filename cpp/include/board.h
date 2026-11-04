@@ -10,7 +10,7 @@ private:
     int total_knights;
     static constexpr int neighbors_count = 6;
     std::vector<BoardNode*> board_fields;
-    std::vector<BoardNode*> knight_nodes_indexes;
+    std::vector<BoardNode*> knight_nodes_adresses;
 
     void create_empty_board_fields();
     void fill_board_knights(float appear_prob);
