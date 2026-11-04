@@ -98,8 +98,8 @@ void Board::print_board_trianglar_netted() {
     int node_val = 0;
 
     for (int i=0; i<total_nodes; i+=edge_len*2) {
-        std::cout<<"  "<<node_val;
         if (board_fields[i]->get_is_knight()) node_val++;
+        std::cout<<"  "<<node_val;
         node_val = 0;
 
         int j=i;
@@ -157,12 +157,12 @@ void Board::print_knight_nodes() {
 int* Board::get_neighbors(int index) {
     static int neighbors[neighbors_count];
 
-    neighbors[0] = (index - edge_len + total_nodes)%25;
-    neighbors[1] = (index - edge_len + total_nodes)%25 + 1 - ((index+1)%edge_len == 0)*edge_len;
+    neighbors[0] = (index - edge_len + total_nodes)%total_nodes;
+    neighbors[1] = (index - edge_len + total_nodes)%total_nodes + 1 - ((index+1)%edge_len == 0)*edge_len;
     neighbors[2] = index - 1 + ((index+edge_len)%edge_len == 0)*edge_len;
     neighbors[3] = index + 1 - ((index+1)%edge_len == 0)*edge_len;
-    neighbors[4] = (index + edge_len)%25 - 1 + ((index+edge_len)%edge_len == 0)*edge_len;
-    neighbors[5] = (index + edge_len)%25;
+    neighbors[4] = (index + edge_len)%total_nodes - 1 + ((index+edge_len)%edge_len == 0)*edge_len;
+    neighbors[5] = (index + edge_len)%total_nodes;
     return neighbors;
 }
 
