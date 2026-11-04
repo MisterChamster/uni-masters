@@ -181,11 +181,9 @@ void Board::swap_knight_with_empty(int i_knight, int i_node) {
     std::swap(board_fields[i_knight], board_fields[i_node]);
 }
 
-void Board::swap_knights(int i_knight1, int i_knight2, int knight1_index_i) {
-    knight_nodes_indexes[knight1_index_i] = i_knight2;
-
-    int knight2_index_i = board_fields[i_knight2].get_i_in_indexes();
-    knight_nodes_indexes[knight2_index_i] = i_knight1;
+void Board::swap_knights(int i_knight1, int i_knight2) {
+    board_fields[i_knight1]->set_index_on_board(i_knight2);
+    board_fields[i_knight2]->set_index_on_board(i_knight1);
     std::swap(board_fields[i_knight1], board_fields[i_knight2]);
 }
 
