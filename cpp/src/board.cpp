@@ -141,7 +141,7 @@ void Board::print_board_trianglar_netted() {
 
 void Board::print_neighbors(int index) {
     int* neighbors = get_neighbors(index);
-    for (int i=0; i<neighbors_len; i++) {
+    for (int i=0; i<neighbors_count; i++) {
         std::cout<<neighbors[i]<<" ";
     }
     std::cout<<std::endl;
@@ -169,7 +169,7 @@ int Board::get_node_index(BoardNode* node_ptr) {
 }
 
 int* Board::get_neighbors(int index) {
-    static int neighbors[neighbors_len];
+    static int neighbors[neighbors_count];
 
     neighbors[0] = (index - edge_len + total_nodes)%25;
     neighbors[1] = (index - edge_len + total_nodes)%25 + 1 - ((index+1)%edge_len == 0)*edge_len;
