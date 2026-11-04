@@ -24,7 +24,7 @@ Board::Board(int in_edge_len, float appear_prob) {
 void Board::create_empty_board_fields() {
     board_fields.resize(total_nodes);
     for(int i=0; i<total_nodes; i++) {
-        board_fields[i] = BoardNode(false);
+        board_fields[i] = new BoardNode(false, i);
     }
 }
 
@@ -40,7 +40,7 @@ void Board::fill_board_knights(float appear_prob) {
     std::shuffle(knight_indexes.begin(), knight_indexes.end(), gen);
 
     int numof_knights = std::round(total_nodes*appear_prob);
-    knight_nodes_indexes.resize(numof_knights);
+    knight_nodes_adresses.resize(numof_knights);
     total_knights = numof_knights;
 
     for (int i=total_nodes-1; i>=numof_knights; i--) {
@@ -48,12 +48,11 @@ void Board::fill_board_knights(float appear_prob) {
     }
     sort(knight_indexes.begin(), knight_indexes.end());
 
-    int k = 0;
-    for (int i:knight_indexes) {
-        board_fields[i].set_is_knight(true);
-        knight_nodes_indexes[k] = i;
-        board_fields[i].set_i_in_indexes(k);
-        k++;
+    for (int i=0; i<knight_indexes.size(); i++) {
+        int knight_index = knight_indexes[i];
+        board_fields[knight_index]->set_is_knight(true);
+        board_fields[knight_index]->set_i_in_indexes(i);
+        knight_nodes_adresses[i] = board_fields[knight_index];
     }
 }
 
@@ -64,7 +63,7 @@ void Board::print_board_sqared() {
 
         for (int j=i; j<i+edge_len; j++) {
             int node_val = 0;
-            if (board_fields[j].get_is_knight()) node_val++;
+            if (board_fields[j]->get_is_knight()) node_val++;
             std::cout<<node_val<<" ";
         }
         std::cout<<std::endl;
@@ -77,7 +76,7 @@ void Board::print_board_trianglar() {
         std::cout<<" ";
         int j=i;
         while (j<i+edge_len) {
-            if (board_fields[j].get_is_knight()) node_val++;
+            if (board_fields[j]->get_is_knight()) node_val++;
             std::cout<<node_val<<" ";
             node_val = 0;
             j++;
@@ -86,7 +85,7 @@ void Board::print_board_trianglar() {
 
         if (i+1<total_nodes-edge_len) {
             for (int k=j; k<j+edge_len; k++) {
-                if (board_fields[k].get_is_knight()) node_val++;
+                if (board_fields[k]->get_is_knight()) node_val++;
                 std::cout<<node_val<<" ";
                 node_val = 0;
             }
@@ -97,43 +96,37 @@ void Board::print_board_trianglar() {
 
 void Board::print_board_trianglar_netted() {
     int node_val = 0;
-    // std::cout<<"  ";
-    if (board_fields[0].get_is_knight()) node_val++;
-    node_val = 0;
 
+    for (int i=0; i<total_nodes; i+=edge_len*2) {
+        std::cout<<"  "<<node_val;
+        if (board_fields[i]->get_is_knight()) node_val++;
+        node_val = 0;
 
-    for (int i=1; i<total_nodes; i+=edge_len*2) {
-        std::cout<<"  ";
         int j=i;
-        while (j<i+edge_len) {
-            if (board_fields[j].get_is_knight()) node_val++;
-            std::cout<<node_val<<"   ";
+        while (j+1<i+edge_len) {
+            if (board_fields[j]->get_is_knight()) node_val++;
+            std::cout<<" - "<<node_val;
             node_val = 0;
             j++;
         }
 
-
-        if (!(i==(total_nodes-edge_len+1))){
+        if (i+1<total_nodes-edge_len) {
             std::string somestring = "  ʌ";
-            for (int l=0; l<edge_len-2; l++) {
-                somestring += "   ʌ";
-            }
+            for (int l=0; l<edge_len-2; l++) somestring += "   ʌ";
             somestring += "  /";
             std::cout<<std::endl<<somestring<<std::endl;
-        }
 
-        if (i+1<total_nodes-edge_len) {
-            if (board_fields[j].get_is_knight()) node_val++;
+            if (board_fields[j]->get_is_knight()) node_val++;
             std::cout<<node_val;
             node_val = 0;
 
             for (int k=j+1; k<j+edge_len; k++) {
-                if (board_fields[k].get_is_knight()) node_val++;
+                if (board_fields[k]->get_is_knight()) node_val++;
                 std::cout<<" - "<<node_val;
                 node_val = 0;
             }
 
-            if (!(j==(total_nodes-edge_len+1))){
+            if (j+edge_len+1<total_nodes){
                 std::string somestring = "  v";
                 for (int l=0; l<edge_len-2; l++) {
                     somestring += "   v";
@@ -148,35 +141,21 @@ void Board::print_board_trianglar_netted() {
 
 void Board::print_neighbors(int index) {
     int* neighbors = get_neighbors(index);
-    for (int i=0; i<neighbors_len; i++) {
+    for (int i=0; i<neighbors_count; i++) {
         std::cout<<neighbors[i]<<" ";
     }
     std::cout<<std::endl;
 }
 
 void Board::print_knight_nodes() {
-    std::cout<<"Index   Address\n";
-    for (int curr_node_index:knight_nodes_indexes) {
-        std::string node_str = std::to_string(curr_node_index);
-        node_str.resize(5, ' ');
-        std::cout<<node_str << "   " << &knight_nodes_indexes[curr_node_index]<<std::endl;
+    std::cout<<"Address\n";
+    for (BoardNode* curr_node_address:knight_nodes_adresses) {
+        std::cout<<curr_node_address<<std::endl;
     }
-}
-
-void Board::print_knight_indexes() {
-    for (int i=0; i<knight_nodes_indexes.size(); i++) {
-        std::cout<<knight_nodes_indexes[i]<<" ";
-    }
-    std::cout<<std::endl;
-}
-
-int Board::get_node_index(BoardNode* node_ptr) {
-    int index = static_cast<int>(node_ptr - board_fields.data());
-    return index;
 }
 
 int* Board::get_neighbors(int index) {
-    static int neighbors[neighbors_len];
+    static int neighbors[neighbors_count];
 
     neighbors[0] = (index - edge_len + total_nodes)%25;
     neighbors[1] = (index - edge_len + total_nodes)%25 + 1 - ((index+1)%edge_len == 0)*edge_len;
@@ -193,24 +172,18 @@ int Board::get_random_neighbor(int index) {
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 5);
-    int neighbor_index = neighbors[dist6(rng)];
-    return neighbor_index;
+    int neighbor_index = dist6(rng);
+    return neighbors[neighbor_index];
 }
 
-void Board::swap_nodes(int node_i1, int node_i2) {
-    std::swap(board_fields[node_i1], board_fields[node_i2]);
-}
-
-void Board::swap_knight_with_empty(int i_knight, int i_node, int knight_index_i) {
+void Board::swap_knight_with_empty(int i_knight, int i_node) {
+    board_fields[i_knight]->set_index_on_board(i_node);
     std::swap(board_fields[i_knight], board_fields[i_node]);
-    knight_nodes_indexes[knight_index_i] = i_node;
 }
 
-void Board::swap_knights(int i_knight1, int i_knight2, int knight1_index_i) {
-    knight_nodes_indexes[knight1_index_i] = i_knight2;
-
-    int knight2_index_i = board_fields[i_knight2].get_i_in_indexes();
-    knight_nodes_indexes[knight2_index_i] = i_knight1;
+void Board::swap_knights(int i_knight1, int i_knight2) {
+    board_fields[i_knight1]->set_index_on_board(i_knight2);
+    board_fields[i_knight2]->set_index_on_board(i_knight1);
     std::swap(board_fields[i_knight1], board_fields[i_knight2]);
 }
 
@@ -219,34 +192,33 @@ float Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param=1) 
 }
 
 void Board::move_all_knights(bool forget_now, float forgetting_factor=0.1) {
-    // std::cout<<"Am I forgetting: "<<forget_now<<std::endl;
     for (int i=0; i<total_knights; i++) {
-        int knight_index = knight_nodes_indexes[i];
+        BoardNode* knight_address = knight_nodes_adresses[i];
+        int knight_index = knight_address->get_index_on_board();
         int target_index = get_random_neighbor(knight_index);
 
-        if (board_fields[target_index].get_is_knight()) {
+        if (board_fields[target_index]->get_is_knight()) {
+            // std::cout<<"we SWAP knights!\n";
             float knight_winning_prob = calc_winning_prob(
-                board_fields[knight_index].get_wins(),
-                board_fields[target_index].get_wins());
+                knight_address->get_wins(),
+                board_fields[target_index]->get_wins());
             knight_winning_prob *= 1000;
-            // std::cout<<knight_winning_prob<<std::endl;
 
             int rand_num = rand() % 1001;  //0 and 1000 inclusive
             bool fight_won_flag = (rand_num<=knight_winning_prob);
-            // std::cout<<fight_won_flag<<std::endl;
             if (fight_won_flag) {
-                board_fields[knight_index].add_fight_win();
-                swap_knights(knight_index, target_index, i);
+                knight_address->add_fight_win();
+                swap_knights(knight_index, target_index);
             }
         } else {
-            swap_knight_with_empty(knight_index, target_index, i);
+            // std::cout<<"WE swap empty!\n";
+            swap_knight_with_empty(knight_index, target_index);
         }
     }
 
     if (forget_now) {
         for (int i=0; i<total_knights; i++) {
-            int knight_index = knight_nodes_indexes[i];
-            board_fields[knight_index].forget(forgetting_factor);
+            knight_nodes_adresses[i]->forget(forgetting_factor);
         }
     }
 }

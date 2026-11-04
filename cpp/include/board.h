@@ -8,9 +8,9 @@ private:
     int edge_len;
     int total_nodes;
     int total_knights;
-    static constexpr int neighbors_len = 6;
-    std::vector<BoardNode> board_fields;
-    std::vector<int> knight_nodes_indexes;
+    static constexpr int neighbors_count = 6;
+    std::vector<BoardNode*> board_fields;
+    std::vector<BoardNode*> knight_nodes_adresses;
 
     void create_empty_board_fields();
     void fill_board_knights(float appear_prob);
@@ -24,14 +24,11 @@ public:
     void print_board_trianglar_netted();
     void print_neighbors(int n);
     void print_knight_nodes();
-    void print_knight_indexes();
 
-    int get_node_index(BoardNode* node_ptr);
     int* get_neighbors(int index);
     int get_random_neighbor(int index);
-    void swap_nodes(int node_i1, int node_i2);
-    void swap_knight_with_empty(int i_knight, int i_node, int knight_index_i);
-    void swap_knights(int i_knight1, int i_knight2, int knight1_index_i);
+    void swap_knight_with_empty(int i_knight, int i_node);
+    void swap_knights(int i_knight1, int i_knight2);
     float calc_winning_prob(int wins_k1, int wins_k2, float control_param);
     void move_all_knights(bool forget_now, float forgetting_factor);
     void move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor);
