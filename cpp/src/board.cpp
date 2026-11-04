@@ -213,12 +213,11 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor=0.1) {
             bool fight_won_flag = (rand_num<=knight_winning_prob);
             // std::cout<<fight_won_flag<<std::endl;
             if (fight_won_flag) {
-                board_fields[knight_index].add_fight_win();
                 knight_address->add_fight_win();
 //                 // swap_knights(knight_index, target_index, i);
             }
+            swap_knights(knight_index, target_index, i);
         } else {
-            swap_knight_with_empty(knight_index, target_index, i);
             std::cout<<"WE swap empty!\n";
             swap_knight_with_empty(knight_index, target_index);
         }
@@ -226,7 +225,6 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor=0.1) {
 
     if (forget_now) {
         for (int i=0; i<total_knights; i++) {
-            int knight_index = knight_nodes_indexes[i];
             BoardNode* knight_address = knight_nodes_adresses[i];
             knight_address->forget(forgetting_factor);
         }
