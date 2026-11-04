@@ -198,7 +198,7 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor=0.1) {
         int target_index = get_random_neighbor(knight_index);
 
         if (board_fields[target_index]->get_is_knight()) {
-            std::cout<<"we SWAP knights!\n";
+            // std::cout<<"we SWAP knights!\n";
             float knight_winning_prob = calc_winning_prob(
                 knight_address->get_wins(),
                 board_fields[target_index]->get_wins());
@@ -210,17 +210,15 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor=0.1) {
                 knight_address->add_fight_win();
                 swap_knights(knight_index, target_index);
             }
-            // swap_knights(knight_index, target_index);
         } else {
-            std::cout<<"WE swap empty!\n";
+            // std::cout<<"WE swap empty!\n";
             swap_knight_with_empty(knight_index, target_index);
         }
     }
 
     if (forget_now) {
         for (int i=0; i<total_knights; i++) {
-            BoardNode* knight_address = knight_nodes_adresses[i];
-            knight_address->forget(forgetting_factor);
+            knight_nodes_adresses[i]->forget(forgetting_factor);
         }
     }
 }

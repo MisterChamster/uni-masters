@@ -6,7 +6,7 @@
 int main() {
     int board_edge_len = 5;
     float knight_probability = 0.5;
-    int moves_to_perform = 1;
+    int moves_to_perform = 20;
     float forgetting_factor = 0.1;
     int forget_after_N_steps = 4;
 
@@ -34,8 +34,8 @@ int main() {
     // main_board.print_knight_nodes();
 // std::cout<<std::endl;
 
-// main_board.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
-// main_board.print_board_trianglar();
+    main_board.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
+    main_board.print_board_trianglar();
     std::cout<<"HDKNFDABSNKCNAKN"<<std::endl;
     return 0;
 }
