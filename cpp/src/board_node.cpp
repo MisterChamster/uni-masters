@@ -44,6 +44,14 @@ int BoardNode::get_i_in_indexes() {
     return i_in_indexes;
 }
 
+int BoardNode::get_index_on_board() {
+    return index_on_board;
+}
+
+void BoardNode::set_index_on_board(int new_index) {
+    index_on_board = new_index;
+}
+
 void BoardNode::add_fight_win() {
     wins++;
     total_fights++;
