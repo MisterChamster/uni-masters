@@ -248,8 +248,10 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor) {
                 knight_address->get_wins(),
                 board_fields[target_index]->get_wins());
 
-            int rand_num = rand() % 1001;  //0 and 1000 inclusive
-            bool fight_won_flag = (rand_num<=knight_winning_prob);
+            double rand_num_doble = dist(gen);
+            // std::cout<<knight_winning_prob<<" "<<rand_num_doble<<std::endl;
+
+            bool fight_won_flag = (rand_num_doble<=knight_winning_prob);
             if (fight_won_flag) {
                 knight_address->add_fight_win();
                 swap_knights(knight_index, target_index);
