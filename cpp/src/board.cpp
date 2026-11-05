@@ -232,9 +232,9 @@ double Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param) {
     return 1/(1+control_param*exp(wins_k2-wins_k1));
 }
 
-double Board::calc_sigma_sqrt() {
+double Board::calc_sigma_2pow() {
     double winning_probs_sum = 0;
-    double winning_probs_sqrt_sum = 0;
+    double winning_probs_2pow_sum = 0;
 
     for (int i=0; i<total_knights-1; i++) {
         int wins_first = knight_nodes_adresses[i]->get_wins();
@@ -242,17 +242,17 @@ double Board::calc_sigma_sqrt() {
         double winning_prob = calc_winning_prob(wins_first, wins_targ);
 
         winning_probs_sum += winning_prob;
-        winning_probs_sqrt_sum += winning_prob*winning_prob;
+        winning_probs_2pow_sum += winning_prob*winning_prob;
     }
     double winning_prob = calc_winning_prob(
         knight_nodes_adresses[total_knights-1]->get_wins(),
         knight_nodes_adresses[0]->get_wins());
     winning_probs_sum += winning_prob;
-    winning_probs_sqrt_sum += winning_prob*winning_prob;
+    winning_probs_2pow_sum += winning_prob*winning_prob;
 
-    double sigma_sqrt = winning_probs_sqrt_sum - 
-                        (winning_probs_sqrt_sum*winning_probs_sqrt_sum);
-    return sigma_sqrt;
+    double sigma_2pow = winning_probs_2pow_sum - 
+                        (winning_probs_2pow_sum*winning_probs_2pow_sum);
+    return sigma_2pow;
 }
 
 void Board::move_all_knights(bool forget_now, float forgetting_factor) {
@@ -295,6 +295,7 @@ void Board::move_all_knights_n(int n, int forget_after_N_steps, float forgetting
         if (!(i%forget_after_N_steps)) perform_forgetting = true;
         else perform_forgetting = false;
         move_all_knights(perform_forgetting, forgetting_factor);
-        double sigma_sqrt = calc_sigma_sqrt();
+        double sigma_2pow = calc_sigma_2pow();
+        std::cout<<sigma_2pow<<std::endl;
     }
 }
