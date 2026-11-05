@@ -250,12 +250,15 @@ double Board::calc_sigma_2pow() {
     winning_probs_sum += winning_prob;
     winning_probs_2pow_sum += winning_prob*winning_prob;
 
+    winning_probs_sum /= total_knights;
+    winning_probs_2pow_sum /= total_knights;
+
     double sigma_2pow = winning_probs_2pow_sum - 
-                        (winning_probs_2pow_sum*winning_probs_2pow_sum);
+                        (winning_probs_sum*winning_probs_sum);
     return sigma_2pow;
 }
 
-void Board::move_all_knights(bool forget_now, float forgetting_factor) {
+void Board::move_all_knights(double sigma, bool forget_now, float forgetting_factor) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<double> dist(0.0, 1.0);
@@ -269,7 +272,8 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor) {
         if (target_address->get_is_knight()) {
             double knight_winning_prob = calc_winning_prob(
                 knight_address->get_wins(),
-                target_address->get_wins());
+                target_address->get_wins(),
+                sigma);
             double rand_num_doble = dist(gen);
 
             bool fight_won_flag = (rand_num_doble<=knight_winning_prob);
@@ -290,12 +294,14 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor) {
 }
 
 void Board::move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor) {
+    double sigma = 0.5;
     for (int i=0; i<n; i++) {
+        std::cout<<sigma<<std::endl;
         bool perform_forgetting;
         if (!(i%forget_after_N_steps)) perform_forgetting = true;
         else perform_forgetting = false;
-        move_all_knights(perform_forgetting, forgetting_factor);
+        move_all_knights(sigma, perform_forgetting, forgetting_factor);
         double sigma_2pow = calc_sigma_2pow();
-        std::cout<<sigma_2pow<<std::endl;
+        sigma = std::sqrt(sigma_2pow);
     }
 }

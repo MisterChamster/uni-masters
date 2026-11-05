@@ -21,7 +21,7 @@ private:
     int get_random_neighbor(int index);
     void swap_knight_with_empty(int i_knight, int i_node);
     void swap_knights(int i_knight1, int i_knight2);
-    void move_all_knights(bool forget_now, float forgetting_factor=0.1);
+    void move_all_knights(double sigma=0.5, bool forget_now=false, float forgetting_factor=0.1);
 
 public:
     Board(int len);
