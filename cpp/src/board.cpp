@@ -235,31 +235,30 @@ double Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param) {
     return 1/(1+control_param*exp(wins_k2-wins_k1));
 }
 
-double Board::calc_sigma_2pow() {
-    double winning_probs_sum = 0;
+void Board::update_sigma() {
     double winning_probs_2pow_sum = 0;
+    double winning_probs_sum = 0;
 
     for (int i=0; i<total_knights-1; i++) {
         int wins_first = knight_nodes_adresses[i]->get_wins();
         int wins_targ = knight_nodes_adresses[i+1]->get_wins();
         double winning_prob = calc_winning_prob(wins_first, wins_targ, sigma);
-
-        winning_probs_sum += winning_prob;
         winning_probs_2pow_sum += winning_prob*winning_prob;
+        winning_probs_sum += winning_prob;
     }
-    double winning_prob = calc_winning_prob(
-        knight_nodes_adresses[total_knights-1]->get_wins(),
-        knight_nodes_adresses[0]->get_wins(),
-        sigma);
-    winning_probs_sum += winning_prob;
+    int wins_first = knight_nodes_adresses[total_knights-1]->get_wins();
+    int wins_targ = knight_nodes_adresses[0]->get_wins();
+    double winning_prob = calc_winning_prob(wins_first, wins_targ, sigma);
     winning_probs_2pow_sum += winning_prob*winning_prob;
+    winning_probs_sum += winning_prob;
 
-    winning_probs_sum /= total_knights;
     winning_probs_2pow_sum /= total_knights;
+    winning_probs_sum /= total_knights;
+    winning_probs_sum = winning_probs_sum * winning_probs_sum;
 
     double sigma_2pow = winning_probs_2pow_sum - 
                         (winning_probs_sum*winning_probs_sum);
-    return sigma_2pow;
+    sigma = std::sqrt(sigma_2pow);
 }
 
 void Board::move_all_knights(bool forget_now, float forgetting_factor) {
@@ -305,7 +304,6 @@ void Board::move_all_knights_n(int n, int forget_after_N_steps, float forgetting
         else perform_forgetting = false;
 
         move_all_knights(perform_forgetting, forgetting_factor);
-        double sigma_2pow = calc_sigma_2pow();
-        sigma = std::sqrt(sigma_2pow);
+        update_sigma();
     }
 }

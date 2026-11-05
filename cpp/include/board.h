@@ -17,7 +17,7 @@ private:
     void fill_board_knights(float appear_prob);
 
     double calc_winning_prob(int wins_k1, int wins_k2, float control_param=1);
-    double calc_sigma_2pow();
+    void update_sigma();
     int* get_neighbors(int index);
     int get_random_neighbor(int index);
     void swap_knight_with_empty(int i_knight, int i_node);
