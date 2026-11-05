@@ -228,7 +228,7 @@ void Board::swap_knights(int i_knight1, int i_knight2) {
     std::swap(board_fields[i_knight1], board_fields[i_knight2]);
 }
 
-float Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param) {
+double Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param) {
     return 1/(1+control_param*exp(wins_k2-wins_k1));
 }
 
@@ -241,12 +241,13 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor) {
         BoardNode* knight_address = knight_nodes_adresses[i];
         int knight_index = knight_address->get_index_on_board();
         int target_index = get_random_neighbor(knight_index);
+        BoardNode* target_address = board_fields[target_index];
 
-        if (board_fields[target_index]->get_is_knight()) {
+        if (target_address->get_is_knight()) {
             // std::cout<<"we SWAP knights!\n";
-            float knight_winning_prob = calc_winning_prob(
+            double knight_winning_prob = calc_winning_prob(
                 knight_address->get_wins(),
-                board_fields[target_index]->get_wins());
+                target_address->get_wins());
 
             double rand_num_doble = dist(gen);
             // std::cout<<knight_winning_prob<<" "<<rand_num_doble<<std::endl;
