@@ -232,6 +232,29 @@ double Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param) {
     return 1/(1+control_param*exp(wins_k2-wins_k1));
 }
 
+double Board::calc_sigma_sqrt() {
+    double winning_probs_sum = 0;
+    double winning_probs_sqrt_sum = 0;
+
+    for (int i=0; i<total_knights-1; i++) {
+        int wins_first = knight_nodes_adresses[i]->get_wins();
+        int wins_targ = knight_nodes_adresses[i+1]->get_wins();
+        double winning_prob = calc_winning_prob(wins_first, wins_targ);
+
+        winning_probs_sum += winning_prob;
+        winning_probs_sqrt_sum += winning_prob*winning_prob;
+    }
+    double winning_prob = calc_winning_prob(
+        knight_nodes_adresses[total_knights-1]->get_wins(),
+        knight_nodes_adresses[0]->get_wins());
+    winning_probs_sum += winning_prob;
+    winning_probs_sqrt_sum += winning_prob*winning_prob;
+
+    double sigma_sqrt = winning_probs_sqrt_sum - 
+                        (winning_probs_sqrt_sum*winning_probs_sqrt_sum);
+    return sigma_sqrt;
+}
+
 void Board::move_all_knights(bool forget_now, float forgetting_factor) {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -244,13 +267,10 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor) {
         BoardNode* target_address = board_fields[target_index];
 
         if (target_address->get_is_knight()) {
-            // std::cout<<"we SWAP knights!\n";
             double knight_winning_prob = calc_winning_prob(
                 knight_address->get_wins(),
                 target_address->get_wins());
-
             double rand_num_doble = dist(gen);
-            // std::cout<<knight_winning_prob<<" "<<rand_num_doble<<std::endl;
 
             bool fight_won_flag = (rand_num_doble<=knight_winning_prob);
             if (fight_won_flag) {
@@ -258,7 +278,6 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor) {
                 swap_knights(knight_index, target_index);
             }
         } else {
-            // std::cout<<"WE swap empty!\n";
             swap_knight_with_empty(knight_index, target_index);
         }
     }
@@ -276,5 +295,6 @@ void Board::move_all_knights_n(int n, int forget_after_N_steps, float forgetting
         if (!(i%forget_after_N_steps)) perform_forgetting = true;
         else perform_forgetting = false;
         move_all_knights(perform_forgetting, forgetting_factor);
+        double sigma_sqrt = calc_sigma_sqrt();
     }
 }
