@@ -10,12 +10,15 @@
 Board::Board(int in_edge_len) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
+    total_knights = 0;
+    sigma = 0.5;
     Board::create_empty_board_fields();
 }
 
 Board::Board(int in_edge_len, float appear_prob) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
+    sigma = 0.5;
     create_empty_board_fields();
     fill_board_knights(appear_prob);
 }
@@ -239,14 +242,15 @@ double Board::calc_sigma_2pow() {
     for (int i=0; i<total_knights-1; i++) {
         int wins_first = knight_nodes_adresses[i]->get_wins();
         int wins_targ = knight_nodes_adresses[i+1]->get_wins();
-        double winning_prob = calc_winning_prob(wins_first, wins_targ);
+        double winning_prob = calc_winning_prob(wins_first, wins_targ, sigma);
 
         winning_probs_sum += winning_prob;
         winning_probs_2pow_sum += winning_prob*winning_prob;
     }
     double winning_prob = calc_winning_prob(
         knight_nodes_adresses[total_knights-1]->get_wins(),
-        knight_nodes_adresses[0]->get_wins());
+        knight_nodes_adresses[0]->get_wins(),
+        sigma);
     winning_probs_sum += winning_prob;
     winning_probs_2pow_sum += winning_prob*winning_prob;
 
@@ -258,7 +262,7 @@ double Board::calc_sigma_2pow() {
     return sigma_2pow;
 }
 
-void Board::move_all_knights(double sigma, bool forget_now, float forgetting_factor) {
+void Board::move_all_knights(bool forget_now, float forgetting_factor) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<double> dist(0.0, 1.0);
@@ -294,13 +298,13 @@ void Board::move_all_knights(double sigma, bool forget_now, float forgetting_fac
 }
 
 void Board::move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor) {
-    double sigma = 0.5;
     for (int i=0; i<n; i++) {
         std::cout<<sigma<<std::endl;
         bool perform_forgetting;
         if (!(i%forget_after_N_steps)) perform_forgetting = true;
         else perform_forgetting = false;
-        move_all_knights(sigma, perform_forgetting, forgetting_factor);
+
+        move_all_knights(perform_forgetting, forgetting_factor);
         double sigma_2pow = calc_sigma_2pow();
         sigma = std::sqrt(sigma_2pow);
     }
