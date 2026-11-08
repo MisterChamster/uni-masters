@@ -3,12 +3,29 @@
 #include "board.h"
 
 
-int main() {
-    int board_edge_len = 20;
-    float knight_probability = 0.7;
-    int moves_to_perform = 105;
-    float forgetting_factor = 0.1;
-    int forget_after_N_steps = 4;
+int main(int argc, char* argv[]) {
+    if (argc != 6) {
+        std::cerr<<"AYYYY LMAO CRINGE\n";
+        return 1;
+    }
+    std::cout<<"Hello arg!!: "<<argv[0]<<std::endl;
+    std::cout<<"Hello arg!!: "<<argv[1]<<std::endl;
+    std::cout<<"Hello arg!!: "<<argv[2]<<std::endl;
+    std::cout<<"Hello arg!!: "<<argv[3]<<std::endl;
+    std::cout<<"Hello arg!!: "<<argv[4]<<std::endl;
+    std::cout<<"Hello arg!!: "<<argv[5]<<std::endl;
+
+    int board_edge_len       = std::stoi(argv[1]);
+    float knight_probability = std::stof(argv[2]);
+    int moves_to_perform     = std::stoi(argv[3]);
+    float forgetting_factor  = std::stof(argv[4]);
+    int forget_after_N_steps = std::stoi(argv[5]);
+
+    // int board_edge_len = 35;
+    // float knight_probability = 0.75;
+    // int moves_to_perform = 1;
+    // float forgetting_factor = 0.1;
+    // int forget_after_N_steps = 4;
 
     Board main_board = Board(
         board_edge_len,
@@ -32,7 +49,7 @@ int main() {
     // main_board.print_neighbors(16);
     // main_board.print_neighbors(20);
     // main_board.print_neighbors(24);
-    // std::cout<<"HEllo"<<std::endl;
+    // std::cout<<std::endl;
 
     // main_board.print_knight_nodes();
 // std::cout<<std::endl;
