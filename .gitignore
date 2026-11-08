@@ -1,5 +1,6 @@
 build/
 .VSCodeCounter/
+.vscode/
 
 .DS_Store
 build_and_run.sh
