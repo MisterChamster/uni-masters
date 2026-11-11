@@ -99,35 +99,6 @@ double Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param) {
     return 1/(1+exp(control_param*(wins_k2-wins_k1)));
 }
 
-// this is bullshit
-void Board::update_sigma() {
-    double winning_probs_2pow_sum = 0;
-    double winning_probs_sum = 0;
-
-    for (int i=0; i<total_knights-1; i++) {
-        int wins_first = knight_nodes_adresses[i]->get_wins();
-        int wins_targ = knight_nodes_adresses[i+1]->get_wins();
-        double winning_prob = calc_winning_prob(wins_first, wins_targ, sigma);
-        // std::cout<<"Winning prob (single): "<<winning_prob<<std::endl;
-        winning_probs_2pow_sum += winning_prob*winning_prob;
-        winning_probs_sum += winning_prob;
-    }
-    int wins_first = knight_nodes_adresses[total_knights-1]->get_wins();
-    int wins_targ = knight_nodes_adresses[0]->get_wins();
-    double winning_prob = calc_winning_prob(wins_first, wins_targ, sigma);
-    // std::cout<<"Winning prob (single): "<<winning_prob<<std::endl;
-    winning_probs_2pow_sum += winning_prob*winning_prob;
-    winning_probs_sum += winning_prob;
-
-    winning_probs_2pow_sum /= total_knights;
-    winning_probs_sum /= total_knights;
-    // winning_probs_sum = winning_probs_sum * winning_probs_sum;
-
-    double sigma_2pow = winning_probs_2pow_sum - 
-                        (winning_probs_sum*winning_probs_sum);
-    sigma = std::sqrt(sigma_2pow);
-}
-
 void Board::move_all_knights(bool forget_now, float forgetting_factor) {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -161,6 +132,35 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor) {
             knight_nodes_adresses[i]->forget(forgetting_factor);
         }
     }
+}
+
+// this is bullshit
+void Board::update_sigma() {
+    double winning_probs_2pow_sum = 0;
+    double winning_probs_sum = 0;
+
+    for (int i=0; i<total_knights-1; i++) {
+        int wins_first = knight_nodes_adresses[i]->get_wins();
+        int wins_targ = knight_nodes_adresses[i+1]->get_wins();
+        double winning_prob = calc_winning_prob(wins_first, wins_targ, sigma);
+        // std::cout<<"Winning prob (single): "<<winning_prob<<std::endl;
+        winning_probs_2pow_sum += winning_prob*winning_prob;
+        winning_probs_sum += winning_prob;
+    }
+    int wins_first = knight_nodes_adresses[total_knights-1]->get_wins();
+    int wins_targ = knight_nodes_adresses[0]->get_wins();
+    double winning_prob = calc_winning_prob(wins_first, wins_targ, sigma);
+    // std::cout<<"Winning prob (single): "<<winning_prob<<std::endl;
+    winning_probs_2pow_sum += winning_prob*winning_prob;
+    winning_probs_sum += winning_prob;
+
+    winning_probs_2pow_sum /= total_knights;
+    winning_probs_sum /= total_knights;
+    // winning_probs_sum = winning_probs_sum * winning_probs_sum;
+
+    double sigma_2pow = winning_probs_2pow_sum - 
+                        (winning_probs_sum*winning_probs_sum);
+    sigma = std::sqrt(sigma_2pow);
 }
 
 void Board::move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor) {
