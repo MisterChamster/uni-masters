@@ -10,7 +10,7 @@ private:
     void reset_vals();
 
 public:
-    SigmaCalculator::SigmaCalculator();
+    SigmaCalculator();
     void add_winning_prob(double winning_prob);
     double calc_sigma();
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "board_node.h"
+#include "sigma_calc.h"
 
 
 class Board {
@@ -9,6 +10,7 @@ private:
     int total_nodes;
     int total_knights;
     double sigma;
+    SigmaCalculator sigma_calc;
     static constexpr int neighbors_count = 6;
     std::vector<BoardNode*> board_fields;
     std::vector<BoardNode*> knight_nodes_adresses;
