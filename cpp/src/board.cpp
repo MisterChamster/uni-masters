@@ -115,6 +115,7 @@ void Board::move_all_knights(bool forget_now, float forgetting_factor) {
                 knight_address->get_wins(),
                 target_address->get_wins(),
                 sigma);
+            sigma_calc.add_winning_prob(knight_winning_prob);
             double rand_num_doble = dist(gen);
 
             bool fight_won_flag = (rand_num_doble<=knight_winning_prob);

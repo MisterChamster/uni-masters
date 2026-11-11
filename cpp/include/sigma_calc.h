@@ -2,7 +2,6 @@
 
 class SigmaCalculator {
 private:
-    double sigma_val;
     double winning_probs_2pow_sum;
     double winning_probs_sum;
     int fight_count;
@@ -12,5 +11,5 @@ private:
 public:
     SigmaCalculator();
     void add_winning_prob(double winning_prob);
-    double calc_sigma();
+    double get_sigma_and_reset();
 };
