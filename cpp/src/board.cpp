@@ -11,7 +11,7 @@ Board::Board(int in_edge_len) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
     total_knights = 0;
-    sigma = 1;
+    sigma = 0;
     sigma_calc = SigmaCalculator();
     Board::create_empty_board_fields();
 }
@@ -19,7 +19,7 @@ Board::Board(int in_edge_len) {
 Board::Board(int in_edge_len, float appear_prob) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
-    sigma = 1;
+    sigma = 0;
     sigma_calc = SigmaCalculator();
     create_empty_board_fields();
     fill_board_knights(appear_prob);
@@ -140,15 +140,20 @@ void Board::update_sigma() {
     sigma = sigma_calc.get_sigma_and_reset();
 }
 
-void Board::move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor) {
-    for (int i=0; i<n; i++) {
+void Board::move_all_knights_n(int moves_count, int forget_after_N_steps, float forgetting_factor) {
+    int n_steps_omit_sigma = (moves_count <= 10) ? moves_count : 10;
+
+    for (int i=0; i<n_steps_omit_sigma; i++) {
+        sigma_calc.reset_vals();
+        bool perform_forgetting = (!(i%forget_after_N_steps)) ? true : false;
+
+        move_all_knights(perform_forgetting, forgetting_factor, false);
+    }
+
+    update_sigma();
+    // Pls handle 0 sigma in second loop!
         std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
-        bool perform_forgetting;
-        if (!(i%forget_after_N_steps)) perform_forgetting = true;
-        else perform_forgetting = false;
 
         move_all_knights(perform_forgetting, forgetting_factor, true);
-        if (i>=9) update_sigma();
-        else sigma_calc.reset_vals();
     }
 }
