@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
 
     main_board.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
     
-    main_board.print_board_trianglar_wins(".");
+    // main_board.print_board_trianglar_wins(".");
     std::cout<<std::endl;
     std::cout<<"HDKNFDABSNKCNAKN"<<std::endl;
     return 0;

@@ -19,11 +19,15 @@ void SigmaCalculator::add_winning_prob(double winning_prob) {
 }
 
 double SigmaCalculator::get_sigma_and_reset() {
+    if (fight_count == 0) {
+        SigmaCalculator::reset_vals();
+        return 0;
+    }
+
     winning_probs_2pow_sum /= fight_count;
     winning_probs_sum /= fight_count;
 
-    double sigma_2pow = winning_probs_2pow_sum - 
-                        (winning_probs_sum*winning_probs_sum);
+    double sigma_2pow = winning_probs_2pow_sum - (winning_probs_sum*winning_probs_sum);
     double sigma_val = std::sqrt(sigma_2pow);
 
     SigmaCalculator::reset_vals();
