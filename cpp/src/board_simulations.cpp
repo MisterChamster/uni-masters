@@ -25,7 +25,7 @@ void Board::move_all_knights_n(int moves_count, int forget_after_N_steps, float 
 
 
 // Appends if exists, creates and writes if not
-void Board::move_all_knights_n(int moves_count, int forget_after_N_steps, float forgetting_factor, std::string exec_path) {
+void Board::move_all_knights_n(int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path exec_path) {
     namespace fs = std::filesystem;
     // fs::path sourceDir = fs::absolute(fs::path(__FILE__)).parent_path();
     std::filesystem::path out_sigma_path(exec_path);
@@ -37,6 +37,7 @@ void Board::move_all_knights_n(int moves_count, int forget_after_N_steps, float 
     } else {
         std::cout << "File does not exist\n";
     }
+    // std::ofstream file(out_sigma_path, std::ios::app);
     std::cout << out_sigma_path << '\n';
 
     int n_steps_omit_sigma = (moves_count <= 10) ? moves_count : 10;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <filesystem>
 #include "board_node.h"
 #include "sigma_calc.h"
 
@@ -10,9 +11,10 @@ private:
     int edge_len;
     int total_nodes;
     int total_knights;
+    static constexpr int neighbors_count = 6;
+
     double sigma;
     SigmaCalculator sigma_calc;
-    static constexpr int neighbors_count = 6;
     std::vector<BoardNode*> board_fields;
     std::vector<BoardNode*> knight_nodes_adresses;
 
@@ -44,5 +46,5 @@ public:
 
     // board_simulations.cpp
     void move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor);
-    void move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor, std::string file_name);
+    void move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor, std::filesystem::path exec_path);
 };
