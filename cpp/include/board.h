@@ -44,4 +44,5 @@ public:
 
     // board_simulations.cpp
     void move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor);
+    void move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor, std::string file_name);
 };

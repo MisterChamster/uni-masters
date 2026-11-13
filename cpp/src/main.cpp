@@ -3,6 +3,7 @@
 #include "board.h"
 
 
+// Make globals file!
 int main(int argc, char* argv[]) {
     if (argc != 6) {
         std::cerr<<"AYYYY LMAO CRINGE\n";
@@ -15,6 +16,7 @@ int main(int argc, char* argv[]) {
     std::cout<<"Hello arg!!: "<<argv[4]<<std::endl;
     std::cout<<"Hello arg!!: "<<argv[5]<<std::endl;
 
+    std::string exec_path    = argv[0];
     int board_edge_len       = std::stoi(argv[1]);
     float knight_probability = std::stof(argv[2]);
     int moves_to_perform     = std::stoi(argv[3]);
@@ -40,7 +42,7 @@ int main(int argc, char* argv[]) {
     std::cout<<std::endl;
     std::cout<<std::endl;
 
-    main_board.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
+    main_board.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor, exec_path);
 
     // main_board.print_board_trianglar_wins(".");
     std::cout<<std::endl;
