@@ -5,8 +5,8 @@
 
 
 class Simulator {
-public:
-// private:
+private:
+    // Fields
     Board board;
     double sigma;
     SigmaCalculator sigma_calc;
