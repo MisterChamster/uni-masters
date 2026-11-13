@@ -3,6 +3,7 @@
 #include "board.h"
 #include "sigma_calc.h"
 
+
 class Simulator {
 public:
 // private:

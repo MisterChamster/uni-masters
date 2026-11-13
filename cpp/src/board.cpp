@@ -11,23 +11,18 @@ Board::Board() {
     edge_len = 0;
     total_nodes = 0;
     total_knights = 0;
-    sigma = 0;
 }
 
 Board::Board(int in_edge_len) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
     total_knights = 0;
-    sigma = 0;
-    sigma_calc = SigmaCalculator();
     Board::create_empty_board_fields();
 }
 
 Board::Board(int in_edge_len, float appear_prob) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
-    sigma = 0;
-    sigma_calc = SigmaCalculator();
     create_empty_board_fields();
     fill_board_knights(appear_prob);
 }
@@ -104,49 +99,4 @@ void Board::swap_knights(int i_knight1, int i_knight2) {
     board_fields[i_knight1]->set_index_on_board(i_knight2);
     board_fields[i_knight2]->set_index_on_board(i_knight1);
     std::swap(board_fields[i_knight1], board_fields[i_knight2]);
-}
-
-double Board::calc_winning_prob(int wins_k1, int wins_k2, float control_param) {
-    return 1/(1+exp(control_param*(wins_k2-wins_k1)));
-}
-
-void Board::move_all_knights(bool forget_now, float forgetting_factor, bool use_sigma) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<double> dist(0.0, 1.0);
-    double control_param = use_sigma ? sigma : 1;
-
-    for (int i=0; i<total_knights; i++) {
-        BoardNode* knight_address = knight_nodes_adresses[i];
-        int knight_index = knight_address->get_index_on_board();
-        int target_index = get_random_neighbor(knight_index);
-        BoardNode* target_address = board_fields[target_index];
-
-        if (target_address->get_is_knight()) {
-            double knight_winning_prob = calc_winning_prob(
-                knight_address->get_wins(),
-                target_address->get_wins(),
-                control_param);
-            sigma_calc.add_winning_prob(knight_winning_prob);
-            double rand_num_doble = dist(gen);
-
-            bool fight_won_flag = (rand_num_doble<=knight_winning_prob);
-            if (fight_won_flag) {
-                knight_address->add_fight_win();
-                swap_knights(knight_index, target_index);
-            }
-        } else {
-            swap_knight_with_empty(knight_index, target_index);
-        }
-    }
-
-    if (forget_now) {
-        for (int i=0; i<total_knights; i++) {
-            knight_nodes_adresses[i]->forget(forgetting_factor);
-        }
-    }
-}
-
-void Board::update_sigma() {
-    sigma = sigma_calc.get_sigma_and_reset();
 }

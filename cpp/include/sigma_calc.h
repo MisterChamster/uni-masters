@@ -1,5 +1,6 @@
 #pragma once
 
+
 class SigmaCalculator {
 private:
     double winning_probs_2pow_sum;

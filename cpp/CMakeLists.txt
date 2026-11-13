@@ -9,7 +9,6 @@ project(Triangle_n
 add_executable(Triangle_n
     src/main.cpp
     src/board.cpp
-    src/board_simulations.cpp
     src/board_printers.cpp
     src/sigma_calc.cpp
     src/board_node.cpp

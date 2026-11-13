@@ -1,8 +1,8 @@
 #pragma once
 
 #include <filesystem>
+
 #include "board_node.h"
-#include "sigma_calc.h"
 
 
 class Board {
@@ -13,20 +13,16 @@ private:
     int total_knights;
     static constexpr int neighbors_count = 6;
 
-    double sigma;     // simulation
-    SigmaCalculator sigma_calc;     // simulation
-
     // board.cpp
     Board(int len); //might be useless
 
     void create_empty_board_fields();
     void fill_board_knights(float appear_prob);
 
-    void update_sigma();     // simulation
     int* get_neighbors(int index);
-    void move_all_knights(bool forget_now=false, float forgetting_factor=0.1, bool use_sigma=true);     // simulation
 
 public:
+    // Fields
     std::vector<BoardNode*> board_fields;
     std::vector<BoardNode*> knight_nodes_adresses;
 
@@ -36,7 +32,6 @@ public:
 
     int get_random_neighbor(int index);
     int get_total_knights();
-    double calc_winning_prob(int wins_k1, int wins_k2, float control_param=1);     // simulation
     void swap_knight_with_empty(int i_knight, int i_node);
     void swap_knights(int i_knight1, int i_knight2);
 
@@ -47,8 +42,4 @@ public:
     void print_board_trianglar_wins(std::string empty_char = " ");
     void print_neighbors(int n);
     void print_knight_nodes();
-
-    // board_simulations.cpp
-    void move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor);     // simulation
-    void move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor, std::filesystem::path exec_path);     // simulation
 };
