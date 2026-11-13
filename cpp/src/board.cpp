@@ -7,6 +7,13 @@
 #include "board.h"
 
 
+Board::Board() {
+    edge_len = 0;
+    total_nodes = 0;
+    total_knights = 0;
+    sigma = 0;
+}
+
 Board::Board(int in_edge_len) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;

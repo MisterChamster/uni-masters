@@ -13,6 +13,7 @@ add_executable(Triangle_n
     src/board_printers.cpp
     src/sigma_calc.cpp
     src/board_node.cpp
+    src/simulator.cpp
 )
 
 # Cpp min version

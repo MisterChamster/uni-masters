@@ -34,6 +34,7 @@ private:
 
 public:
     // board.cpp
+    Board();
     Board(int len, float appear_prob);
 
     // board_printers.cpp
