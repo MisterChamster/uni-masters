@@ -82,20 +82,19 @@ void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, fl
 }
 
 // Appends if exists, creates and writes if not
-void Simulator::move_all_knights_n_out_sigmas(int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path exec_path) {
+void Simulator::move_all_knights_n_out_sigmas(int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path in_project_path, std::string filename) {
     namespace fs = std::filesystem;
     // fs::path sourceDir = fs::absolute(fs::path(__FILE__)).parent_path();
-    std::filesystem::path out_sigma_path(exec_path);
-    out_sigma_path = out_sigma_path.parent_path().parent_path();
-    out_sigma_path = out_sigma_path / "output" / "sigma_over_time";
+    fs::path out_file_path(in_project_path);
+    out_file_path = out_file_path / "output" / "sigma_over_time" / filename;
 
-    if (fs::exists(out_sigma_path)) {
+    if (fs::exists(out_file_path)) {
         std::cout << "File exists\n";
     } else {
         std::cout << "File does not exist\n";
     }
-    // std::ofstream file(out_sigma_path, std::ios::app);
-    std::cout << out_sigma_path << '\n';
+    // std::ofstream file(out_file_path, std::ios::app);
+    std::cout << out_file_path << '\n';
 
     int n_steps_omit_sigma = (moves_count <= 10) ? moves_count : 10;
 
