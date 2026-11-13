@@ -91,6 +91,10 @@ int Board::get_random_neighbor(int index) {
     return neighbors[neighbor_index];
 }
 
+int Board::get_total_knights() {
+    return total_knights;
+}
+
 void Board::swap_knight_with_empty(int i_knight, int i_node) {
     board_fields[i_knight]->set_index_on_board(i_node);
     std::swap(board_fields[i_knight], board_fields[i_node]);

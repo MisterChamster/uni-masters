@@ -5,7 +5,6 @@
 #include "simulator.h"
 
 
-// Make globals file!
 int main(int argc, char* argv[]) {
     std::filesystem::path project_path(argv[0]);
     project_path = project_path.parent_path().parent_path();
@@ -43,7 +42,8 @@ int main(int argc, char* argv[]) {
     std::cout<<std::endl;
     std::cout<<std::endl;
 
-    board_ptr->move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor, project_path);
+    simulator.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
+    // simulator.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor, project_path);
 
     // board_ptr->print_board_trianglar_wins(".");
     std::cout<<std::endl;
