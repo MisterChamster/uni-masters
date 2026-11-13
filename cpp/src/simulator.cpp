@@ -72,7 +72,7 @@ void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, fl
     }
 
     update_sigma();
-    // Pls handle 0 sigma in second loop!
+    // Should I handle 0 sigma in second loop?
     for (int i=n_steps_omit_sigma; i<moves_count; i++) {
         std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
         bool perform_forgetting = (!(i%forget_after_N_steps)) ? true : false;
@@ -82,7 +82,7 @@ void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, fl
 }
 
 // Appends if exists, creates and writes if not
-void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path exec_path) {
+void Simulator::move_all_knights_n_out_sigmas(int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path exec_path) {
     namespace fs = std::filesystem;
     // fs::path sourceDir = fs::absolute(fs::path(__FILE__)).parent_path();
     std::filesystem::path out_sigma_path(exec_path);
@@ -106,7 +106,7 @@ void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, fl
     }
 
     update_sigma();
-    // Pls handle 0 sigma in second loop!
+    // Should I handle 0 sigma in second loop?
     for (int i=n_steps_omit_sigma; i<moves_count; i++) {
         std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
         bool perform_forgetting = (!(i%forget_after_N_steps)) ? true : false;
