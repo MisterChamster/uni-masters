@@ -34,28 +34,14 @@ int main(int argc, char* argv[]) {
     // std::cout<<std::endl;
 // main_board.print_board_trianglar();
     main_board.print_board_trianglar_wins();
-// std::cout<<std::endl;
-    // main_board.print_board_trianglar_netted();
     // std::cout<<std::endl;
     // main_board.print_board_trianglar_wins();
     std::cout<<std::endl;
     std::cout<<std::endl;
     std::cout<<std::endl;
 
-    // main_board.print_neighbors(1);
-    // main_board.print_neighbors(4);
-    // main_board.print_neighbors(6);
-
-    // main_board.print_neighbors(16);
-    // main_board.print_neighbors(20);
-    // main_board.print_neighbors(24);
-    // std::cout<<std::endl;
-
-    // main_board.print_knight_nodes();
-// std::cout<<std::endl;
-
     main_board.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
-    
+
     // main_board.print_board_trianglar_wins(".");
     std::cout<<std::endl;
     std::cout<<"HDKNFDABSNKCNAKN"<<std::endl;

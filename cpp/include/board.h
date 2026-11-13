@@ -6,6 +6,7 @@
 
 class Board {
 private:
+    // Fields
     int edge_len;
     int total_nodes;
     int total_knights;
@@ -14,6 +15,9 @@ private:
     static constexpr int neighbors_count = 6;
     std::vector<BoardNode*> board_fields;
     std::vector<BoardNode*> knight_nodes_adresses;
+
+    // board.cpp
+    Board(int len); //might be useless
 
     void create_empty_board_fields();
     void fill_board_knights(float appear_prob);
@@ -27,15 +31,17 @@ private:
     void move_all_knights(bool forget_now=false, float forgetting_factor=0.1, bool use_sigma=true);
 
 public:
-    Board(int len);
+    // board.cpp
     Board(int len, float appear_prob);
 
+    // board_printers.cpp
     void print_board_sqared();
     void print_board_trianglar();
-    void print_board_trianglar_netted();
+    void print_board_trianglar_netted(); //don't use this function. it's ugly
     void print_board_trianglar_wins(std::string empty_char = " ");
     void print_neighbors(int n);
     void print_knight_nodes();
 
+    // board_simulations.cpp
     void move_all_knights_n(int n, int forget_after_N_steps, float forgetting_factor);
 };
