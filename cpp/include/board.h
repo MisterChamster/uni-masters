@@ -17,6 +17,8 @@ private:
     void create_empty_board_fields(int in_total_nodes);
     void fill_board_knights(float appear_prob);
     void reset_vector_fields();
+    void reset_non_vectors();
+    void reset_board();
     int* get_neighbors(int index);
 
 public:

@@ -8,9 +8,7 @@
 
 
 Board::Board() {
-    edge_len = 0;
-    total_nodes = 0;
-    total_knights = 0;
+    reset_non_vectors();
 }
 
 Board::Board(int in_edge_len, float appear_prob) {
@@ -62,6 +60,17 @@ void Board::reset_vector_fields() {
 
     std::vector<BoardNode*>().swap(board_fields);
     std::vector<BoardNode*>().swap(knight_nodes_adresses);
+}
+
+void Board::reset_non_vectors() {
+    edge_len = 0;
+    total_nodes = 0;
+    total_knights = 0;
+}
+
+void Board::reset_board() {
+    reset_non_vectors();
+    reset_vector_fields();
 }
 
 int* Board::get_neighbors(int index) {
