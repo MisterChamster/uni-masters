@@ -97,6 +97,7 @@ void Simulator::move_all_knights_n_out_sigmas(
         std::string data_name) {
 
     std::filesystem::path out_file_path = get_filepath_in_out_sigma_over_time(in_project_path, filename);
+    // std::cout<<out_file_path<<std::endl;
     std::ofstream file(out_file_path, std::ios::app);
     file<<data_name<<"\n";
 

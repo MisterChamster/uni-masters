@@ -19,19 +19,24 @@ int main(int argc, char* argv[]) {
     int moves_to_perform = 300;
     int forget_after_N_steps = 4;
     float forgetting_factor = 0.1;
-    Simulator simulator = Simulator(
-        board_edge_len,
-        0.25);
+    Simulator simulator = Simulator();
 
-    simulator.move_all_knights_n_out_sigmas(
-        moves_to_perform,
-        forget_after_N_steps,
-        forgetting_factor,
-        project_path,
-        filename,
-        "p = 0.25"
-    );
+    double knight_probabilities[4] = {0.25, 0.5, 0.75, 1.0};
 
-    std::cout<<"Hello!\n";
+    for (int i=0; i<4; i++) {
+        double curr_prob = knight_probabilities[i];
+        std::string data_name = "p = " + std::to_string(curr_prob);
+
+        simulator.initialize(board_edge_len, curr_prob);
+        simulator.move_all_knights_n_out_sigmas(
+            moves_to_perform,
+            forget_after_N_steps,
+            forgetting_factor,
+            project_path,
+            filename,
+            data_name);
+        simulator.full_reset();
+    }
+
     return 0;
 }
