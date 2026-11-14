@@ -19,6 +19,7 @@ private:
     void reset_vector_fields();
     void reset_non_vectors();
     void reset_board();
+    void reconstruct(int in_edge_len, float appear_prob);
 
     // board.cpp
     int* get_neighbors(int index);

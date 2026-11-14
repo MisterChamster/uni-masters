@@ -76,3 +76,12 @@ void Board::reset_board() {
     reset_non_vectors();
     reset_vector_fields();
 }
+
+// =================== Reconstructors ===================
+void Board::reconstruct(int in_edge_len, float appear_prob) {
+    reset_board();
+    edge_len = in_edge_len;
+    total_nodes = in_edge_len*in_edge_len;
+    create_empty_board_fields(total_nodes);
+    fill_board_knights(appear_prob);
+}
