@@ -7,17 +7,16 @@ project(Triangle_n
 )
 
 add_executable(Triangle_n
-    src/main_testing.cpp
-    src/board.cpp
-    src/board_printers.cpp
-    src/sigma_calc.cpp
-    src/board_node.cpp
-    src/simulator.cpp
+    src/app_testing/main_testing.cpp
+    src/common/board.cpp
+    src/common/board_printers.cpp
+    src/common/sigma_calc.cpp
+    src/common/board_node.cpp
+    src/common/simulator.cpp
 )
 
 # DEPLOY ANOTHER ADD EXECUTABLE
-# State dependencies separatly for each executable. It can repeat!
-# Make main 
+# State dependencies separatly for each executable. It should repeat!
 
 # Cpp min version
 target_compile_features(Triangle_n PRIVATE cxx_std_17)
