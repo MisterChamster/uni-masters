@@ -15,6 +15,10 @@ add_executable(Triangle_n
     src/common/simulator.cpp
 )
 
+add_executable(sigma_over_time
+    src/app_sigma_over_time/sigma_over_time.cpp
+)
+
 # DEPLOY ANOTHER ADD EXECUTABLE
 # State dependencies separatly for each executable. It should repeat!
 
