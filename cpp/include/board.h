@@ -18,8 +18,6 @@ private:
     void fill_board_knights(float appear_prob);
     void reset_vector_fields();
     void reset_non_vectors();
-    void reset_board();
-    void reconstruct(int in_edge_len, float appear_prob);
 
     // board.cpp
     int* get_neighbors(int index);
@@ -32,6 +30,9 @@ public:
     // board_construct_reset.cpp
     Board();
     Board(int len, float appear_prob);
+    void configure(int in_edge_len, float appear_prob);
+    void reset_board();
+    void reconstruct(int in_edge_len, float appear_prob);
 
     // board.cpp
     int get_random_neighbor(int index);

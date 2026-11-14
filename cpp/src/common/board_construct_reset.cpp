@@ -9,14 +9,18 @@ Board::Board() {
 }
 
 Board::Board(int in_edge_len, float appear_prob) {
+    configure(in_edge_len, appear_prob);
+}
+
+
+// ================ Construction helpers ================
+void Board::configure(int in_edge_len, float appear_prob) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
     create_empty_board_fields(total_nodes);
     fill_board_knights(appear_prob);
 }
 
-
-// ================ Construction helpers ================
 void Board::create_empty_board_fields(int in_total_nodes) {
     board_fields.resize(in_total_nodes);
     for(int i=0; i<total_nodes; i++) {
@@ -80,8 +84,5 @@ void Board::reset_board() {
 // =================== Reconstructors ===================
 void Board::reconstruct(int in_edge_len, float appear_prob) {
     reset_board();
-    edge_len = in_edge_len;
-    total_nodes = in_edge_len*in_edge_len;
-    create_empty_board_fields(total_nodes);
-    fill_board_knights(appear_prob);
+    configure(in_edge_len, appear_prob);
 }
