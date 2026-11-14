@@ -7,12 +7,6 @@
 #include "board.h"
 
 
-Simulator::Simulator(int board_edge_len, double knight_probability) {
-    sigma = 0;
-    sigma_calc = SigmaCalculator();
-    board = Board(board_edge_len, knight_probability);
-}
-
 Board* Simulator::get_board_ptr() {
     return &board;
 }
