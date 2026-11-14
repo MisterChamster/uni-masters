@@ -14,11 +14,8 @@ private:
     static constexpr int neighbors_count = 6;
 
     // board.cpp
-    Board(int len); //might be useless
-
     void create_empty_board_fields();
     void fill_board_knights(float appear_prob);
-
     int* get_neighbors(int index);
 
 public:

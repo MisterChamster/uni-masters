@@ -13,13 +13,6 @@ Board::Board() {
     total_knights = 0;
 }
 
-Board::Board(int in_edge_len) {
-    edge_len = in_edge_len;
-    total_nodes = in_edge_len*in_edge_len;
-    total_knights = 0;
-    Board::create_empty_board_fields();
-}
-
 Board::Board(int in_edge_len, float appear_prob) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
