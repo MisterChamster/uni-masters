@@ -6,13 +6,13 @@
 
 
 int main(int argc, char* argv[]) {
+    if (argc != 6) {
+        std::cerr<<"Too many arguments\n";
+        return 1;}
+
     std::filesystem::path executable_path(argv[0]);
     std::filesystem::path project_path = executable_path.parent_path().parent_path().parent_path();
 
-    if (argc != 6) {
-        std::cerr<<"AYYYY LMAO CRINGE\n";
-        return 1;
-    }
     std::cout<<"Hello arg!!: "<<argv[0]<<std::endl;
     std::cout<<"Hello arg!!: "<<argv[1]<<std::endl;
     std::cout<<"Hello arg!!: "<<argv[2]<<std::endl;
