@@ -14,8 +14,9 @@ private:
     static constexpr int neighbors_count = 6;
 
     // board.cpp
-    void create_empty_board_fields();
+    void create_empty_board_fields(int in_total_nodes);
     void fill_board_knights(float appear_prob);
+    void reset_vector_fields();
     int* get_neighbors(int index);
 
 public:

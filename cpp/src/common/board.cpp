@@ -16,13 +16,13 @@ Board::Board() {
 Board::Board(int in_edge_len, float appear_prob) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
-    create_empty_board_fields();
+    create_empty_board_fields(total_nodes);
     fill_board_knights(appear_prob);
 }
 
 
-void Board::create_empty_board_fields() {
-    board_fields.resize(total_nodes);
+void Board::create_empty_board_fields(int in_total_nodes) {
+    board_fields.resize(in_total_nodes);
     for(int i=0; i<total_nodes; i++) {
         board_fields[i] = new BoardNode(false, i);
     }
@@ -56,6 +56,13 @@ void Board::fill_board_knights(float appear_prob) {
     }
 }
 
+void Board::reset_vector_fields() {
+    for (BoardNode* ptr : board_fields)
+        delete ptr;
+
+    std::vector<BoardNode*>().swap(board_fields);
+    std::vector<BoardNode*>().swap(knight_nodes_adresses);
+}
 
 int* Board::get_neighbors(int index) {
     static int neighbors[neighbors_count];
