@@ -18,6 +18,7 @@ private:
 
 public:
     // simulator_construct_reset.cpp
+    Simulator();
     Simulator(int board_edge_len, double knight_probability);
     void initialize(int board_edge_len, double knight_probability);
     void full_reset();
