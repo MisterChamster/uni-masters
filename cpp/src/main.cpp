@@ -6,8 +6,8 @@
 
 
 int main(int argc, char* argv[]) {
-    std::filesystem::path project_path(argv[0]);
-    project_path = project_path.parent_path().parent_path();
+    std::filesystem::path executable_path(argv[0]);
+    std::filesystem::path project_path = executable_path.parent_path().parent_path().parent_path();
 
     if (argc != 6) {
         std::cerr<<"AYYYY LMAO CRINGE\n";

@@ -25,5 +25,5 @@ target_include_directories(Triangle_n PRIVATE
 
 # Exec location
 set_target_properties(Triangle_n PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/../build"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/../build/executables"
 )
