@@ -9,12 +9,12 @@ Board::Board() {
 }
 
 Board::Board(int in_edge_len, float appear_prob) {
-    configure(in_edge_len, appear_prob);
+    initialize(in_edge_len, appear_prob);
 }
 
 
 // ================ Construction helpers ================
-void Board::configure(int in_edge_len, float appear_prob) {
+void Board::initialize(int in_edge_len, float appear_prob) {
     edge_len = in_edge_len;
     total_nodes = in_edge_len*in_edge_len;
     create_empty_board_fields(total_nodes);
@@ -81,8 +81,9 @@ void Board::reset_board() {
     reset_vector_fields();
 }
 
+
 // =================== Reconstructors ===================
 void Board::reconstruct(int in_edge_len, float appear_prob) {
     reset_board();
-    configure(in_edge_len, appear_prob);
+    initialize(in_edge_len, appear_prob);
 }

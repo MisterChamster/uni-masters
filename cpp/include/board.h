@@ -30,7 +30,7 @@ public:
     // board_construct_reset.cpp
     Board();
     Board(int len, float appear_prob);
-    void configure(int in_edge_len, float appear_prob);
+    void initialize(int in_edge_len, float appear_prob);
     void reset_board();
     void reconstruct(int in_edge_len, float appear_prob);
 
