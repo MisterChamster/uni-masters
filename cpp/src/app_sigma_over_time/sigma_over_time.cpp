@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
         return 1;}
 
     std::filesystem::path executable_path(argv[0]);
-    std::filesystem::path project_path = executable_path.parent_path().parent_path().parent_path();
+    std::filesystem::path project_path = executable_path.parent_path().parent_path();
 
     std::string filename = (argc==2) ? argv[1] : "sigma_over_time";
     std::cout<<filename<<std::endl;

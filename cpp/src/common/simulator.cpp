@@ -70,7 +70,7 @@ void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, fl
     update_sigma();
     // Should I handle 0 sigma in second loop?
     for (int i=n_steps_omit_sigma; i<moves_count; i++) {
-        std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
+        // std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
         bool perform_forgetting = (!(i%forget_after_N_steps)) ? true : false;
         move_all_knights(perform_forgetting, forgetting_factor, true);
         update_sigma();
@@ -113,7 +113,7 @@ void Simulator::move_all_knights_n_out_sigmas(
     // Should I handle 0 sigma in second loop?
     for (int i=n_steps_omit_sigma; i<moves_count; i++) {
         file<<i<<"\t"<<sigma<<"\n";
-        std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
+        // std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
         bool perform_forgetting = (!(i%forget_after_N_steps)) ? true : false;
         move_all_knights(perform_forgetting, forgetting_factor, true);
         update_sigma();
