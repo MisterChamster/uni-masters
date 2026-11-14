@@ -1,5 +1,7 @@
 #include <iostream>
 #include <random>
+#include <fstream>
+#include <iostream>
 
 #include "simulator.h"
 #include "board.h"
@@ -81,20 +83,27 @@ void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, fl
     }
 }
 
-// Appends if exists, creates and writes if not
-void Simulator::move_all_knights_n_out_sigmas(int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path in_project_path, std::string filename) {
+std::filesystem::path get_filepath_in_out_sigma_over_time(
+        std::filesystem::path in_project_path,
+        std::string filename) {
     namespace fs = std::filesystem;
-    // fs::path sourceDir = fs::absolute(fs::path(__FILE__)).parent_path();
     fs::path out_file_path(in_project_path);
+    filename = filename + ".dat";
     out_file_path = out_file_path / "output" / "sigma_over_time" / filename;
+    return out_file_path;
+}
 
-    if (fs::exists(out_file_path)) {
-        std::cout << "File exists\n";
-    } else {
-        std::cout << "File does not exist\n";
-    }
-    // std::ofstream file(out_file_path, std::ios::app);
-    std::cout << out_file_path << '\n';
+// Appends to end of file
+void Simulator::move_all_knights_n_out_sigmas(
+        int moves_count,
+        int forget_after_N_steps,
+        float forgetting_factor,
+        std::filesystem::path in_project_path,
+        std::string filename,
+        std::string data_name) {
+
+    std::filesystem::path out_file_path = get_filepath_in_out_sigma_over_time(in_project_path, filename);
+    std::ofstream file(out_file_path, std::ios::app);
 
     int n_steps_omit_sigma = (moves_count <= 10) ? moves_count : 10;
 
