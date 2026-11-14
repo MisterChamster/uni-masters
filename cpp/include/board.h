@@ -13,12 +13,14 @@ private:
     int total_knights;
     static constexpr int neighbors_count = 6;
 
-    // board.cpp
+    // board_construct_reset.cpp
     void create_empty_board_fields(int in_total_nodes);
     void fill_board_knights(float appear_prob);
     void reset_vector_fields();
     void reset_non_vectors();
     void reset_board();
+
+    // board.cpp
     int* get_neighbors(int index);
 
 public:
@@ -26,10 +28,11 @@ public:
     std::vector<BoardNode*> board_fields;
     std::vector<BoardNode*> knight_nodes_adresses;
 
-    // board.cpp
+    // board_construct_reset.cpp
     Board();
     Board(int len, float appear_prob);
 
+    // board.cpp
     int get_random_neighbor(int index);
     int get_total_knights();
     void swap_knight_with_empty(int i_knight, int i_node);
