@@ -6,7 +6,7 @@ project(Triangle_n
     LANGUAGES CXX
 )
 
-add_executable(Triangle_n
+add_executable(main_testing
     src/app_testing/main_testing.cpp
     src/common/board.cpp
     src/common/board_printers.cpp
@@ -23,14 +23,17 @@ add_executable(sigma_over_time
 # State dependencies separatly for each executable. It should repeat!
 
 # Cpp min version
-target_compile_features(Triangle_n PRIVATE cxx_std_17)
+target_compile_features(main_testing PRIVATE cxx_std_17)
+target_compile_features(sigma_over_time PRIVATE cxx_std_17)
 
 # Locate header files
-target_include_directories(Triangle_n PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
+target_include_directories(main_testing PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(sigma_over_time PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # Exec location
-set_target_properties(Triangle_n PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/../build"
-)
+set_target_properties(main_testing PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/../build")
+set_target_properties(sigma_over_time PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/../build")
