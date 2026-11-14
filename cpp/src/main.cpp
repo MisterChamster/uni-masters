@@ -42,8 +42,8 @@ int main(int argc, char* argv[]) {
     std::cout<<std::endl;
     std::cout<<std::endl;
 
-    simulator.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
-    // simulator.move_all_knights_n_out_sigmas(moves_to_perform, forget_after_N_steps, forgetting_factor, project_path);
+    // simulator.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
+    simulator.move_all_knights_n_out_sigmas(moves_to_perform, forget_after_N_steps, forgetting_factor, project_path, "testpath", "Data1");
 
     // board_ptr->print_board_trianglar_wins(".");
     std::cout<<std::endl;

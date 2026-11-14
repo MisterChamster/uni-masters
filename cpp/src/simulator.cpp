@@ -88,7 +88,7 @@ std::filesystem::path get_filepath_in_out_sigma_over_time(
         std::string filename) {
     namespace fs = std::filesystem;
     fs::path out_file_path(in_project_path);
-    filename = filename + ".dat";
+    filename = filename + ".csv";
     out_file_path = out_file_path / "output" / "sigma_over_time" / filename;
     return out_file_path;
 }
@@ -104,10 +104,12 @@ void Simulator::move_all_knights_n_out_sigmas(
 
     std::filesystem::path out_file_path = get_filepath_in_out_sigma_over_time(in_project_path, filename);
     std::ofstream file(out_file_path, std::ios::app);
+    file<<data_name<<"\n";
 
     int n_steps_omit_sigma = (moves_count <= 10) ? moves_count : 10;
 
     for (int i=0; i<n_steps_omit_sigma; i++) {
+        file<<i<<"\t"<<sigma<<"\n";
         sigma_calc.reset_vals();
         bool perform_forgetting = (!(i%forget_after_N_steps)) ? true : false;
         move_all_knights(perform_forgetting, forgetting_factor, false);
@@ -116,9 +118,11 @@ void Simulator::move_all_knights_n_out_sigmas(
     update_sigma();
     // Should I handle 0 sigma in second loop?
     for (int i=n_steps_omit_sigma; i<moves_count; i++) {
+        file<<i<<"\t"<<sigma<<"\n";
         std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
         bool perform_forgetting = (!(i%forget_after_N_steps)) ? true : false;
         move_all_knights(perform_forgetting, forgetting_factor, true);
         update_sigma();
     }
+    file<<"\n";
 }
