@@ -15,12 +15,22 @@ int main(int argc, char* argv[]) {
     std::string filename = (argc==2) ? argv[1] : "sigma_over_time";
     std::cout<<filename<<std::endl;
 
-    int board_edge_len       = 30;
-    float knight_probability = 0.75;
-
+    int board_edge_len = 100;
+    int moves_to_perform = 300;
+    int forget_after_N_steps = 4;
+    float forgetting_factor = 0.1;
     Simulator simulator = Simulator(
         board_edge_len,
-        knight_probability);
+        0.25);
+
+    simulator.move_all_knights_n_out_sigmas(
+        moves_to_perform,
+        forget_after_N_steps,
+        forgetting_factor,
+        project_path,
+        filename,
+        "p = 0.25"
+    );
 
     std::cout<<"Hello!\n";
     return 0;
