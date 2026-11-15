@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
     std::cout<<filename<<std::endl;
 
     int board_edge_len = 100;
-    int moves_to_perform = 300;
+    int moves_to_perform = 500;
     int forget_after_N_steps = 4;
     float forgetting_factor = 0.1;
     Simulator simulator = Simulator();
