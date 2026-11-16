@@ -78,10 +78,10 @@ void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, fl
 }
 
 std::filesystem::path get_filepath_in_out_sigma_over_time(
-        std::filesystem::path in_project_path,
+        std::filesystem::path project_path,
         std::string filename) {
     namespace fs = std::filesystem;
-    fs::path out_file_path(in_project_path);
+    fs::path out_file_path(project_path);
     filename = filename + ".txt";
     out_file_path = out_file_path / "output" / "sigma_over_time" / filename;
     return out_file_path;
@@ -92,11 +92,11 @@ void Simulator::move_all_knights_n_out_sigmas(
         int moves_count,
         int forget_after_N_steps,
         float forgetting_factor,
-        std::filesystem::path in_project_path,
+        std::filesystem::path project_path,
         std::string filename,
         std::string data_name) {
 
-    std::filesystem::path out_file_path = get_filepath_in_out_sigma_over_time(in_project_path, filename);
+    std::filesystem::path out_file_path = get_filepath_in_out_sigma_over_time(project_path, filename);
     // std::cout<<out_file_path<<std::endl;
     std::ofstream file(out_file_path, std::ios::app);
     file<<"# "<<data_name<<"\n";
