@@ -15,6 +15,7 @@ add_executable(main_testing
     src/common/board_node.cpp
     src/common/simulator.cpp
     src/common/simulator_construct_reset.cpp
+    src/common/utils.cpp
 )
 
 add_executable(sigma_over_time
@@ -26,6 +27,7 @@ add_executable(sigma_over_time
     src/common/board_node.cpp
     src/common/simulator.cpp
     src/common/simulator_construct_reset.cpp
+    src/common/utils.cpp
 )
 
 # DEPLOY ANOTHER ADD EXECUTABLE

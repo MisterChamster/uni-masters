@@ -1,10 +1,10 @@
 #include <iostream>
 #include <random>
 #include <fstream>
-#include <iostream>
 
 #include "simulator.h"
 #include "board.h"
+#include "utils.h"
 
 
 Board* Simulator::get_board_ptr() {
@@ -57,7 +57,6 @@ void Simulator::move_all_knights(bool forget_now, float forgetting_factor, bool 
     }
 }
 
-
 void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, float forgetting_factor) {
     int n_steps_omit_sigma = (moves_count <= 10) ? moves_count : 10;
 
@@ -75,16 +74,6 @@ void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, fl
         move_all_knights(perform_forgetting, forgetting_factor, true);
         update_sigma();
     }
-}
-
-std::filesystem::path get_filepath_in_out_sigma_over_time(
-        std::filesystem::path project_path,
-        std::string filename) {
-    namespace fs = std::filesystem;
-    fs::path out_file_path(project_path);
-    filename = filename + ".txt";
-    out_file_path = out_file_path / "output" / "sigma_over_time" / filename;
-    return out_file_path;
 }
 
 // Appends to end of file
