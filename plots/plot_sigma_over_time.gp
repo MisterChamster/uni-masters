@@ -1,6 +1,5 @@
-
 set title "Sigma change over time"
-set xlabel "X"
+set xlabel "T turns"
 set ylabel "Sigma"
 set grid
 set key bottom right
