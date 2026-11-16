@@ -44,6 +44,8 @@ void Simulator::move_all_knights(bool forget_now, float forgetting_factor, bool 
             if (fight_won_flag) {
                 knight_address->add_fight_win();
                 board.swap_knights(knight_index, target_index);
+            } else {
+                target_address->add_fight_win();
             }
         } else {
             board.swap_knight_with_empty(knight_index, target_index);
