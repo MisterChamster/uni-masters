@@ -36,7 +36,6 @@ int main(int argc, char* argv[]) {
             moves_to_perform,
             forget_after_N_steps,
             forgetting_factor,
-            project_path,
             save_path,
             data_name);
         simulator.full_reset();
