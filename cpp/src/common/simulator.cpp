@@ -76,7 +76,6 @@ void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, fl
     }
 }
 
-// Appends to end of file
 void Simulator::move_all_knights_n_out_sigmas(
         int moves_count,
         int forget_after_N_steps,
@@ -84,8 +83,6 @@ void Simulator::move_all_knights_n_out_sigmas(
         std::filesystem::path save_path,
         std::string data_name) {
 
-    // std::filesystem::path out_file_path = get_filepath_in_out_sot(save_path, filename);
-    // std::cout<<save_path<<std::endl;
     std::ofstream file(save_path, std::ios::app);
     file<<"# "<<data_name<<"\n";
 
