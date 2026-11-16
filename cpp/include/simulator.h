@@ -28,5 +28,5 @@ public:
     Board* get_board_ptr();
 
     void move_all_knights_n(int moves_count, int forget_after_N_steps, float forgetting_factor);
-    void move_all_knights_n_out_sigmas(int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path project_path, std::string filename, std::string data_name);
+    void move_all_knights_n_out_sigmas(int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path save_path, std::string data_name);
 };

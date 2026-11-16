@@ -81,13 +81,12 @@ void Simulator::move_all_knights_n_out_sigmas(
         int moves_count,
         int forget_after_N_steps,
         float forgetting_factor,
-        std::filesystem::path project_path,
-        std::string filename,
+        std::filesystem::path save_path,
         std::string data_name) {
 
-    std::filesystem::path out_file_path = get_filepath_in_out_sigma_over_time(project_path, filename);
-    // std::cout<<out_file_path<<std::endl;
-    std::ofstream file(out_file_path, std::ios::app);
+    // std::filesystem::path out_file_path = get_filepath_in_out_sot(save_path, filename);
+    // std::cout<<save_path<<std::endl;
+    std::ofstream file(save_path, std::ios::app);
     file<<"# "<<data_name<<"\n";
 
     int n_steps_omit_sigma = (moves_count <= 10) ? moves_count : 10;

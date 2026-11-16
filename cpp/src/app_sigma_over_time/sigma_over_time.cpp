@@ -1,7 +1,9 @@
 #include <iostream>
 #include <filesystem>
+#include <string>
 
 #include "simulator.h"
+#include "utils.h"
 
 
 int main(int argc, char* argv[]) {
@@ -23,6 +25,8 @@ int main(int argc, char* argv[]) {
 
     double knight_probabilities[4] = {0.25, 0.5, 0.75, 1.0};
 
+    std::filesystem::path save_path = get_new_filepath_in_out_sot(project_path, filename);
+
     for (int i=0; i<4; i++) {
         double curr_prob = knight_probabilities[i];
         std::string data_name = "p = " + std::to_string(curr_prob);
@@ -33,7 +37,7 @@ int main(int argc, char* argv[]) {
             forget_after_N_steps,
             forgetting_factor,
             project_path,
-            filename,
+            save_path,
             data_name);
         simulator.full_reset();
     }
