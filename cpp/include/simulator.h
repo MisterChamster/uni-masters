@@ -1,0 +1,35 @@
+#pragma once
+
+#include "board.h"
+#include "sigma_calc.h"
+
+
+class Simulator {
+private:
+    // Fields
+    Board board;
+    double sigma;
+    SigmaCalculator sigma_calc;
+
+    // simulator.cpp
+    void move_all_knights(bool forget_now, float forgetting_factor, bool use_sigma);
+    double calc_winning_prob(int wins_k1, int wins_k2, float control_param=1);
+    void update_sigma();
+
+public:
+    // simulator_construct_reset.cpp
+    Simulator();
+    Simulator(int board_edge_len, double knight_probability);
+    void initialize(int board_edge_len, double knight_probability);
+    void full_reset();
+    void reconstruct(int board_edge_len, double knight_probability);
+
+    // simulator.cpp
+    Board* get_board_ptr();
+
+    void move_all_knights_n(int moves_count, int forget_after_N_steps, float forgetting_factor);
+    void move_all_knights_n_out_sigmas(int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path save_path, std::string data_name);
+
+    // simulator_simulations.cpp
+    void simulate_sigma_over_time(int board_edge_len, int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path save_path);
+};

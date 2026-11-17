@@ -3,7 +3,6 @@
 #include "board_node.h"
 
 
-// Has to exist for vector allocator
 BoardNode::BoardNode() {
     is_knight = false;
     wins = 0;

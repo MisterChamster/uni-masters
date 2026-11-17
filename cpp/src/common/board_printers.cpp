@@ -1,5 +1,8 @@
 #include <iostream>
+
 #include "board.h"
+#include "utils.h"
+
 
 void Board::print_board_sqared() {
     for (int i=0; i<total_nodes; i+=edge_len) {
@@ -81,17 +84,6 @@ void Board::print_board_trianglar_netted() {
             std::cout<<std::endl;
         }
     }
-}
-
-std::string get_num_to_print(BoardNode* node_adress, std::string empty_char = " ") {
-    if (node_adress->get_is_knight()) {
-        std::string stringed_num = std::to_string(node_adress->get_wins());
-
-        if      (stringed_num.length() == 1) return " " + stringed_num + " ";
-        else if (stringed_num.length() == 2) return " " + stringed_num;
-        else                                 return stringed_num;
-    }
-    else return " " + empty_char + " ";
 }
 
 void Board::print_board_trianglar_wins(std::string empty_char) {

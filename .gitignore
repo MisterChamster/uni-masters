@@ -2,6 +2,7 @@ build/
 .VSCodeCounter/
 .vscode/
 venv/
+output/sigma_over_time/
 
 .DS_Store
 build_and_run.sh
