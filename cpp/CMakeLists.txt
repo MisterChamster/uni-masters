@@ -8,27 +8,27 @@ project(Triangle_n
 
 add_executable(main_testing
     src/app_testing/main_testing.cpp
-    src/common/board.cpp
-    src/common/board_printers.cpp
-    src/common/board_construct_reset.cpp
-    src/common/board_node.cpp
+    src/common/board/board.cpp
+    src/common/board/board_printers.cpp
+    src/common/board/board_construct_reset.cpp
+    src/common/board/board_node.cpp
     src/common/sigma_calc.cpp
-    src/common/simulator.cpp
-    src/common/simulator_construct_reset.cpp
-    src/common/simulator_simulations.cpp
+    src/common/simulator/simulator.cpp
+    src/common/simulator/simulator_construct_reset.cpp
+    src/common/simulator/simulator_simulations.cpp
     src/common/utils.cpp
 )
 
 add_executable(sigma_over_time
     src/app_sigma_over_time/sigma_over_time.cpp
-    src/common/board.cpp
-    # src/common/board_printers.cpp
-    src/common/board_construct_reset.cpp
-    src/common/board_node.cpp
+    src/common/board/board.cpp
+    # src/common/board/board_printers.cpp
+    src/common/board/board_construct_reset.cpp
+    src/common/board/board_node.cpp
     src/common/sigma_calc.cpp
-    src/common/simulator.cpp
-    src/common/simulator_construct_reset.cpp
-    src/common/simulator_simulations.cpp
+    src/common/simulator/simulator.cpp
+    src/common/simulator/simulator_construct_reset.cpp
+    src/common/simulator/simulator_simulations.cpp
     src/common/utils.cpp
 )
 
