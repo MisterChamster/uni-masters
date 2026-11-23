@@ -7,39 +7,44 @@ project(Triangle_n
 )
 
 add_executable(main_testing
+    # app
     src/app_testing/main_testing.cpp
 
+    # board
     src/common/board/board.cpp
     src/common/board/board_printers.cpp
     src/common/board/board_construct_reset.cpp
     src/common/board/board_node.cpp
 
+    # simulator
     src/common/simulator/simulator.cpp
     src/common/simulator/simulator_construct_reset.cpp
     src/common/simulator/simulator_simulations.cpp
     src/common/simulator/sigma_calc.cpp
 
+    # other
     src/common/utils.cpp
 )
 
 add_executable(sigma_over_time
+    # app
     src/app_sigma_over_time/sigma_over_time.cpp
 
+    # board
     src/common/board/board.cpp
     # src/common/board/board_printers.cpp
     src/common/board/board_construct_reset.cpp
     src/common/board/board_node.cpp
 
+    # simulator
     src/common/simulator/simulator.cpp
     src/common/simulator/simulator_construct_reset.cpp
     src/common/simulator/simulator_simulations.cpp
     src/common/simulator/sigma_calc.cpp
 
+    # other
     src/common/utils.cpp
 )
-
-# DEPLOY ANOTHER ADD EXECUTABLE
-# State dependencies separatly for each executable. It should repeat!
 
 # Cpp min version
 target_compile_features(main_testing PRIVATE cxx_std_17)
