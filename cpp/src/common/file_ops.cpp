@@ -1,7 +1,7 @@
 #include <fstream>
 #include <filesystem>
 
-#include <file_ops.h>
+#include "file_ops.h"
 #include "utils.h"
 
 
@@ -13,7 +13,6 @@ std::filesystem::path get_filepath_in_out_sot(
     out_file_path = out_file_path / "output" / "sigma_over_time" / filename;
     return out_file_path;
 }
-
 
 void rename_with_datetime(std::filesystem::path &filepath) {
     filepath.replace_filename(
