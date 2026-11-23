@@ -11,8 +11,8 @@ add_executable(main_testing
     src/common/board.cpp
     src/common/board_printers.cpp
     src/common/board_construct_reset.cpp
-    src/common/sigma_calc.cpp
     src/common/board_node.cpp
+    src/common/sigma_calc.cpp
     src/common/simulator.cpp
     src/common/simulator_construct_reset.cpp
     src/common/simulator_simulations.cpp
@@ -24,8 +24,8 @@ add_executable(sigma_over_time
     src/common/board.cpp
     # src/common/board_printers.cpp
     src/common/board_construct_reset.cpp
-    src/common/sigma_calc.cpp
     src/common/board_node.cpp
+    src/common/sigma_calc.cpp
     src/common/simulator.cpp
     src/common/simulator_construct_reset.cpp
     src/common/simulator_simulations.cpp
