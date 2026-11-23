@@ -4,6 +4,7 @@
 
 #include "simulator.h"
 #include "utils.h"
+#include "file_ops.h"
 
 
 int main(int argc, char* argv[]) {
