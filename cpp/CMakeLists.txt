@@ -22,7 +22,7 @@ add_executable(main_testing
     src/simulator/simulator_simulations.cpp
     src/simulator/sigma_calc.cpp
 
-    # other
+    # common
     src/common/file_ops.cpp
     src/common/utils.cpp
 )
@@ -43,7 +43,7 @@ add_executable(sigma_over_time
     src/simulator/simulator_simulations.cpp
     src/simulator/sigma_calc.cpp
 
-    # other
+    # common
     src/common/file_ops.cpp
     src/common/utils.cpp
 )
