@@ -6,6 +6,7 @@
 
 // simulator.cpp
 void rename_with_datetime(std::filesystem::path &filepath);
+std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path);
 std::filesystem::path get_filepath_in_out_sot(
     std::filesystem::path project_path,
     std::string filename);

@@ -5,20 +5,26 @@
 #include "utils.h"
 
 
-std::filesystem::path get_filepath_in_out_sot(
-        std::filesystem::path project_path,
-        std::string filename) {
-    std::filesystem::path out_file_path(project_path);
-    filename = filename + ".txt";
-    out_file_path = out_file_path / "output" / "sigma_over_time" / filename;
-    return out_file_path;
-}
-
 void rename_with_datetime(std::filesystem::path &filepath) {
     filepath.replace_filename(
         filepath.stem().string() +
         get_formatted_datetime() +
         filepath.extension().string());
+}
+
+std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path) {
+    std::filesystem::path out_file_path(project_path);
+    out_file_path = out_file_path / "output" / "sigma_over_time";
+    return out_file_path;
+}
+
+std::filesystem::path get_filepath_in_out_sot(
+        std::filesystem::path project_path,
+        std::string filename) {
+    std::filesystem::path out_dir_path = get_dirpath_output_sot(project_path);
+    filename = filename + ".txt";
+    std::filesystem::path out_file_path = out_dir_path / filename;
+    return out_file_path;
 }
 
 std::filesystem::path get_new_filepath_in_out_sot(

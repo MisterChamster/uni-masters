@@ -6,15 +6,10 @@
 
 
 int main(int argc, char* argv[]) {
-    if (argc > 2) {
-        std::cerr<<"Too many arguments\n";
-        return 1;}
-
     int board_edge_len = 100;
     int moves_to_perform = 500;
     int forget_after_N_turns = 4;
     float forgetting_factor = 0.1;
-
     std::filesystem::path project_path = get_project_path(argv);
 
     Simulator simulator = Simulator();
