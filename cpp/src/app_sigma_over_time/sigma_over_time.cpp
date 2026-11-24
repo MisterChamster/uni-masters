@@ -1,6 +1,5 @@
 #include <iostream>
 #include <filesystem>
-#include <string>
 
 #include "simulator.h"
 #include "file_ops.h"
@@ -17,9 +16,6 @@ int main(int argc, char* argv[]) {
     float forgetting_factor = 0.1;
 
     std::filesystem::path project_path = get_project_path(argv);
-    std::string filename = (argc==2) ? argv[1] : "sigma_over_time";
-    std::cout<<filename<<std::endl;
-    std::filesystem::path save_path = get_new_filepath_in_out_sot(project_path, filename);
 
     Simulator simulator = Simulator();
     simulator.simulate_sigma_over_time(
@@ -27,7 +23,7 @@ int main(int argc, char* argv[]) {
         moves_to_perform,
         forget_after_N_turns,
         forgetting_factor,
-        save_path);
+        project_path);
 
     return 0;
 }

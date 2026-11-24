@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "board.h"
-#include "utils.h"
 
 
 void Board::print_board_sqared() {

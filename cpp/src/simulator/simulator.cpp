@@ -4,7 +4,6 @@
 
 #include "simulator.h"
 #include "board.h"
-#include "utils.h"
 
 
 Board* Simulator::get_board_ptr() {
