@@ -27,9 +27,9 @@ public:
     // simulator.cpp
     Board* get_board_ptr();
 
-    void move_all_knights_n(int moves_count, int forget_after_N_steps, float forgetting_factor);
-    void move_all_knights_n_out_sigmas(int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path save_path, std::string data_name);
+    void move_all_knights_n(int moves_count, int forget_after_N_turns, float forgetting_factor);
+    void move_all_knights_n_out_sigmas(int moves_count, int forget_after_N_turns, float forgetting_factor, std::filesystem::path save_path, std::string data_name);
 
     // simulator_simulations.cpp
-    void simulate_sigma_over_time(int board_edge_len, int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path save_path);
+    void simulate_sigma_over_time(int board_edge_len, int moves_count, int forget_after_N_turns, float forgetting_factor, std::filesystem::path save_path);
 };
