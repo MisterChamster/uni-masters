@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
     float knight_probability = std::stof(argv[2]);
     int moves_to_perform     = std::stoi(argv[3]);
     float forgetting_factor  = std::stof(argv[4]);
-    int forget_after_N_steps = std::stoi(argv[5]);
+    int forget_after_N_turns = std::stoi(argv[5]);
 
 
     Simulator simulator = Simulator(
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
     std::cout<<std::endl;
     std::cout<<std::endl;
 
-    // simulator.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
+    // simulator.move_all_knights_n(moves_to_perform, forget_after_N_turns, forgetting_factor);
 
     // board_ptr->print_board_trianglar_wins(".");
     std::cout<<std::endl;
