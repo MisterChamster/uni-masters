@@ -4,6 +4,7 @@
 
 #include "simulator.h"
 #include "board.h"
+#include "config.hpp"
 
 
 Board* Simulator::get_board_ptr() {
@@ -23,7 +24,7 @@ void Simulator::move_all_knights(bool forget_now, float forgetting_factor, bool 
     std::mt19937 gen(rd());
     std::uniform_real_distribution<double> dist(0.0, 1.0);
     int total_knights = board.get_total_knights();
-    double control_param = use_sigma ? sigma : 1;
+    double control_param = use_sigma ? sigma : config::DEFAULT_CONTROL_PARAM;
 
     for (int i=0; i<total_knights; i++) {
         BoardNode* knight_address = board.knight_nodes_adresses[i];
