@@ -85,26 +85,26 @@ void Board::print_board_trianglar_netted() {
     }
 }
 
-void Board::print_board_trianglar_wins(std::string empty_char) {
+void Board::print_board_trianglar_wins(std::string midspace_char) {
     std::string num_to_print;
 
     for (int i=0; i<total_nodes; i+=edge_len*2) {
-        num_to_print = board_fields[i]->get_wins_to_print(empty_char);
+        num_to_print = board_fields[i]->get_wins_to_print(midspace_char);
         std::cout<<"  "<<num_to_print;
 
         int j=i;
         while (j+1<i+edge_len) {
-            num_to_print = board_fields[j]->get_wins_to_print(empty_char);
+            num_to_print = board_fields[j]->get_wins_to_print(midspace_char);
             std::cout<<" "<<num_to_print;
             j++;
         }
 
         if (i+1<total_nodes-edge_len) {
-            num_to_print = board_fields[j]->get_wins_to_print(empty_char);
+            num_to_print = board_fields[j]->get_wins_to_print(midspace_char);
             std::cout<<std::endl<<std::endl<<num_to_print;
 
             for (int k=j+1; k<j+edge_len; k++) {
-                num_to_print = board_fields[k]->get_wins_to_print(empty_char);
+                num_to_print = board_fields[k]->get_wins_to_print(midspace_char);
                 std::cout<<" "<<num_to_print;
             }
 

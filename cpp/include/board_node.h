@@ -15,7 +15,7 @@ public:
 
     void add_fight_win();
     void forget(float forgetting_factor);
-    std::string get_wins_to_print(std::string empty_char = " ");
+    std::string get_wins_to_print(std::string midspace_char = " ");
 
     bool get_is_knight();
     void set_is_knight(bool in_is_knight);

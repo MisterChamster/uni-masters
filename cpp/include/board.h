@@ -44,7 +44,7 @@ public:
     void print_board_sqared();
     void print_board_trianglar();
     void print_board_trianglar_netted(); //don't use this function. it's ugly
-    void print_board_trianglar_wins(std::string empty_char = " ");
+    void print_board_trianglar_wins(std::string midspace_char = " ");
     void print_neighbors(int n);
     void print_knight_nodes();
 };
