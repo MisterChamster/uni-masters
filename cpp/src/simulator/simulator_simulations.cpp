@@ -2,12 +2,13 @@
 
 #include "simulator.h"
 #include "file_ops.h"
+#include "config.hpp"
 
 
 void Simulator::simulate_sigma_over_time(int board_edge_len, int moves_count, int forget_after_N_turns, float forgetting_factor, std::filesystem::path project_path) {
     double knight_probabilities[4] = {0.25, 0.5, 0.75, 1.0};
 
-    std::string filename_base = "sigma_over_time";
+    std::string filename_base = config::SOT_FILENAME_BASE;
     std::cout<<filename_base<<std::endl;
     std::filesystem::path save_path = get_new_filepath_in_out_sot(project_path, filename_base);
 
