@@ -25,7 +25,6 @@ BoardNode::BoardNode(bool in_is_knight, int in_i_in_indexes, int in_index_on_boa
 }
 
 
-
 void BoardNode::add_fight_win() {
     wins++;
 }

@@ -2,6 +2,7 @@
 
 #include "board.h"
 #include "sigma_calc.h"
+#include "config.hpp"
 
 
 class Simulator {
@@ -13,7 +14,7 @@ private:
 
     // simulator.cpp
     void move_all_knights(bool forget_now, float forgetting_factor, bool use_sigma);
-    double calc_winning_prob(int wins_k1, int wins_k2, float control_param=1);
+    double calc_winning_prob(int wins_k1, int wins_k2, float control_param=config::DEFAULT_CONTROL_PARAM);
     void update_sigma();
 
 public:

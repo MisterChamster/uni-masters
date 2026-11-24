@@ -3,6 +3,7 @@
 
 #include "file_ops.h"
 #include "utils.h"
+#include "config.hpp"
 
 
 void rename_with_datetime(std::filesystem::path &filepath) {
@@ -22,7 +23,7 @@ std::filesystem::path get_filepath_in_out_sot(
         std::filesystem::path project_path,
         std::string filename) {
     std::filesystem::path out_dir_path = get_dirpath_output_sot(project_path);
-    filename = filename + ".txt";
+    filename = filename + "." + config::FILE_EXT;
     std::filesystem::path out_file_path = out_dir_path / filename;
     return out_file_path;
 }

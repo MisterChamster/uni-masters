@@ -12,7 +12,7 @@ private:
     int edge_len;
     int total_nodes;
     int total_knights;
-    static constexpr int neighbors_count = 6;
+    static constexpr int neighbors_count = config::NODE_NEIGHBORS_COUNT2;
 
     // board_construct_reset.cpp
     void create_empty_board_fields(int in_total_nodes);
