@@ -3,6 +3,7 @@
 #include <filesystem>
 
 #include "board_node.h"
+#include "config.hpp"
 
 
 class Board {
@@ -44,7 +45,7 @@ public:
     void print_board_sqared();
     void print_board_trianglar();
     void print_board_trianglar_netted(); //don't use this function. it's ugly
-    void print_board_trianglar_wins(std::string midspace_char = " ");
+    void print_board_trianglar_wins(std::string midspace_char = config::DEFAULT_MIDSPACE_CHAR);
     void print_neighbors(int n);
     void print_knight_nodes();
 };

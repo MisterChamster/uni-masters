@@ -1,5 +1,7 @@
 #pragma once
 
+#include "config.hpp"
+
 
 class BoardNode {
 private:
@@ -15,7 +17,7 @@ public:
 
     void add_fight_win();
     void forget(float forgetting_factor);
-    std::string get_wins_to_print(std::string midspace_char = " ");
+    std::string get_wins_to_print(std::string midspace_char = config::DEFAULT_MIDSPACE_CHAR);
 
     bool get_is_knight();
     void set_is_knight(bool in_is_knight);
