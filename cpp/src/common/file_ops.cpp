@@ -29,3 +29,8 @@ std::filesystem::path get_new_filepath_in_out_sot(
 
     return save_path;
 }
+
+std::filesystem::path get_project_path(char *argv[]) {
+    std::filesystem::path executable_path(argv[0]);
+    return executable_path.parent_path().parent_path();
+}
