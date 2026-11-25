@@ -16,18 +16,10 @@ std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path)
     return out_file_path;
 }
 
-std::filesystem::path get_filepath_in_out_sot(
-        std::filesystem::path sot_outputs_dir,
-        std::string filename) {
-    filename = add_file_ext(filename, config::SOT_FILE_EXT);
-    std::filesystem::path out_file_path = sot_outputs_dir / filename;
-    return out_file_path;
-}
-
 std::filesystem::path get_new_filepath_in_out_sot(
         std::filesystem::path sot_outputs_dir,
         std::string filename) {
-    std::filesystem::path save_path = get_filepath_in_out_sot(sot_outputs_dir, filename);
+    std::filesystem::path save_path = sot_outputs_dir / filename;
     if (std::filesystem::exists(save_path)) rename_with_datetime(save_path);
 
     return save_path;
@@ -52,15 +44,16 @@ std::string get_sot_simulation_dir_name(
     return dirname;
 }
 
-std::string get_sot_simulation_file_name(double knight_probability) {
+std::string get_sot_simulation_file_name(double knight_probability, std::string file_ext) {
     std::string filename_base = config::SOT_FILENAME_BASE;
 
     std::ostringstream oss;
-    oss << filename_base << "p=" << std::fixed << std::setprecision(3) << knight_probability;
+    oss << "-p=" << std::fixed << std::setprecision(3) << knight_probability;
     std::string filename_add = oss.str();
 
     std::string filename = filename_base + filename_add;
-    return filename;
+    std::string filename_with_ext = add_file_ext(filename, file_ext);
+    return filename_with_ext;
 }
 
 std::filesystem::path create_and_get_sot_simulation_folder(
