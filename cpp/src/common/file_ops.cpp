@@ -20,18 +20,17 @@ std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path)
 }
 
 std::filesystem::path get_filepath_in_out_sot(
-        std::filesystem::path project_path,
+        std::filesystem::path sot_outputs_dir,
         std::string filename) {
-    std::filesystem::path out_dir_path = get_dirpath_output_sot(project_path);
     filename = filename + "." + config::FILE_EXT;
-    std::filesystem::path out_file_path = out_dir_path / filename;
+    std::filesystem::path out_file_path = sot_outputs_dir / filename;
     return out_file_path;
 }
 
 std::filesystem::path get_new_filepath_in_out_sot(
-        std::filesystem::path project_path,
+        std::filesystem::path sot_outputs_dir,
         std::string filename) {
-    std::filesystem::path save_path = get_filepath_in_out_sot(project_path, filename);
+    std::filesystem::path save_path = get_filepath_in_out_sot(sot_outputs_dir, filename);
     if (std::filesystem::exists(save_path)) rename_with_datetime(save_path);
 
     return save_path;
