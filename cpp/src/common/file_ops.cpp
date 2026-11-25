@@ -10,13 +10,24 @@
 #include "config.hpp"
 
 
-// simulator.cpp
+// simulator_simulations.cpp
+std::string get_sot_simulation_file_name(double knight_probability, std::string file_ext) {
+    std::string filename_base = config::SOT_FILENAME_BASE;
+
+    std::ostringstream oss;
+    oss << "-p=" << std::fixed << std::setprecision(3) << knight_probability;
+    std::string filename_add = oss.str();
+
+    std::string filename = filename_base + filename_add;
+    std::string filename_with_ext = add_file_ext(filename, file_ext);
+    return filename_with_ext;
+}
+
 std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path) {
     std::filesystem::path out_file_path = project_path / "output" / "sigma_over_time";
     return out_file_path;
 }
 
-// simulator_simulations.cpp
 std::string get_sot_simulation_dir_name(
         int board_edge_len,
         int turns_count,
@@ -35,19 +46,7 @@ std::string get_sot_simulation_dir_name(
     return dirname;
 }
 
-std::string get_sot_simulation_file_name(double knight_probability, std::string file_ext) {
-    std::string filename_base = config::SOT_FILENAME_BASE;
-
-    std::ostringstream oss;
-    oss << "-p=" << std::fixed << std::setprecision(3) << knight_probability;
-    std::string filename_add = oss.str();
-
-    std::string filename = filename_base + filename_add;
-    std::string filename_with_ext = add_file_ext(filename, file_ext);
-    return filename_with_ext;
-}
-
-std::filesystem::path create_and_get_sot_simulation_folder(
+std::filesystem::path create_and_get_sot_simulation_dir(
         std::filesystem::path project_path,
         int board_edge_len,
         int turns_count,
