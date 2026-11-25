@@ -14,8 +14,16 @@ std::filesystem::path get_new_filepath_in_out_sot(
     std::string filename);
 
 // simulator_simulations.cpp
-// void create_sot_simulation_folder(std::filesystem::path project_path);
-std::filesystem::path create_and_get_sot_simulation_folder(std::filesystem::path project_path);
+std::string get_sot_simulation_dir_name(
+    int board_edge_len,
+    int turns_count,
+    float forgetting_factor);
+std::filesystem::path create_and_get_sot_simulation_folder(
+    std::filesystem::path project_path,
+    int board_edge_len,
+    int turns_count,
+    float forgetting_factor
+);
 
 // Common
 std::string add_file_ext(std::string filename, std::string extension);
