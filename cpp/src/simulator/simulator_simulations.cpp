@@ -39,7 +39,7 @@ void Simulator::simulate_sigma_over_time(
                 data_name,
                 omit_sigma_turns);
         } else {
-            TESTmove_all_knights_n_out_sigmasTEST(
+            TESTmove_all_knights_n_out_sigmas_CALC_OMIT_SIGMA(
                 turns_count,
                 forget_after_N_turns,
                 forgetting_factor,

@@ -111,7 +111,7 @@ void Simulator::move_all_knights_n_out_sigmas(
     }
 }
 
-void Simulator::TESTmove_all_knights_n_out_sigmasTEST(
+void Simulator::TESTmove_all_knights_n_out_sigmas_CALC_OMIT_SIGMA(
         int turns_count,
         int forget_after_N_turns,
         float forgetting_factor,
