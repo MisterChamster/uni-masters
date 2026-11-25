@@ -7,7 +7,7 @@
 
 void Simulator::simulate_sigma_over_time(
         int board_edge_len,
-        int moves_count,
+        int turns_count,
         int forget_after_N_turns,
         float forgetting_factor,
         std::filesystem::path project_path,
@@ -28,7 +28,7 @@ void Simulator::simulate_sigma_over_time(
 
         initialize(board_edge_len, curr_prob);
         move_all_knights_n_out_sigmas(
-            moves_count,
+            turns_count,
             forget_after_N_turns,
             forgetting_factor,
             save_path,

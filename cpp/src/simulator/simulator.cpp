@@ -61,12 +61,12 @@ void Simulator::move_all_knights(bool forget_now, float forgetting_factor, bool 
 
 // Unused??
 void Simulator::move_all_knights_n(
-        int moves_count,
+        int turns_count,
         int forget_after_N_turns,
         float forgetting_factor,
         int omit_sigma_turns) {
-    int n_turns_omit_sigma = (moves_count <= omit_sigma_turns) ?
-                              moves_count : omit_sigma_turns;
+    int n_turns_omit_sigma = (turns_count <= omit_sigma_turns) ?
+                              turns_count : omit_sigma_turns;
 
     for (int i=0; i<n_turns_omit_sigma; i++) {
         sigma_calc.reset_vals();
@@ -75,7 +75,7 @@ void Simulator::move_all_knights_n(
     }
 
     update_sigma();
-    for (int i=n_turns_omit_sigma; i<moves_count; i++) {
+    for (int i=n_turns_omit_sigma; i<turns_count; i++) {
         // std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
         bool perform_forgetting = (!(i%forget_after_N_turns)) ? true : false;
         move_all_knights(perform_forgetting, forgetting_factor, true);
@@ -84,7 +84,7 @@ void Simulator::move_all_knights_n(
 }
 
 void Simulator::move_all_knights_n_out_sigmas(
-        int moves_count,
+        int turns_count,
         int forget_after_N_turns,
         float forgetting_factor,
         std::filesystem::path save_path,
@@ -93,8 +93,8 @@ void Simulator::move_all_knights_n_out_sigmas(
     std::ofstream file(save_path, std::ios::app);
     file<<"# "<<data_name<<"\n";
 
-    int n_turns_omit_sigma = (moves_count <= omit_sigma_turns) ?
-                              moves_count : omit_sigma_turns;
+    int n_turns_omit_sigma = (turns_count <= omit_sigma_turns) ?
+                              turns_count : omit_sigma_turns;
 
     for (int i=0; i<n_turns_omit_sigma; i++) {
         file<<i<<"\t"<<sigma<<"\n";
@@ -105,7 +105,7 @@ void Simulator::move_all_knights_n_out_sigmas(
 
     update_sigma();
     // Should I handle 0 sigma in second loop?
-    for (int i=n_turns_omit_sigma; i<moves_count; i++) {
+    for (int i=n_turns_omit_sigma; i<turns_count; i++) {
         file<<i<<"\t"<<sigma<<"\n";
         // std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
         bool perform_forgetting = (!(i%forget_after_N_turns)) ? true : false;
