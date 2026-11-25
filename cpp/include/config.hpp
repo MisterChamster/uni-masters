@@ -8,6 +8,8 @@ namespace config {
     inline const int DEFAULT_TURNS_OMIT_SIGMA = 10;
 
     inline const std::string DEFAULT_MIDSPACE_CHAR = " ";
-    inline const std::string FILE_EXT = "txt";
+
+    // Sigma Over Time
+    inline const std::string SOT_FILE_EXT = "txt";
     inline const std::string SOT_FILENAME_BASE = "sigma_over_time";
 }

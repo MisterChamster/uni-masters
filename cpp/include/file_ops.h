@@ -15,4 +15,5 @@ std::filesystem::path get_new_filepath_in_out_sot(
     std::string filename);
 
 // Common
+std::string add_file_ext(std::string filename);
 std::filesystem::path get_project_path(char *argv[]);
