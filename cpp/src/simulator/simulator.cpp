@@ -90,16 +90,14 @@ void Simulator::move_all_knights_n_out_sigmas(
         std::filesystem::path save_path,
         std::string data_name,
         int omit_sigma_turns) {
-    std::ofstream file(save_path, std::ios::app);
-    // file<<"# "<<data_name<<"\n";
-
     int n_turns_omit_sigma = (turns_count <= omit_sigma_turns) ?
                               turns_count : omit_sigma_turns;
 
+    std::ofstream file(save_path, std::ios::app);
     for (int i=0; i<n_turns_omit_sigma; i++) {
         file<<i<<"\t"<<sigma<<"\n";
         sigma_calc.reset_vals();
-        bool perform_forgetting = (!(i%forget_after_N_turns)) ? true : false;
+        bool perform_forgetting = !(i%forget_after_N_turns) ? true : false;
         move_all_knights(perform_forgetting, forgetting_factor, false);
     }
 
@@ -111,5 +109,4 @@ void Simulator::move_all_knights_n_out_sigmas(
         move_all_knights(perform_forgetting, forgetting_factor, true);
         update_sigma();
     }
-    // file<<"\n\n";
 }
