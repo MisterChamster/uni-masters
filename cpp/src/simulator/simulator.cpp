@@ -91,7 +91,7 @@ void Simulator::move_all_knights_n_out_sigmas(
         std::string data_name,
         int omit_sigma_turns) {
     std::ofstream file(save_path, std::ios::app);
-    file<<"# "<<data_name<<"\n";
+    // file<<"# "<<data_name<<"\n";
 
     int n_turns_omit_sigma = (turns_count <= omit_sigma_turns) ?
                               turns_count : omit_sigma_turns;
@@ -107,10 +107,9 @@ void Simulator::move_all_knights_n_out_sigmas(
     // Should I handle 0 sigma in second loop?
     for (int i=n_turns_omit_sigma; i<turns_count; i++) {
         file<<i<<"\t"<<sigma<<"\n";
-        // std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
         bool perform_forgetting = (!(i%forget_after_N_turns)) ? true : false;
         move_all_knights(perform_forgetting, forgetting_factor, true);
         update_sigma();
     }
-    file<<"\n\n";
+    // file<<"\n\n";
 }

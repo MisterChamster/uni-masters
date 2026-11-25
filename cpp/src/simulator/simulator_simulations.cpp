@@ -17,7 +17,7 @@ void Simulator::simulate_sigma_over_time(
     std::string file_ext = config::SOT_FILE_EXT;
 
     std::filesystem::path save_dir = create_and_get_sot_simulation_dir(project_path, board_edge_len, turns_count, forgetting_factor);
-    std::cout<<save_dir<<std::endl;
+    // std::cout<<save_dir<<std::endl;
 
     for (int i=0; i<4; i++) {
         double curr_prob = knight_probabilities[i];
@@ -25,7 +25,7 @@ void Simulator::simulate_sigma_over_time(
 
         std::string filename = get_sot_simulation_file_name(knight_probabilities[i], file_ext);
         std::filesystem::path file_path = join_path_with_filename(save_dir, filename);
-        // std::cout<<file_path<<std::endl;
+        std::cout<<file_path<<std::endl;
 
         initialize(board_edge_len, curr_prob);
         move_all_knights_n_out_sigmas(
