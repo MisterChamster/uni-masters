@@ -38,6 +38,14 @@ void Simulator::simulate_sigma_over_time(
                 file_path,
                 data_name,
                 omit_sigma_turns);
+        } else {
+            TESTmove_all_knights_n_out_sigmasTEST(
+                turns_count,
+                forget_after_N_turns,
+                forgetting_factor,
+                file_path,
+                data_name,
+                omit_sigma_turns);
         }
         full_reset();
     }
