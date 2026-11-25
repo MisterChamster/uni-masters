@@ -6,7 +6,7 @@
 
 // simulator.cpp
 std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path);
-std::filesystem::path get_new_filepath_in_out_sot(
+std::filesystem::path join_path_with_filename(
     std::filesystem::path sot_outputs_dir,
     std::string filename);
 

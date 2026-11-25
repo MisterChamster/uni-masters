@@ -16,15 +16,6 @@ std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path)
     return out_file_path;
 }
 
-std::filesystem::path get_new_filepath_in_out_sot(
-        std::filesystem::path sot_outputs_dir,
-        std::string filename) {
-    std::filesystem::path save_path = sot_outputs_dir / filename;
-    if (std::filesystem::exists(save_path)) rename_with_datetime(save_path);
-
-    return save_path;
-}
-
 // simulator_simulations.cpp
 std::string get_sot_simulation_dir_name(
         int board_edge_len,
@@ -84,4 +75,12 @@ void rename_with_datetime(std::filesystem::path &filepath) {
         filepath.stem().string() + "_" +
         get_formatted_datetime() +
         filepath.extension().string());
+}
+
+std::filesystem::path join_path_with_filename(
+        std::filesystem::path sot_outputs_dir,
+        std::string filename) {
+    std::filesystem::path save_path = sot_outputs_dir / filename;
+
+    return save_path;
 }
