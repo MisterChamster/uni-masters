@@ -12,6 +12,7 @@ int main(int argc, char* argv[]) {
     float forgetting_factor = 0.1;
     int omit_sigma_turns = 10;
     std::filesystem::path project_path = get_project_path(argv);
+    bool calc_sigma_when_omitted = true;
 
     Simulator simulator = Simulator();
     simulator.simulate_sigma_over_time(
@@ -20,7 +21,9 @@ int main(int argc, char* argv[]) {
         forget_after_N_turns,
         forgetting_factor,
         project_path,
-        omit_sigma_turns);
+        omit_sigma_turns,
+        calc_sigma_when_omitted
+    );
 
     return 0;
 }

@@ -110,3 +110,31 @@ void Simulator::move_all_knights_n_out_sigmas(
         update_sigma();
     }
 }
+
+void Simulator::TESTmove_all_knights_n_out_sigmasTEST(
+        int turns_count,
+        int forget_after_N_turns,
+        float forgetting_factor,
+        std::filesystem::path save_path,
+        std::string data_name,
+        int omit_sigma_turns) {
+    int n_turns_omit_sigma = (turns_count <= omit_sigma_turns) ?
+                              turns_count : omit_sigma_turns;
+
+    std::ofstream file(save_path, std::ios::app);
+    for (int i=0; i<n_turns_omit_sigma; i++) {
+        file<<i<<"\t"<<sigma<<"\n";
+        sigma_calc.reset_vals();
+        bool perform_forgetting = !(i%forget_after_N_turns) ? true : false;
+        move_all_knights(perform_forgetting, forgetting_factor, false);
+    }
+
+    update_sigma();
+    // Should I handle 0 sigma in second loop?
+    for (int i=n_turns_omit_sigma; i<turns_count; i++) {
+        file<<i<<"\t"<<sigma<<"\n";
+        bool perform_forgetting = (!(i%forget_after_N_turns)) ? true : false;
+        move_all_knights(perform_forgetting, forgetting_factor, true);
+        update_sigma();
+    }
+}
