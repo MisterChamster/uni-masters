@@ -30,7 +30,7 @@ void Simulator::simulate_sigma_over_time(
         std::cout<<file_path<<std::endl;
 
         initialize(board_edge_len, curr_prob);
-        if (calc_sigma_when_omitted) {
+        if (!calc_sigma_when_omitted) {
             move_all_knights_n_out_sigmas(
                 turns_count,
                 forget_after_N_turns,
