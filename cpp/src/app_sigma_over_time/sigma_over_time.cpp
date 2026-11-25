@@ -10,6 +10,7 @@ int main(int argc, char* argv[]) {
     int moves_to_perform = 500;
     int forget_after_N_turns = 4;
     float forgetting_factor = 0.1;
+    int omit_sigma_turns = 10;
     std::filesystem::path project_path = get_project_path(argv);
 
     Simulator simulator = Simulator();
@@ -18,7 +19,8 @@ int main(int argc, char* argv[]) {
         moves_to_perform,
         forget_after_N_turns,
         forgetting_factor,
-        project_path);
+        project_path,
+        omit_sigma_turns);
 
     return 0;
 }

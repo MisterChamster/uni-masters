@@ -5,7 +5,13 @@
 #include "config.hpp"
 
 
-void Simulator::simulate_sigma_over_time(int board_edge_len, int moves_count, int forget_after_N_turns, float forgetting_factor, std::filesystem::path project_path) {
+void Simulator::simulate_sigma_over_time(
+        int board_edge_len,
+        int moves_count,
+        int forget_after_N_turns,
+        float forgetting_factor,
+        std::filesystem::path project_path,
+        int omit_sigma_turns) {
     double knight_probabilities[4] = {0.25, 0.5, 0.75, 1.0};
 
     std::string filename_base = config::SOT_FILENAME_BASE;
@@ -22,7 +28,8 @@ void Simulator::simulate_sigma_over_time(int board_edge_len, int moves_count, in
             forget_after_N_turns,
             forgetting_factor,
             save_path,
-            data_name);
+            data_name,
+            omit_sigma_turns);
         full_reset();
     }
 }

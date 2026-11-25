@@ -59,8 +59,14 @@ void Simulator::move_all_knights(bool forget_now, float forgetting_factor, bool 
     }
 }
 
-void Simulator::move_all_knights_n(int moves_count, int forget_after_N_turns, float forgetting_factor) {
-    int n_turns_omit_sigma = (moves_count <= 10) ? moves_count : 10;
+// Unused??
+void Simulator::move_all_knights_n(
+        int moves_count,
+        int forget_after_N_turns,
+        float forgetting_factor,
+        int omit_sigma_turns) {
+    int n_turns_omit_sigma = (moves_count <= omit_sigma_turns) ?
+                              moves_count : omit_sigma_turns;
 
     for (int i=0; i<n_turns_omit_sigma; i++) {
         sigma_calc.reset_vals();
@@ -82,12 +88,13 @@ void Simulator::move_all_knights_n_out_sigmas(
         int forget_after_N_turns,
         float forgetting_factor,
         std::filesystem::path save_path,
-        std::string data_name) {
-
+        std::string data_name,
+        int omit_sigma_turns) {
     std::ofstream file(save_path, std::ios::app);
     file<<"# "<<data_name<<"\n";
 
-    int n_turns_omit_sigma = (moves_count <= 10) ? moves_count : 10;
+    int n_turns_omit_sigma = (moves_count <= omit_sigma_turns) ?
+                              moves_count : omit_sigma_turns;
 
     for (int i=0; i<n_turns_omit_sigma; i++) {
         file<<i<<"\t"<<sigma<<"\n";
