@@ -7,11 +7,14 @@ cd "$PROJECT_DIR"
 
 # Get last made dir in sot simulations
 SOT_PARENT_DIR="$PROJECT_DIR"/output/sigma_over_time
+START_AT_NTH_CHAR=48
 LATEST_DIR=$(
     find "$SOT_PARENT_DIR" -mindepth 1 -maxdepth 1 -type d |
     sed 's|.*/||' |
-    sort |
-    tail -n 1
+    awk -v n="$START_AT_NTH_CHAR" '{ print substr($0, n + 1) "\t" $0 }' |
+    sort -t "$(printf '\t')" -k1,1 |
+    tail -n 1 |
+    cut -f2-
 )
 # Validate if a dir was found
 if [ -z "$LATEST_DIR" ]; then
