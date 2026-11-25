@@ -29,6 +29,21 @@ std::filesystem::path get_new_filepath_in_out_sot(
     return save_path;
 }
 
+// simulator_simulations.cpp
+// void create_sot_simulation_folder(std::filesystem::path project_path) {
+    
+// }
+
+std::filesystem::path create_and_get_sot_simulation_folder(std::filesystem::path project_path) {
+    std::filesystem::path outs_sot_dir = get_dirpath_output_sot(project_path);
+    std::string dirname_base = config::SOT_DIRNAME_BASE;
+    std::filesystem::path new_dirpath = outs_sot_dir / dirname_base;
+
+    std::filesystem::create_directory(new_dirpath);
+    return new_dirpath;
+}
+
+// Common
 std::string add_file_ext(std::string filename, std::string extension) {
     return filename + "." + extension;
 }

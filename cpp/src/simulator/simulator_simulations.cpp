@@ -16,8 +16,11 @@ void Simulator::simulate_sigma_over_time(
 
     std::string filename_base = config::SOT_FILENAME_BASE;
     std::cout<<filename_base<<std::endl;
-    std::filesystem::path sot_outputs_dir = get_dirpath_output_sot(project_path);
-    std::filesystem::path save_path = get_new_filepath_in_out_sot(sot_outputs_dir, filename_base);
+    // put more data into save dir name!
+    std::filesystem::path save_path = create_and_get_sot_simulation_folder(project_path);
+
+    // make custom names and make them in loop!
+    save_path = get_new_filepath_in_out_sot(save_path, filename_base);
 
     for (int i=0; i<4; i++) {
         double curr_prob = knight_probabilities[i];

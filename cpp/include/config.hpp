@@ -12,4 +12,5 @@ namespace config {
     // Sigma Over Time
     inline const std::string SOT_FILE_EXT = "txt";
     inline const std::string SOT_FILENAME_BASE = "sigma_over_time";
+    inline const std::string SOT_DIRNAME_BASE = "sot_simulation";
 }
