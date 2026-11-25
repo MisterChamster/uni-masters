@@ -22,7 +22,7 @@ void Simulator::simulate_sigma_over_time(
     std::cout<<save_dir<<std::endl;
 
     // make custom names and make them in loop!
-    std::filesystem::path save_path = get_new_filepath_in_out_sot(save_dir, filename_base);
+    std::filesystem::path newfile_path = get_new_filepath_in_out_sot(save_dir, filename_base);
 
     for (int i=0; i<4; i++) {
         double curr_prob = knight_probabilities[i];
@@ -33,7 +33,7 @@ void Simulator::simulate_sigma_over_time(
             turns_count,
             forget_after_N_turns,
             forgetting_factor,
-            save_path,
+            newfile_path,
             data_name,
             omit_sigma_turns);
         full_reset();

@@ -18,6 +18,7 @@ std::string get_sot_simulation_dir_name(
     int board_edge_len,
     int turns_count,
     float forgetting_factor);
+std::string get_sot_simulation_file_name(double knight_probability);
 std::filesystem::path create_and_get_sot_simulation_folder(
     std::filesystem::path project_path,
     int board_edge_len,

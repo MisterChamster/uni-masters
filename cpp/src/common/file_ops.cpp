@@ -38,7 +38,6 @@ std::string get_sot_simulation_dir_name(
         int board_edge_len,
         int turns_count,
         float forgetting_factor) {
-
     std::string dirname_base = config::SOT_DIRNAME_BASE;
 
     std::ostringstream oss;
@@ -51,6 +50,17 @@ std::string get_sot_simulation_dir_name(
 
     std::string dirname = dirname_base + dirname_add;
     return dirname;
+}
+
+std::string get_sot_simulation_file_name(double knight_probability) {
+    std::string filename_base = config::SOT_FILENAME_BASE;
+
+    std::ostringstream oss;
+    oss << filename_base << "p=" << std::fixed << std::setprecision(3) << knight_probability;
+    std::string filename_add = oss.str();
+
+    std::string filename = filename_base + filename_add;
+    return filename;
 }
 
 std::filesystem::path create_and_get_sot_simulation_folder(
