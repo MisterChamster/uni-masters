@@ -4,7 +4,7 @@
 
 #include "simulator.h"
 #include "board.h"
-#include "utils.h"
+#include "config.hpp"
 
 
 Board* Simulator::get_board_ptr() {
@@ -24,7 +24,7 @@ void Simulator::move_all_knights(bool forget_now, float forgetting_factor, bool 
     std::mt19937 gen(rd());
     std::uniform_real_distribution<double> dist(0.0, 1.0);
     int total_knights = board.get_total_knights();
-    double control_param = use_sigma ? sigma : 1;
+    double control_param = use_sigma ? sigma : config::DEFAULT_CONTROL_PARAM;
 
     for (int i=0; i<total_knights; i++) {
         BoardNode* knight_address = board.knight_nodes_adresses[i];
@@ -59,51 +59,57 @@ void Simulator::move_all_knights(bool forget_now, float forgetting_factor, bool 
     }
 }
 
-void Simulator::move_all_knights_n(int moves_count, int forget_after_N_steps, float forgetting_factor) {
-    int n_steps_omit_sigma = (moves_count <= 10) ? moves_count : 10;
+// Unused??
+void Simulator::move_all_knights_n(
+        int turns_count,
+        int forget_after_N_turns,
+        float forgetting_factor,
+        int omit_sigma_turns) {
+    int n_turns_omit_sigma = (turns_count <= omit_sigma_turns) ?
+                              turns_count : omit_sigma_turns;
 
-    for (int i=0; i<n_steps_omit_sigma; i++) {
+    for (int i=0; i<n_turns_omit_sigma; i++) {
         sigma_calc.reset_vals();
-        bool perform_forgetting = (!(i%forget_after_N_steps)) ? true : false;
+        bool perform_forgetting = (!(i%forget_after_N_turns)) ? true : false;
         move_all_knights(perform_forgetting, forgetting_factor, false);
     }
 
     update_sigma();
-    for (int i=n_steps_omit_sigma; i<moves_count; i++) {
+    for (int i=n_turns_omit_sigma; i<turns_count; i++) {
         // std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
-        bool perform_forgetting = (!(i%forget_after_N_steps)) ? true : false;
+        bool perform_forgetting = (!(i%forget_after_N_turns)) ? true : false;
         move_all_knights(perform_forgetting, forgetting_factor, true);
         update_sigma();
     }
 }
 
 void Simulator::move_all_knights_n_out_sigmas(
-        int moves_count,
-        int forget_after_N_steps,
+        int turns_count,
+        int forget_after_N_turns,
         float forgetting_factor,
         std::filesystem::path save_path,
-        std::string data_name) {
-
+        std::string data_name,
+        int omit_sigma_turns) {
     std::ofstream file(save_path, std::ios::app);
-    file<<"# "<<data_name<<"\n";
+    // file<<"# "<<data_name<<"\n";
 
-    int n_steps_omit_sigma = (moves_count <= 10) ? moves_count : 10;
+    int n_turns_omit_sigma = (turns_count <= omit_sigma_turns) ?
+                              turns_count : omit_sigma_turns;
 
-    for (int i=0; i<n_steps_omit_sigma; i++) {
+    for (int i=0; i<n_turns_omit_sigma; i++) {
         file<<i<<"\t"<<sigma<<"\n";
         sigma_calc.reset_vals();
-        bool perform_forgetting = (!(i%forget_after_N_steps)) ? true : false;
+        bool perform_forgetting = (!(i%forget_after_N_turns)) ? true : false;
         move_all_knights(perform_forgetting, forgetting_factor, false);
     }
 
     update_sigma();
     // Should I handle 0 sigma in second loop?
-    for (int i=n_steps_omit_sigma; i<moves_count; i++) {
+    for (int i=n_turns_omit_sigma; i<turns_count; i++) {
         file<<i<<"\t"<<sigma<<"\n";
-        // std::cout<<i<< ". SIGMA: "<<sigma<<std::endl;
-        bool perform_forgetting = (!(i%forget_after_N_steps)) ? true : false;
+        bool perform_forgetting = (!(i%forget_after_N_turns)) ? true : false;
         move_all_knights(perform_forgetting, forgetting_factor, true);
         update_sigma();
     }
-    file<<"\n\n";
+    // file<<"\n\n";
 }

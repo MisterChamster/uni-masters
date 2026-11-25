@@ -9,7 +9,7 @@ std::string get_formatted_datetime() {
     std::strftime(
         buffer,
         sizeof(buffer),
-        "_%Y-%m-%d_%H-%M-%S",
+        "%Y-%m-%d_%H-%M-%S",
         std::localtime(&now));
     return buffer;
 }

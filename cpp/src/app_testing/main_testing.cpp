@@ -3,6 +3,7 @@
 
 #include "board.h"
 #include "simulator.h"
+#include "file_ops.h"
 
 
 int main(int argc, char* argv[]) {
@@ -10,8 +11,7 @@ int main(int argc, char* argv[]) {
         std::cerr<<"Too many arguments\n";
         return 1;}
 
-    std::filesystem::path executable_path(argv[0]);
-    std::filesystem::path project_path = executable_path.parent_path().parent_path();
+    std::filesystem::path project_path = get_project_path(argv);
 
     std::cout<<"Hello arg!!: "<<argv[0]<<std::endl;
     std::cout<<"Hello arg!!: "<<argv[1]<<std::endl;
@@ -22,9 +22,9 @@ int main(int argc, char* argv[]) {
 
     int board_edge_len       = std::stoi(argv[1]);
     float knight_probability = std::stof(argv[2]);
-    int moves_to_perform     = std::stoi(argv[3]);
+    int turns_count          = std::stoi(argv[3]);
     float forgetting_factor  = std::stof(argv[4]);
-    int forget_after_N_steps = std::stoi(argv[5]);
+    int forget_after_N_turns = std::stoi(argv[5]);
 
 
     Simulator simulator = Simulator(
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
     std::cout<<std::endl;
     std::cout<<std::endl;
 
-    // simulator.move_all_knights_n(moves_to_perform, forget_after_N_steps, forgetting_factor);
+    // simulator.move_all_knights_n(turns_count, forget_after_N_turns, forgetting_factor);
 
     // board_ptr->print_board_trianglar_wins(".");
     std::cout<<std::endl;

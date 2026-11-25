@@ -2,6 +2,7 @@
 
 #include "board.h"
 #include "sigma_calc.h"
+#include "config.hpp"
 
 
 class Simulator {
@@ -13,7 +14,7 @@ private:
 
     // simulator.cpp
     void move_all_knights(bool forget_now, float forgetting_factor, bool use_sigma);
-    double calc_winning_prob(int wins_k1, int wins_k2, float control_param=1);
+    double calc_winning_prob(int wins_k1, int wins_k2, float control_param=config::DEFAULT_CONTROL_PARAM);
     void update_sigma();
 
 public:
@@ -27,9 +28,9 @@ public:
     // simulator.cpp
     Board* get_board_ptr();
 
-    void move_all_knights_n(int moves_count, int forget_after_N_steps, float forgetting_factor);
-    void move_all_knights_n_out_sigmas(int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path save_path, std::string data_name);
+    void move_all_knights_n(int turns_count, int forget_after_N_turns, float forgetting_factor, int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA);
+    void move_all_knights_n_out_sigmas(int turns_count, int forget_after_N_turns, float forgetting_factor, std::filesystem::path save_path, std::string data_name, int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA);
 
     // simulator_simulations.cpp
-    void simulate_sigma_over_time(int board_edge_len, int moves_count, int forget_after_N_steps, float forgetting_factor, std::filesystem::path save_path);
+    void simulate_sigma_over_time(int board_edge_len, int turns_count, int forget_after_N_turns, float forgetting_factor, std::filesystem::path save_path, int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA);
 };

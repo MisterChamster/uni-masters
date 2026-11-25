@@ -25,7 +25,6 @@ BoardNode::BoardNode(bool in_is_knight, int in_i_in_indexes, int in_index_on_boa
 }
 
 
-
 void BoardNode::add_fight_win() {
     wins++;
 }
@@ -34,7 +33,7 @@ void BoardNode::forget(float forgetting_factor) {
     wins = std::round(wins*(1-forgetting_factor));
 }
 
-std::string BoardNode::get_wins_to_print(std::string empty_char) {
+std::string BoardNode::get_wins_to_print(std::string midspace_char) {
     if (get_is_knight()) {
         std::string stringed_num = std::to_string(get_wins());
 
@@ -42,7 +41,7 @@ std::string BoardNode::get_wins_to_print(std::string empty_char) {
         else if (stringed_num.length() == 2) return " " + stringed_num;
         else                                 return stringed_num;
     }
-    else return " " + empty_char + " ";
+    else return " " + midspace_char + " ";
 }
 
 

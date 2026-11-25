@@ -3,6 +3,7 @@
 #include <filesystem>
 
 #include "board_node.h"
+#include "config.hpp"
 
 
 class Board {
@@ -11,7 +12,7 @@ private:
     int edge_len;
     int total_nodes;
     int total_knights;
-    static constexpr int neighbors_count = 6;
+    static constexpr int neighbors_count = config::NODE_NEIGHBORS_COUNT;
 
     // board_construct_reset.cpp
     void create_empty_board_fields(int in_total_nodes);
@@ -44,7 +45,7 @@ public:
     void print_board_sqared();
     void print_board_trianglar();
     void print_board_trianglar_netted(); //don't use this function. it's ugly
-    void print_board_trianglar_wins(std::string empty_char = " ");
+    void print_board_trianglar_wins(std::string midspace_char = config::DEFAULT_MIDSPACE_CHAR);
     void print_neighbors(int n);
     void print_knight_nodes();
 };
