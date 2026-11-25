@@ -6,13 +6,7 @@
 #include "config.hpp"
 
 
-void rename_with_datetime(std::filesystem::path &filepath) {
-    filepath.replace_filename(
-        filepath.stem().string() +
-        get_formatted_datetime() +
-        filepath.extension().string());
-}
-
+// simulator.cpp
 std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path) {
     std::filesystem::path out_file_path = project_path / "output" / "sigma_over_time";
     return out_file_path;
@@ -42,4 +36,11 @@ std::string add_file_ext(std::string filename, std::string extension) {
 std::filesystem::path get_project_path(char *argv[]) {
     std::filesystem::path executable_path(argv[0]);
     return executable_path.parent_path().parent_path();
+}
+
+void rename_with_datetime(std::filesystem::path &filepath) {
+    filepath.replace_filename(
+        filepath.stem().string() +
+        get_formatted_datetime() +
+        filepath.extension().string());
 }
