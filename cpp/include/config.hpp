@@ -11,7 +11,7 @@ namespace config {
 
     // Example Sigma Over Time
     inline const std::string ESOT_FILE_EXT = "txt";
-    inline const std::string ESOT_FILENAME_BASE = "example_sigma_over_time";
+    inline const std::string ESOT_OUTS_DIR = "example_sigma_over_time";
     inline const std::string ESOT_DIRNAME_BASE = "esot_simulation";
     inline constexpr double TEST_P_VALS[] = {0.1, 0.25, 0.5, 0.75, 1.0};
 }

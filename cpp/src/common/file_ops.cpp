@@ -12,7 +12,7 @@
 
 // simulator_simulations.cpp
 std::string get_sot_simulation_file_name(double knight_probability, std::string file_ext) {
-    // std::string filename_base = config::ESOT_FILENAME_BASE;
+    // std::string filename_base = config::ESOT_OUTS_DIR;
 
     std::ostringstream oss;
     oss << "p=" << std::fixed << std::setprecision(3) << knight_probability;
@@ -24,7 +24,7 @@ std::string get_sot_simulation_file_name(double knight_probability, std::string 
 }
 
 std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path) {
-    std::filesystem::path out_file_path = project_path / "output" / config::ESOT_FILENAME_BASE;
+    std::filesystem::path out_file_path = project_path / "output" / config::ESOT_OUTS_DIR;
     return out_file_path;
 }
 
