@@ -5,11 +5,11 @@ set -e
 PROJECT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$PROJECT_DIR"
 
-# Get last made dir in sot simulations
-SOT_PARENT_DIR="$PROJECT_DIR"/output/sigma_over_time
-START_AT_NTH_CHAR=48
+# Get last made dir in esot simulations
+ESOT_PARENT_DIR="$PROJECT_DIR"/output/example_sigma_over_time
+START_AT_NTH_CHAR=49
 LATEST_DIR=$(
-    find "$SOT_PARENT_DIR" -mindepth 1 -maxdepth 1 -type d |
+    find "$ESOT_PARENT_DIR" -mindepth 1 -maxdepth 1 -type d |
     sed 's|.*/||' |
     awk -v n="$START_AT_NTH_CHAR" '{ print substr($0, n + 1) "\t" $0 }' |
     sort -t "$(printf '\t')" -k1,1 |
@@ -18,11 +18,11 @@ LATEST_DIR=$(
 )
 # Validate if a dir was found
 if [ -z "$LATEST_DIR" ]; then
-    echo "No directories found in $SOT_PARENT_DIR" >&2
+    echo "No directories found in $ESOT_PARENT_DIR" >&2
     exit 1
 fi
 echo "$LATEST_DIR"
 
 # Plot files from latest dir
-FILENAME="plot_sigma_over_time.gp"
-gnuplot -e "data_dir='output/sigma_over_time/$LATEST_DIR'" plots/"$FILENAME"
+FILENAME="plot_example_sigma_over_time.gp"
+gnuplot -e "data_dir='$ESOT_PARENT_DIR/$LATEST_DIR'" plots/"$FILENAME"

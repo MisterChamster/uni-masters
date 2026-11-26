@@ -12,7 +12,7 @@
 
 // simulator_simulations.cpp
 std::string get_sot_simulation_file_name(double knight_probability, std::string file_ext) {
-    // std::string filename_base = config::SOT_FILENAME_BASE;
+    // std::string filename_base = config::ESOT_FILENAME_BASE;
 
     std::ostringstream oss;
     oss << "p=" << std::fixed << std::setprecision(3) << knight_probability;
@@ -24,7 +24,7 @@ std::string get_sot_simulation_file_name(double knight_probability, std::string 
 }
 
 std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path) {
-    std::filesystem::path out_file_path = project_path / "output" / "sigma_over_time";
+    std::filesystem::path out_file_path = project_path / "output" / config::ESOT_FILENAME_BASE;
     return out_file_path;
 }
 
@@ -32,7 +32,7 @@ std::string get_sot_simulation_dir_name(
         int board_edge_len,
         int turns_count,
         float forgetting_factor) {
-    std::string dirname_base = config::SOT_DIRNAME_BASE;
+    std::string dirname_base = config::ESOT_DIRNAME_BASE;
 
     std::ostringstream oss;
     oss << 

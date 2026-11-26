@@ -49,7 +49,7 @@ public:
         int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA);
 
     // simulator_simulations.cpp
-    void simulate_sigma_over_time(
+    void simulate_example_sigma_over_time(
         int board_edge_len,
         int turns_count,
         int forget_after_N_turns,

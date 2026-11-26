@@ -9,8 +9,8 @@ namespace config {
 
     inline const std::string DEFAULT_MIDSPACE_CHAR = " ";
 
-    // Sigma Over Time
-    inline const std::string SOT_FILE_EXT = "txt";
-    inline const std::string SOT_FILENAME_BASE = "sigma_over_time";
-    inline const std::string SOT_DIRNAME_BASE = "sot_simulation";
+    // Example Sigma Over Time
+    inline const std::string ESOT_FILE_EXT = "txt";
+    inline const std::string ESOT_FILENAME_BASE = "example_sigma_over_time";
+    inline const std::string ESOT_DIRNAME_BASE = "esot_simulation";
 }

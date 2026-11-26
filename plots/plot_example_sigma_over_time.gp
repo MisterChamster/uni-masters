@@ -1,4 +1,4 @@
-set title "Sigma change over time"
+set title "Example sigma change over time"
 set xlabel "T turns"
 set ylabel "Sigma"
 set grid

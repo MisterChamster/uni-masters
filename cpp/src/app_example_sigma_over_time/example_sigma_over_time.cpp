@@ -9,13 +9,14 @@ int main(int argc, char* argv[]) {
     int board_edge_len = 100;
     int turns_count = 500;
     int forget_after_N_turns = 4;
-    float forgetting_factor = 0.1;
-    int omit_sigma_turns = 10;
+    float forgetting_factor = 0.0;
     std::filesystem::path project_path = get_project_path(argv);
+    int omit_sigma_turns = 10;
     bool calc_sigma_when_omitted = true;
 
     Simulator simulator = Simulator();
-    simulator.simulate_sigma_over_time(
+    // Liczyć sigmę kiedy nie wpływa
+    simulator.simulate_example_sigma_over_time(
         board_edge_len,
         turns_count,
         forget_after_N_turns,

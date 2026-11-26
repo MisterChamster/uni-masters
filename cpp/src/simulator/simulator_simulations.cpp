@@ -6,7 +6,7 @@
 #include "config.hpp"
 
 
-void Simulator::simulate_sigma_over_time(
+void Simulator::simulate_example_sigma_over_time(
         int board_edge_len,
         int turns_count,
         int forget_after_N_turns,
@@ -16,10 +16,8 @@ void Simulator::simulate_sigma_over_time(
         bool calc_sigma_when_omitted) {
     double knight_probabilities[] = {0.1, 0.25, 0.5, 0.75, 1.0};
     int probs_arr_len = std::size(knight_probabilities);
-    std::string file_ext = config::SOT_FILE_EXT;
-
+    std::string file_ext = config::ESOT_FILE_EXT;
     std::filesystem::path save_dir = create_and_get_sot_simulation_dir(project_path, board_edge_len, turns_count, forgetting_factor);
-    // std::cout<<save_dir<<std::endl;
 
     for (int i=0; i<probs_arr_len; i++) {
         double curr_prob = knight_probabilities[i];
