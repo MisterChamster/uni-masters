@@ -3,6 +3,7 @@ build/
 .vscode/
 venv/
 output/example_sigma_over_time/
+output/meetup_presentation
 
 .DS_Store
 build_and_run.sh
