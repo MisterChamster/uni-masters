@@ -123,6 +123,7 @@ void Simulator::TESTmove_all_knights_n_out_sigmas_CALC_OMIT_SIGMA(
 
     std::ofstream file(save_path, std::ios::app);
     for (int i=0; i<n_turns_omit_sigma; i++) {
+        update_sigma();
         file<<i<<"\t"<<sigma<<"\n";
         sigma_calc.reset_vals();
         bool perform_forgetting = !(i%forget_after_N_turns) ? true : false;
