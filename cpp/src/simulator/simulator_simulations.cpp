@@ -14,20 +14,17 @@ void Simulator::simulate_example_sigma_over_time(
         std::filesystem::path project_path,
         int omit_sigma_turns,
         bool calc_sigma_when_omitted) {
-    double knight_probabilities[] = {0.1, 0.25, 0.5, 0.75, 1.0};
-    int probs_arr_len = std::size(knight_probabilities);
     std::string file_ext = config::ESOT_FILE_EXT;
     std::filesystem::path save_dir = create_and_get_sot_simulation_dir(project_path, board_edge_len, turns_count, forgetting_factor);
 
-    for (int i=0; i<probs_arr_len; i++) {
-        double curr_prob = knight_probabilities[i];
-        std::string data_name = "p = " + std::to_string(curr_prob);
+    for (double curr_p : config::TEST_P_VALS) {
+        std::string data_name = "p = " + std::to_string(curr_p);
 
-        std::string filename = get_sot_simulation_file_name(knight_probabilities[i], file_ext);
+        std::string filename = get_sot_simulation_file_name(curr_p, file_ext);
         std::filesystem::path file_path = join_path_with_filename(save_dir, filename);
         std::cout<<file_path<<std::endl;
 
-        initialize(board_edge_len, curr_prob);
+        initialize(board_edge_len, curr_p);
         if (!calc_sigma_when_omitted) {
             move_all_knights_n_out_sigmas(
                 turns_count,
