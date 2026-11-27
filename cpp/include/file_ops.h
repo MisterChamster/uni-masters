@@ -5,13 +5,13 @@
 
 
 // simulator_simulations.cpp
-std::string get_sot_simulation_file_name(double knight_probability, std::string file_ext);
-std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path);
-std::string get_sot_simulation_dir_name(
+std::string get_sot_esot_simulation_file_name(double knight_probability, std::string file_ext);
+std::filesystem::path get_dirpath_output_esot(std::filesystem::path project_path);
+std::string get_esot_simulation_dir_name(
     int board_edge_len,
     int turns_count,
     float forgetting_factor);
-std::filesystem::path create_and_get_sot_simulation_dir(
+std::filesystem::path create_and_get_esot_simulation_dir(
     std::filesystem::path project_path,
     int board_edge_len,
     int turns_count,
