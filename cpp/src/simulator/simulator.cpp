@@ -88,7 +88,6 @@ void Simulator::move_all_knights_n_out_sigmas(
         int forget_after_N_turns,
         float forgetting_factor,
         std::filesystem::path save_path,
-        std::string data_name,
         int omit_sigma_turns) {
     int n_turns_omit_sigma = (turns_count <= omit_sigma_turns) ?
                               turns_count : omit_sigma_turns;
@@ -116,7 +115,6 @@ void Simulator::TESTmove_all_knights_n_out_sigmas_CALC_OMIT_SIGMA(
         int forget_after_N_turns,
         float forgetting_factor,
         std::filesystem::path save_path,
-        std::string data_name,
         int omit_sigma_turns) {
     int n_turns_omit_sigma = (turns_count <= omit_sigma_turns) ?
                               turns_count : omit_sigma_turns;

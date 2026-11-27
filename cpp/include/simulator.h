@@ -40,14 +40,12 @@ public:
         int forget_after_N_turns,
         float forgetting_factor,
         std::filesystem::path save_path,
-        std::string data_name,
         int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA);
     void TESTmove_all_knights_n_out_sigmas_CALC_OMIT_SIGMA(
         int turns_count,
         int forget_after_N_turns,
         float forgetting_factor,
         std::filesystem::path save_path,
-        std::string data_name,
         int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA);
 
     // simulator_simulations.cpp

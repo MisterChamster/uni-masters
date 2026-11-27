@@ -19,8 +19,6 @@ void Simulator::simulate_example_sigma_over_time(
         project_path, board_edge_len, turns_count, forgetting_factor, true);
 
     for (double curr_p : config::TEST_P_VALS) {
-        std::string data_name = "p = " + std::to_string(curr_p);
-
         std::string filename = get_sot_simulation_file_name(curr_p, file_ext);
         std::filesystem::path file_path = join_path_with_filename(save_dir, filename);
         std::cout<<file_path<<std::endl;
@@ -32,7 +30,6 @@ void Simulator::simulate_example_sigma_over_time(
                 forget_after_N_turns,
                 forgetting_factor,
                 file_path,
-                data_name,
                 omit_sigma_turns);
         } else {
             TESTmove_all_knights_n_out_sigmas_CALC_OMIT_SIGMA(
@@ -40,7 +37,6 @@ void Simulator::simulate_example_sigma_over_time(
                 forget_after_N_turns,
                 forgetting_factor,
                 file_path,
-                data_name,
                 omit_sigma_turns);
         }
         full_reset();
