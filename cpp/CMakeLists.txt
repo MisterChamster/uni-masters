@@ -22,8 +22,10 @@ add_executable(main_testing
     src/simulator/simulator_simulations.cpp
     src/simulator/sigma_calc.cpp
 
+    # file operations
+    src/file_ops/file_ops.cpp
+
     # common
-    src/common/file_ops.cpp
     src/common/utils.cpp
 )
 
@@ -43,8 +45,10 @@ add_executable(example_sigma_over_time
     src/simulator/simulator_simulations.cpp
     src/simulator/sigma_calc.cpp
 
+    # file operations
+    src/file_ops/file_ops.cpp
+
     # common
-    src/common/file_ops.cpp
     src/common/utils.cpp
 )
 
@@ -64,8 +68,10 @@ add_executable(sigma_over_time
     src/simulator/simulator_simulations.cpp
     src/simulator/sigma_calc.cpp
 
+    # file operations
+    src/file_ops/file_ops.cpp
+
     # common
-    src/common/file_ops.cpp
     src/common/utils.cpp
 )
 
