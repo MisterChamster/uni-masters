@@ -45,3 +45,16 @@ void Simulator::simulate_example_sigma_over_time(
         full_reset();
     }
 }
+
+
+void simulate_sigma_over_time(
+        int board_edge_len,
+        int turns_count,
+        const std::vector<double>& values,
+        int forget_after_N_turns,
+        float forgetting_factor,
+        std::filesystem::path save_path,
+        int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA) {
+
+    std::string file_ext = config::SOT_FILE_EXT;
+}
