@@ -60,7 +60,7 @@ public:
     void simulate_sigma_over_time(
         int board_edge_len,
         int turns_count,
-        const std::vector<double>& values,
+        const std::vector<double>& knight_probs,
         int forget_after_N_turns,
         float forgetting_factor,
         std::filesystem::path save_path,
