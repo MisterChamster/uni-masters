@@ -11,16 +11,19 @@
 
 
 // simulator_simulations.cpp
-std::filesystem::path get_dirpath_output_esot(std::filesystem::path project_path) {
-    std::filesystem::path out_file_path = project_path / "output" / config::ESOT_OUTS_DIR;
-    return out_file_path;
+std::filesystem::path get_dirpath_output_sot(
+        std::filesystem::path project_path, bool is_example) {
+    std::string dirname = is_example ? config::ESOT_OUTS_DIR : config::SOT_OUTS_DIR;
+    std::filesystem::path out_dir_path = project_path / "output" / dirname;
+    return out_dir_path;
 }
 
-std::string get_esot_simulation_dir_name(
+std::string get_sot_simulation_dir_name(
         int board_edge_len,
         int turns_count,
-        float forgetting_factor) {
-    std::string dirname_base = config::ESOT_DIRNAME_BASE;
+        float forgetting_factor,
+        bool is_example) {
+    std::string dirname_base = is_example ? config::ESOT_DIRNAME_BASE : config::SOT_DIRNAME_BASE;
 
     std::ostringstream oss;
     oss << 
@@ -34,13 +37,14 @@ std::string get_esot_simulation_dir_name(
     return dirname;
 }
 
-std::filesystem::path create_and_get_esot_simulation_dir(
+std::filesystem::path create_and_get_sot_simulation_dir(
         std::filesystem::path project_path,
         int board_edge_len,
         int turns_count,
-        float forgetting_factor) {
-    std::filesystem::path outs_esot_dir = get_dirpath_output_esot(project_path);
-    std::string dirname = get_esot_simulation_dir_name(board_edge_len, turns_count, forgetting_factor);
+        float forgetting_factor,
+        bool is_example) {
+    std::filesystem::path outs_esot_dir = get_dirpath_output_sot(project_path, is_example);
+    std::string dirname = get_sot_simulation_dir_name(board_edge_len, turns_count, forgetting_factor, is_example);
     std::filesystem::path new_dirpath = outs_esot_dir / dirname;
 
     std::filesystem::create_directory(new_dirpath);

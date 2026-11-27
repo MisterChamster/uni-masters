@@ -15,12 +15,13 @@ void Simulator::simulate_example_sigma_over_time(
         int omit_sigma_turns,
         bool calc_sigma_when_omitted) {
     std::string file_ext = config::ESOT_FILE_EXT;
-    std::filesystem::path save_dir = create_and_get_esot_simulation_dir(project_path, board_edge_len, turns_count, forgetting_factor);
+    std::filesystem::path save_dir = create_and_get_sot_simulation_dir(
+        project_path, board_edge_len, turns_count, forgetting_factor, true);
 
     for (double curr_p : config::TEST_P_VALS) {
         std::string data_name = "p = " + std::to_string(curr_p);
 
-        std::string filename = get_sot_simulation_file_name(curr_p, file_ext, true);
+        std::string filename = get_sot_simulation_file_name(curr_p, file_ext);
         std::filesystem::path file_path = join_path_with_filename(save_dir, filename);
         std::cout<<file_path<<std::endl;
 
