@@ -20,7 +20,7 @@ void Simulator::simulate_example_sigma_over_time(
     for (double curr_p : config::TEST_P_VALS) {
         std::string data_name = "p = " + std::to_string(curr_p);
 
-        std::string filename = get_sot_esot_simulation_file_name(curr_p, file_ext);
+        std::string filename = get_sot_simulation_file_name(curr_p, file_ext, true);
         std::filesystem::path file_path = join_path_with_filename(save_dir, filename);
         std::cout<<file_path<<std::endl;
 

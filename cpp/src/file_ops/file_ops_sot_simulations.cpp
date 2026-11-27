@@ -11,15 +11,6 @@
 
 
 // simulator_simulations.cpp
-std::string get_sot_esot_simulation_file_name(double knight_probability, std::string file_ext) {
-    std::ostringstream oss;
-    oss << "p=" << std::fixed << std::setprecision(3) << knight_probability;
-    std::string filename = oss.str();
-
-    std::string filename_with_ext = add_file_ext(filename, file_ext);
-    return filename_with_ext;
-}
-
 std::filesystem::path get_dirpath_output_esot(std::filesystem::path project_path) {
     std::filesystem::path out_file_path = project_path / "output" / config::ESOT_OUTS_DIR;
     return out_file_path;
@@ -48,10 +39,19 @@ std::filesystem::path create_and_get_esot_simulation_dir(
         int board_edge_len,
         int turns_count,
         float forgetting_factor) {
-    std::filesystem::path outs_sot_dir = get_dirpath_output_esot(project_path);
+    std::filesystem::path outs_esot_dir = get_dirpath_output_esot(project_path);
     std::string dirname = get_esot_simulation_dir_name(board_edge_len, turns_count, forgetting_factor);
-    std::filesystem::path new_dirpath = outs_sot_dir / dirname;
+    std::filesystem::path new_dirpath = outs_esot_dir / dirname;
 
     std::filesystem::create_directory(new_dirpath);
     return new_dirpath;
+}
+
+std::string get_sot_simulation_file_name(double knight_probability, std::string file_ext) {
+    std::ostringstream oss;
+    oss << "p=" << std::fixed << std::setprecision(3) << knight_probability;
+    std::string filename = oss.str();
+
+    std::string filename_with_ext = add_file_ext(filename, file_ext);
+    return filename_with_ext;
 }
