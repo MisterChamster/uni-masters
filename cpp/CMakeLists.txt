@@ -24,6 +24,7 @@ add_executable(main_testing
 
     # file operations
     src/file_ops/file_ops.cpp
+    src/file_ops/file_ops_common.cpp
 
     # common
     src/common/utils.cpp
@@ -47,6 +48,7 @@ add_executable(example_sigma_over_time
 
     # file operations
     src/file_ops/file_ops.cpp
+    src/file_ops/file_ops_common.cpp
 
     # common
     src/common/utils.cpp
@@ -70,6 +72,7 @@ add_executable(sigma_over_time
 
     # file operations
     src/file_ops/file_ops.cpp
+    src/file_ops/file_ops_common.cpp
 
     # common
     src/common/utils.cpp
