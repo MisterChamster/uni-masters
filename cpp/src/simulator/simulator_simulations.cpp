@@ -50,8 +50,8 @@ void simulate_sigma_over_time(
         const std::vector<double>& knight_probs,
         int forget_after_N_turns,
         float forgetting_factor,
-        std::filesystem::path save_path,
-        int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA) {
+        std::filesystem::path project_path,
+        int omit_sigma_turns) {
 
     std::string file_ext = config::SOT_FILE_EXT;
 }

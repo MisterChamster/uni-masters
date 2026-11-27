@@ -54,7 +54,7 @@ public:
         int turns_count,
         int forget_after_N_turns,
         float forgetting_factor,
-        std::filesystem::path save_path,
+        std::filesystem::path project_path,
         int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA,
         bool calc_sigma_when_omitted=false);
     void simulate_sigma_over_time(
@@ -63,6 +63,6 @@ public:
         const std::vector<double>& knight_probs,
         int forget_after_N_turns,
         float forgetting_factor,
-        std::filesystem::path save_path,
+        std::filesystem::path project_path,
         int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA);
 };
