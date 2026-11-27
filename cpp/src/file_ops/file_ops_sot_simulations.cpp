@@ -14,7 +14,7 @@
 std::filesystem::path get_dirpath_output_sot(
         std::filesystem::path project_path, bool is_example) {
     std::string dirname = is_example ? config::ESOT_OUTS_DIR : config::SOT_OUTS_DIR;
-    std::filesystem::path out_dir_path = project_path / "output" / dirname;
+    std::filesystem::path out_dir_path = project_path / config::OUTPUTS_DIR_NAME / dirname;
     return out_dir_path;
 }
 
