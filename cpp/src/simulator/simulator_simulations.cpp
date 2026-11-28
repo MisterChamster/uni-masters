@@ -45,7 +45,7 @@ void Simulator::simulate_example_sigma_over_time(
 }
 
 
-void simulate_sigma_over_time(
+void Simulator::simulate_sigma_over_time(
         int board_edge_len,
         int turns_count,
         const std::vector<double>& knight_probs,
@@ -55,4 +55,21 @@ void simulate_sigma_over_time(
         int omit_sigma_turns) {
 
     std::string file_ext = config::SOT_FILE_EXT;
+    std::filesystem::path save_dir = create_and_get_sot_simulation_dir(
+        project_path, board_edge_len, turns_count, forgetting_factor);
+
+    for (double curr_p : knight_probs) {
+        std::string filename = get_sot_simulation_file_name(curr_p, file_ext);
+        std::filesystem::path file_path = join_path_with_filename(save_dir, filename);
+        std::cout<<file_path<<std::endl;
+
+        initialize(board_edge_len, curr_p);
+        move_all_knights_n_out_sigmas(
+            turns_count,
+            forget_after_N_turns,
+            forgetting_factor,
+            file_path,
+            omit_sigma_turns);
+        full_reset();
+    }
 }
