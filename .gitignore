@@ -4,6 +4,7 @@ build/
 venv/
 output/example_sigma_over_time/
 output/meetup_presentation
+output/sigma_over_time/
 
 .DS_Store
 build_and_run.sh

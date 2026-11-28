@@ -5,7 +5,6 @@
 
 
 // simulator_simulations.cpp
-std::string get_sot_simulation_file_name(double knight_probability, std::string file_ext);
 std::filesystem::path get_dirpath_output_sot(std::filesystem::path project_path);
 std::string get_sot_simulation_dir_name(
     int board_edge_len,
@@ -15,8 +14,9 @@ std::filesystem::path create_and_get_sot_simulation_dir(
     std::filesystem::path project_path,
     int board_edge_len,
     int turns_count,
-    float forgetting_factor
-);
+    float forgetting_factor,
+    bool is_example=false);
+std::string get_sot_simulation_file_name(double knight_probability, std::string file_ext);
 
 // Common
 std::string add_file_ext(std::string filename, std::string extension);

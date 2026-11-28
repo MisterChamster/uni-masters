@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "board.h"
 #include "sigma_calc.h"
 #include "config.hpp"
@@ -38,14 +40,12 @@ public:
         int forget_after_N_turns,
         float forgetting_factor,
         std::filesystem::path save_path,
-        std::string data_name,
         int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA);
     void TESTmove_all_knights_n_out_sigmas_CALC_OMIT_SIGMA(
         int turns_count,
         int forget_after_N_turns,
         float forgetting_factor,
         std::filesystem::path save_path,
-        std::string data_name,
         int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA);
 
     // simulator_simulations.cpp
@@ -54,7 +54,15 @@ public:
         int turns_count,
         int forget_after_N_turns,
         float forgetting_factor,
-        std::filesystem::path save_path,
+        std::filesystem::path project_path,
         int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA,
         bool calc_sigma_when_omitted=false);
+    void simulate_sigma_over_time(
+        int board_edge_len,
+        int turns_count,
+        const std::vector<double>& knight_probs,
+        int forget_after_N_turns,
+        float forgetting_factor,
+        std::filesystem::path project_path,
+        int omit_sigma_turns=config::DEFAULT_TURNS_OMIT_SIGMA);
 };
